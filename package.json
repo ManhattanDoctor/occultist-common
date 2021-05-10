@@ -1,0 +1,12 @@
+{
+    "name": "@occultist/common",
+    "version": "1.0.0",
+    "description": "",
+    "main": "",
+    "author": "Anter Athanor",
+    "license": "ISC",
+    "dependencies": {
+        "@ts-core/common": "^1.0.176"
+    },
+    "devDependencies": {}
+}
