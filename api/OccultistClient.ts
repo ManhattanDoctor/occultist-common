@@ -12,7 +12,7 @@ export class OccultistClient extends Destroyable {
     //
     // --------------------------------------------------------------------------
 
-    protected _http: TransportHttp;
+    protected _http: TransportHttp<ITransportHttpSettings>;
 
     // --------------------------------------------------------------------------
     //
@@ -69,35 +69,26 @@ export class OccultistClient extends Destroyable {
     //
     //--------------------------------------------------------------------------
 
-    public get http(): TransportHttp {
+    public get http(): TransportHttp<ITransportHttpSettings> {
         return this._http;
     }
 
     public get headers(): any {
-        return !_.isNil(this.settings) ? this.settings.headers : null;
+        return !_.isNil(this.http) ? this.http.headers : null;
     }
 
     public get url(): string {
-        return !_.isNil(this.settings) ? this.settings.baseURL : null;
+        return !_.isNil(this.http) ? this.http.url : null;
     }
     public set url(value: string) {
-        if (!_.isNil(this.settings)) {
-            this.settings.baseURL = value;
+        if (!_.isNil(this.http)) {
+            this.http.url = value;
         }
     }
 
     public set sid(value: string) {
         if (!_.isNil(this.headers)) {
             this.headers.Authorization = `Bearer ${value}`;
-        }
-    }
-
-    public get settings(): ITransportHttpSettings {
-        return !_.isNil(this.http) ? this.http.settings : null;
-    }
-    public set settings(value: ITransportHttpSettings) {
-        if (!_.isNil(this.http)) {
-            this.http.settings = value;
         }
     }
 }
