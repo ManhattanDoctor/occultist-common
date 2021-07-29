@@ -3,5 +3,6 @@ export class UserPreferences {
     phone?: string;
     email?: string;
     locale?: string;
+    picture?: string;
     description?: string;
 }
