@@ -4,6 +4,8 @@ import * as _ from 'lodash';
 import { Destroyable } from '@ts-core/common';
 import { ILoginDto, ILoginDtoResponse, ILoginInitDto, ILoginInitDtoResponse } from './login';
 import { ITraceable, TraceUtil } from '@ts-core/common/trace';
+import { TransformUtil } from '@ts-core/common/util';
+import { User } from '../user';
 
 export class OccultistClient extends Destroyable {
     // --------------------------------------------------------------------------
@@ -40,7 +42,7 @@ export class OccultistClient extends Destroyable {
 
     public async init(data?: ILoginInitDto): Promise<ILoginInitDtoResponse> {
         let item = await this.http.call<ILoginInitDtoResponse, ILoginInitDto>(INIT_URL, { data: TraceUtil.addIfNeed(data) });
-        // item.user = TransformUtil.toClass(User, item.user);
+        item.user = TransformUtil.toClass(User, item.user);
         return item;
     }
 
