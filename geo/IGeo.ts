@@ -22,7 +22,7 @@ export class IGeo {
     //
     //--------------------------------------------------------------------------
 
-    public copy(): IGeo {
+    public copy?(): IGeo {
         return TransformUtil.toClass(IGeo, TransformUtil.fromClass(this));
     }
 }
