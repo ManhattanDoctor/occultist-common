@@ -59,7 +59,7 @@ export class OccultistClient extends Destroyable {
     // --------------------------------------------------------------------------
 
     public async geo(data: IGeoDto): Promise<IGeoDtoResponse> {
-        let item = await this.http.call<IGeoDtoResponse, IGeoDto>(GEO_URL, { data: TraceUtil.addIfNeed(data) });
+        let item = await this.http.call<IGeoDtoResponse, IGeoDto>(GEO_URL, { data: TraceUtil.addIfNeed(data), isHandleError: false });
         return TransformUtil.toClass(IGeoDetails, item);
     }
 
