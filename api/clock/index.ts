@@ -1,1 +1,1 @@
-export * from './IGeoDto';
+export * from './IClockDto';
