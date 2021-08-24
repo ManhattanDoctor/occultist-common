@@ -26,12 +26,3 @@ export class IGeo {
         return TransformUtil.toClass(IGeo, TransformUtil.fromClass(this));
     }
 }
-
-export class IGeoDetails {
-    @Type(() => Date)
-    sunset: Date;
-    @Type(() => Date)
-    sunrise: Date;
-
-    dayLength: number;
-}
