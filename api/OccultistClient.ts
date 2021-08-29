@@ -52,7 +52,7 @@ export class OccultistClient extends TransportHttp<ITransportHttpSettings> {
     }
     
     public async clock(data: IClockDto): Promise<IClockDtoResponse> {
-        let item = await this.call<IClockDtoResponse, IClockDto>(GEO_URL, { data: TraceUtil.addIfNeed(data), isHandleError: false });
+        let item = await this.call<IClockDtoResponse, IClockDto>(CLOCK_URL, { data: TraceUtil.addIfNeed(data), isHandleError: false });
         return TransformUtil.toClass(IClockDtoResponse, item);
     }
 
