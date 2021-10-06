@@ -2,7 +2,7 @@ import { ILogger } from '@ts-core/common/logger';
 import { TransportHttp } from '@ts-core/common/transport/http';
 import { DateUtil } from '@ts-core/common/util';
 import * as _ from 'lodash';
-import { IGeo } from '@occultist/common/geo';
+import { IGeo } from '../geo';
 
 export class ClockService extends TransportHttp {
     //--------------------------------------------------------------------------
