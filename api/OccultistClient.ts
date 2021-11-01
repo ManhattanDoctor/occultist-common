@@ -48,11 +48,15 @@ export class OccultistClient extends TransportHttp<ITransportHttpSettings> {
     // --------------------------------------------------------------------------
 
     public async tarotSpreadDay(data: ITarotSpreadDateDto): Promise<ITarotSpreadDtoResponse> {
-        return this.tarotIndexes(data.date.getTime().toString());
+        let item = await this.tarotIndexes(data.date.getTime().toString());
+        item.indexes = item.indexes.slice(0, 1);
+        return item;
     }
 
     public async tarotSpreadThree(data: ITarotSpreadQuestionDto): Promise<ITarotSpreadDtoResponse> {
-        return this.tarotIndexes(data.date.getTime().toString());
+        let item = await this.tarotIndexes(data.date.getTime().toString());
+        item.indexes = item.indexes.slice(0, 3);
+        return item;
     }
 
     // --------------------------------------------------------------------------
