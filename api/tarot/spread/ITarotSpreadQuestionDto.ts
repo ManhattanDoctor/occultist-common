@@ -1,6 +1,5 @@
-import { ITraceable } from '@ts-core/common/trace';
 import { Type } from 'class-transformer';
-import { ITarotSpreadDateDto } from '.';
+import { ITarotSpreadDateDto } from './ITarotSpreadDateDto';
 
 export class ITarotSpreadQuestionDto extends ITarotSpreadDateDto {
     @Type(() => Date)
