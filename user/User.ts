@@ -11,7 +11,6 @@ export class User {
 
     @Type(() => Date)
     public createdDate: Date;
-    public isTwoFaEnabled: boolean;
 
     public account: UserAccount;
     public preferences: UserPreferences;

@@ -112,3 +112,5 @@ export const LOGIN_URL = PREFIX_URL + 'login';
 export const LOGOUT_URL = PREFIX_URL + 'logout';
 export const CLOCK_URL = PREFIX_URL + 'clock';
 export const LOCALE_URL = PREFIX_URL + 'locale';
+
+export const USER_PICTURE_UPLOAD_URL = PREFIX_URL + 'user/picture/upload';
