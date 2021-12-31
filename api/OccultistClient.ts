@@ -8,6 +8,7 @@ import { IInitDto, IInitDtoResponse, ILoginDto, ILoginDtoResponse } from './logi
 import { User } from '../user';
 import { ITarotSpreadDateDto, ITarotSpreadQuestionDto, ITarotSpreadDtoResponse } from './tarot/spread';
 import { RandomGenerator } from '../util';
+import { IUserListDto, IUserListDtoResponse } from '../api/user';
 
 export class OccultistClient extends TransportHttp<ITransportHttpSettings> {
     // --------------------------------------------------------------------------
@@ -93,6 +94,23 @@ export class OccultistClient extends TransportHttp<ITransportHttpSettings> {
         return TransformUtil.toClass(IClockDtoResponse, item);
     }
 
+    // --------------------------------------------------------------------------
+    //
+    //  User Methods
+    //
+    // --------------------------------------------------------------------------
+
+    public async userGet(id: number): Promise<User> {
+        let item = await this.call<User>(`${USER_URL}/${id}`);
+        return TransformUtil.toClass(User, item);
+    }
+
+    public async userList(data?: IUserListDto): Promise<IUserListDtoResponse> {
+        let item = await this.call<IUserListDtoResponse, IUserListDto>(USER_URL, { data: TraceUtil.addIfNeed(data) });
+        item.items = TransformUtil.toClassMany(User, item.items);
+        return item;
+    }
+
     //--------------------------------------------------------------------------
     //
     // 	Public Properties
@@ -107,6 +125,7 @@ export class OccultistClient extends TransportHttp<ITransportHttpSettings> {
 }
 
 export const PREFIX_URL = 'api/';
+export const USER_URL = PREFIX_URL + 'user';
 export const INIT_URL = PREFIX_URL + 'init';
 export const LOGIN_URL = PREFIX_URL + 'login';
 export const LOGOUT_URL = PREFIX_URL + 'logout';
