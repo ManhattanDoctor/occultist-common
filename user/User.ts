@@ -12,7 +12,9 @@ export class User {
     @Type(() => Date)
     public createdDate: Date;
 
+    @Type(() => UserAccount)
     public account: UserAccount;
+    @Type(() => UserPreferences)
     public preferences: UserPreferences;
 }
 
