@@ -8,7 +8,7 @@ import { IInitDto, IInitDtoResponse, ILoginDto, ILoginDtoResponse } from './logi
 import { User } from '../user';
 import { ITarotSpreadDateDto, ITarotSpreadQuestionDto, ITarotSpreadDtoResponse } from './tarot/spread';
 import { RandomGenerator } from '../util';
-import { IUserListDto, IUserListDtoResponse } from '../api/user';
+import { IUserListDto, IUserListDtoResponse, IUserGetDtoResponse, IUserEditDto, IUserEditDtoResponse } from '../api/user';
 import { UserUid } from '@ts-core/angular';
 
 export class OccultistClient extends TransportHttp<ITransportHttpSettings> {
@@ -101,8 +101,13 @@ export class OccultistClient extends TransportHttp<ITransportHttpSettings> {
     //
     // --------------------------------------------------------------------------
 
-    public async userGet(id: UserUid): Promise<User> {
+    public async userGet(id: UserUid): Promise<IUserGetDtoResponse> {
         let item = await this.call<User>(`${USER_URL}/${id}`);
+        return TransformUtil.toClass(User, item);
+    }
+
+    public async userEdit(data: IUserEditDto): Promise<IUserEditDtoResponse> {
+        let item = await this.call<IUserEditDtoResponse, IUserEditDto>(`${USER_URL}/${data.uid}`, { method: 'put', data });
         return TransformUtil.toClass(User, item);
     }
 

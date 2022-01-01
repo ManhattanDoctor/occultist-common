@@ -1,8 +1,9 @@
+import { UserUid } from '@ts-core/angular';
 import { ITraceable } from '@ts-core/common/trace';
 import { User, UserAccount, UserPreferences } from '../../user';
 
 export interface IUserEditDto extends ITraceable {
-    // id: number;
+    uid?: UserUid;
     account?: Partial<UserAccount>;
     preferences?: Partial<UserPreferences>;
 }
