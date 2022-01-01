@@ -9,6 +9,7 @@ import { User } from '../user';
 import { ITarotSpreadDateDto, ITarotSpreadQuestionDto, ITarotSpreadDtoResponse } from './tarot/spread';
 import { RandomGenerator } from '../util';
 import { IUserListDto, IUserListDtoResponse } from '../api/user';
+import { UserUid } from '@ts-core/angular';
 
 export class OccultistClient extends TransportHttp<ITransportHttpSettings> {
     // --------------------------------------------------------------------------
@@ -100,7 +101,7 @@ export class OccultistClient extends TransportHttp<ITransportHttpSettings> {
     //
     // --------------------------------------------------------------------------
 
-    public async userGet(id: number): Promise<User> {
+    public async userGet(id: UserUid): Promise<User> {
         let item = await this.call<User>(`${USER_URL}/${id}`);
         return TransformUtil.toClass(User, item);
     }
