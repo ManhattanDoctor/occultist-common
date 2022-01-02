@@ -1,3 +1,5 @@
 export enum LoginResource {
-    GOOGLE = 'GOOGLE'
+    VK = 'VK',
+    GOOGLE = 'GOOGLE',
+    FACEBOOK = 'FACEBOOK'
 }
