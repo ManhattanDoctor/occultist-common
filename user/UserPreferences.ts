@@ -1,3 +1,5 @@
+import { Type } from 'class-transformer';
+
 export class UserPreferences {
     name: string;
     phone?: string;
@@ -8,6 +10,9 @@ export class UserPreferences {
     description?: string;
 
     tarotDesk?: string;
+    
+    @Type(() => Date)
+    birthday?: Date;
 }
 
 export const USER_PREFERENCES_STRING_MAX_LENGTH = 256;
