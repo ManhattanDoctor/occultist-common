@@ -6,9 +6,10 @@ import { TransformUtil } from '@ts-core/common/util';
 import { IClockDto, IClockDtoResponse } from './clock/IClockDto';
 import { IInitDto, IInitDtoResponse, ILoginDto, ILoginDtoResponse } from './login';
 import { User } from '../user';
-import { ITarotSpreadDateDto, ITarotSpreadQuestionDto, ITarotSpreadDtoResponse } from './tarot/spread';
-import { RandomGenerator } from '../util';
+import { ITarotSpreadDateDto, ITarotSpreadDtoResponse, ITarotSpreadQuestionDto } from './tarot/spread';
 import { IUserListDto, IUserListDtoResponse, IUserGetDtoResponse, IUserEditDto, IUserEditDtoResponse } from '../api/user';
+import { TarotSpread } from '../tarot';
+
 export class OccultistClient extends TransportHttp<ITransportHttpSettings> {
     // --------------------------------------------------------------------------
     //
@@ -52,28 +53,7 @@ export class OccultistClient extends TransportHttp<ITransportHttpSettings> {
     }
 
     public async tarotSpreadThree(data: ITarotSpreadQuestionDto): Promise<ITarotSpreadDtoResponse> {
-        let item = await this.tarotIndexes(new Date().getTime().toString());
-        item.indexes = item.indexes.slice(0, 3);
-        return item;
-    }
-
-    // --------------------------------------------------------------------------
-    //
-    //  Private Methods
-    //
-    // --------------------------------------------------------------------------
-
-    private async tarotIndexes(seed: string): Promise<ITarotSpreadDtoResponse> {
-        let length = 78;
-        let generator = new RandomGenerator(seed);
-        let indexes: Array<number> = [];
-        while (indexes.length < length) {
-            let index = generator.integerFromZeroTo(length);
-            if (!indexes.includes(index)) {
-                indexes.push(index);
-            }
-        }
-        return { indexes };
+        return this.call<ITarotSpreadDtoResponse, ITarotSpreadQuestionDto>(`${TAROT_SPREAD_THREE}`, { method: 'post', data });
     }
 
     // --------------------------------------------------------------------------
@@ -135,6 +115,6 @@ export const CLOCK_URL = PREFIX_URL + 'clock';
 export const LOCALE_URL = PREFIX_URL + 'locale';
 
 export const TAROT_SPREAD_DAY = PREFIX_URL + 'tarot/spread/day';
-export const TAROT_SPREAD_QUESTION = PREFIX_URL + 'tarot/spread/question';
+export const TAROT_SPREAD_THREE = PREFIX_URL + 'tarot/spread/three';
 
 export const USER_PICTURE_UPLOAD_URL = PREFIX_URL + 'user/picture/upload';

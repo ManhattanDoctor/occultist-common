@@ -1,11 +1,11 @@
 import { ITraceable } from '@ts-core/common/trace';
 import { IsOptional, MaxLength, IsString } from 'class-validator';
+import { TAROT_SPREAD_COMMENT_MAX_LENGTH } from '../../../tarot';
 
 export interface ITarotSpreadDto extends ITraceable {
     comment?: string;
+    querent?: string;
 }
-
-export const TAROT_SPREAD_COMMENT_MAX_LENGTH = 256;
 
 export class TarotSpreadDto implements ITarotSpreadDto {
     @IsString()

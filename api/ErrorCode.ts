@@ -1,0 +1,3 @@
+export enum ErrorCode {
+    TAROT_SPREAD_INVALID_DATE = 'TAROT_SPREAD_INVALID_DATE'
+}

@@ -1,3 +1,3 @@
-export class ITarotSpreadDtoResponse {
-    indexes: Array<number>;
-}
+import { TarotSpread } from '../../../tarot';
+
+export type ITarotSpreadDtoResponse = TarotSpread;
