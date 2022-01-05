@@ -1,7 +1,14 @@
-import { Type } from 'class-transformer';
-import { ITarotSpreadDateDto } from './ITarotSpreadDateDto';
+import { ITarotSpreadDto } from './ITarotSpreadDto';
+import { MaxLength, IsString } from 'class-validator';
 
-export class ITarotSpreadQuestionDto extends ITarotSpreadDateDto {
-    @Type(() => Date)
-    public date: Date;
+export interface ITarotSpreadQuestionDto extends ITarotSpreadDto {
+    question: string;
+}
+
+export const TAROT_SPREAD_QUESTION_MAX_LENGTH = 256;
+
+export class TarotSpreadQuestionDto implements ITarotSpreadQuestionDto {
+    @IsString()
+    @MaxLength(TAROT_SPREAD_QUESTION_MAX_LENGTH)
+    question: string;
 }

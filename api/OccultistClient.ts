@@ -48,13 +48,11 @@ export class OccultistClient extends TransportHttp<ITransportHttpSettings> {
     // --------------------------------------------------------------------------
 
     public async tarotSpreadDay(data: ITarotSpreadDateDto): Promise<ITarotSpreadDtoResponse> {
-        let item = await this.tarotIndexes(data.date.getTime().toString());
-        item.indexes = item.indexes.slice(0, 1);
-        return item;
+        return this.call<ITarotSpreadDtoResponse, ITarotSpreadDateDto>(`${TAROT_SPREAD_DAY}`, { method: 'post', data });
     }
 
     public async tarotSpreadThree(data: ITarotSpreadQuestionDto): Promise<ITarotSpreadDtoResponse> {
-        let item = await this.tarotIndexes(data.date.getTime().toString());
+        let item = await this.tarotIndexes(new Date().getTime().toString());
         item.indexes = item.indexes.slice(0, 3);
         return item;
     }
@@ -135,5 +133,8 @@ export const LOGIN_URL = PREFIX_URL + 'login';
 export const LOGOUT_URL = PREFIX_URL + 'logout';
 export const CLOCK_URL = PREFIX_URL + 'clock';
 export const LOCALE_URL = PREFIX_URL + 'locale';
+
+export const TAROT_SPREAD_DAY = PREFIX_URL + 'tarot/spread/day';
+export const TAROT_SPREAD_QUESTION = PREFIX_URL + 'tarot/spread/question';
 
 export const USER_PICTURE_UPLOAD_URL = PREFIX_URL + 'user/picture/upload';

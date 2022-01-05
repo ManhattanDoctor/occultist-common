@@ -1,7 +1,13 @@
-import { ITraceable } from '@ts-core/common/trace';
 import { Type } from 'class-transformer';
+import { ITarotSpreadDto } from './ITarotSpreadDto';
+import { IsEmail,IsDate, Length, IsBoolean, MaxLength, MinLength, IsNumber, IsOptional, IsString } from 'class-validator';
 
-export class ITarotSpreadDateDto {
+export interface ITarotSpreadDateDto extends ITarotSpreadDto {
+    date: Date;
+}
+
+export class TarotSpreadDateDto implements ITarotSpreadDateDto {
     @Type(() => Date)
-    public date: Date;
+    @IsDate()
+    date: Date;
 }

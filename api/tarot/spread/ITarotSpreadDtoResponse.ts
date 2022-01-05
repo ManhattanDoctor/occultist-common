@@ -1,3 +1,3 @@
-export interface ITarotSpreadDtoResponse {
+export class ITarotSpreadDtoResponse {
     indexes: Array<number>;
 }
