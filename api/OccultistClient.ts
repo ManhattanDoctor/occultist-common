@@ -9,6 +9,7 @@ import { User } from '../user';
 import { ITarotSpreadDateDto, ITarotSpreadDtoResponse, ITarotSpreadQuestionDto } from './tarot/spread';
 import { IUserListDto, IUserListDtoResponse, IUserGetDtoResponse, IUserEditDto, IUserEditDtoResponse } from '../api/user';
 import { TarotSpread } from '../tarot';
+import { IGeo } from '@occultist/common/geo';
 
 export class OccultistClient extends TransportHttp<ITransportHttpSettings> {
     // --------------------------------------------------------------------------
@@ -62,13 +63,19 @@ export class OccultistClient extends TransportHttp<ITransportHttpSettings> {
     //
     // --------------------------------------------------------------------------
 
+    public async geo(): Promise<IGeo> {
+        return this.call<IGeo, void>(GEO_URL, { isHandleError: false });
+    }
+    
     public async locale(locale: string): Promise<any> {
         return this.call<any>(`${LOCALE_URL}/${locale}`);
     }
 
     public async clock(data: IClockDto): Promise<IClockDtoResponse> {
         let item = await this.call<IClockDtoResponse, IClockDto>(CLOCK_URL, { data: TraceUtil.addIfNeed(data), isHandleError: false });
-        return TransformUtil.toClass(IClockDtoResponse, item);
+        item.sunrise = new Date(item.sunrise);
+        item.sunset = new Date(item.sunset);
+        return item;
     }
 
     // --------------------------------------------------------------------------
@@ -107,6 +114,7 @@ export class OccultistClient extends TransportHttp<ITransportHttpSettings> {
 }
 
 export const PREFIX_URL = 'api/';
+export const GEO_URL = PREFIX_URL + 'geo';
 export const USER_URL = PREFIX_URL + 'user';
 export const INIT_URL = PREFIX_URL + 'init';
 export const LOGIN_URL = PREFIX_URL + 'login';

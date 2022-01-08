@@ -48,12 +48,12 @@ export class ClockService extends TransportHttp {
     //
     //--------------------------------------------------------------------------
 
-    public async get(geo: IGeo): Promise<IClockDetails> {
+    public async get(geo: IGeo, date: Date): Promise<IClockDetails> {
         let data = {} as any;
 
         data.lat = geo.latitude;
         data.lng = geo.longitude;
-        data.date = ClockService.formatDate(geo.date);
+        data.date = ClockService.formatDate(date);
         data.formatted = 0;
 
         let item = await this.call(`json`, { data });

@@ -1,14 +1,12 @@
 import { ITraceable } from '@ts-core/common/trace';
-import { Type } from 'class-transformer';
 import { IGeo } from '../../geo';
 
-export interface IClockDto extends IGeo, ITraceable {}
+export interface IClockDto extends IGeo, ITraceable {
+    date: Date;
+}
 
-export class IClockDtoResponse {
-    @Type(() => Date)
+export interface IClockDtoResponse {
     sunset: Date;
-    @Type(() => Date)
     sunrise: Date;
-
     dayLength: number;
 }
