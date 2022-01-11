@@ -8,8 +8,7 @@ import { IInitDto, IInitDtoResponse, ILoginDto, ILoginDtoResponse } from './logi
 import { User } from '../user';
 import { ITarotSpreadDateDto, ITarotSpreadDtoResponse, ITarotSpreadQuestionDto } from './tarot/spread';
 import { IUserListDto, IUserListDtoResponse, IUserGetDtoResponse, IUserEditDto, IUserEditDtoResponse } from '../api/user';
-import { TarotSpread } from '../tarot';
-import { IGeo } from '@occultist/common/geo';
+import { IGeo } from '../geo';
 
 export class OccultistClient extends TransportHttp<ITransportHttpSettings> {
     // --------------------------------------------------------------------------
@@ -66,7 +65,7 @@ export class OccultistClient extends TransportHttp<ITransportHttpSettings> {
     public async geo(): Promise<IGeo> {
         return this.call<IGeo, void>(GEO_URL, { isHandleError: false });
     }
-    
+
     public async locale(locale: string): Promise<any> {
         return this.call<any>(`${LOCALE_URL}/${locale}`);
     }

@@ -22,7 +22,6 @@ export const TAROT_SPREAD_QUESTION_MAX_LENGTH = 256;
 
 export enum TarotSpreadType {
     DAY = 'DAY',
-    DATE = 'DATE',
     STAR = 'STAR',
     THREE = 'THREE'
 }
