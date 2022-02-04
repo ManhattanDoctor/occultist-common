@@ -26,3 +26,10 @@ export enum TarotSpreadType {
     STAR = 'STAR',
     THREE = 'THREE'
 }
+export enum TarotSpreadKind {
+    UNIVERSAL = 'UNIVERSAL',
+    PROPHETIC = 'PROPHETIC',
+    BUSINESS = 'BUSINESS',
+    ANALYTICAL = 'ANALYTICAL',
+    RELATIONSHIP = 'ANALYTICAL',
+}
