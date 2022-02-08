@@ -1,6 +1,6 @@
 import { Type } from 'class-transformer';
 import { ITarotSpreadDto } from './ITarotSpreadDto';
-import { IsEmail,IsDate, Length, IsBoolean, MaxLength, MinLength, IsNumber, IsOptional, IsString } from 'class-validator';
+import { IsDate } from 'class-validator';
 
 export interface ITarotSpreadDateDto extends ITarotSpreadDto {
     date: Date;

@@ -1,10 +1,12 @@
 import { Type } from 'class-transformer';
+import * as _ from 'lodash';
 
 export class TarotSpread {
     public id: number;
     public type: TarotSpreadType;
-    public seed: string;
     public indexes: Array<number>;
+
+    public seed?: string;
 
     @Type(() => Date)
     public date?: Date;
@@ -16,6 +18,7 @@ export class TarotSpread {
     public createdDate: Date;
 }
 
+export const TAROT_SPREAD_INDEXES_MAX_LENGTH = 78;
 export const TAROT_SPREAD_QUERENT_MAX_LENGTH = 50;
 export const TAROT_SPREAD_COMMENT_MAX_LENGTH = 256;
 export const TAROT_SPREAD_QUESTION_MAX_LENGTH = 256;
