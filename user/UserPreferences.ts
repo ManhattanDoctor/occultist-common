@@ -19,20 +19,18 @@ export class UserPreferences {
     @Type(() => Date)
     birthday?: Date;
 
-    //--------------------------------------------------------------------------
+    // --------------------------------------------------------------------------
     //
-    // 	Public Methods
+    //  Public Methods
     //
-    //--------------------------------------------------------------------------
+    // --------------------------------------------------------------------------
 
     public toGeo(): IGeo {
         if (_.isNil(this.location) || _.isNil(this.latitude) || _.isNil(this.longitude)) {
             return null;
         }
         return {
-            location: this.location,
-            latitude: this.latitude,
-            longitude: this.longitude
+            location: this.location, latitude: this.latitude, longitude: this.longitude
         };
     }
 }
