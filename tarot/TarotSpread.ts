@@ -7,6 +7,8 @@ export class TarotSpread {
     public indexes: Array<number>;
 
     public seed?: string;
+    // Using on frontend only
+    public mode?: string;
 
     @Type(() => Date)
     public date?: Date;
@@ -35,4 +37,8 @@ export enum TarotSpreadKind {
     BUSINESS = 'BUSINESS',
     ANALYTICAL = 'ANALYTICAL',
     RELATIONSHIP = 'ANALYTICAL',
+}
+export enum TarotSpreadMode {
+    EDITABLE = 'EDITABLE',
+    COMPLETED = 'COMPLETED',
 }

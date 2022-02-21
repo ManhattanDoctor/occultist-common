@@ -1,2 +1,2 @@
 export * from './ErrorCode';
-export * from './OccultistClient';
+export * from './Client';

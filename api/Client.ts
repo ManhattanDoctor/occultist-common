@@ -10,7 +10,7 @@ import { ITarotSpreadDateDto, ITarotSpreadDtoResponse, ITarotSpreadQuestionDto }
 import { IUserListDto, IUserListDtoResponse, IUserGetDtoResponse, IUserEditDto, IUserEditDtoResponse } from '../api/user';
 import { IGeo } from '../geo';
 
-export class OccultistClient extends TransportHttp<ITransportHttpSettings> {
+export class Client extends TransportHttp<ITransportHttpSettings> {
     // --------------------------------------------------------------------------
     //
     //  Constructor
