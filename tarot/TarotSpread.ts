@@ -29,14 +29,15 @@ export enum TarotSpreadType {
     DAY = 'DAY',
     DATE = 'DATE',
     STAR = 'STAR',
-    THREE = 'THREE'
+    THREE = 'THREE',
+    CELTIC_CROSS = 'CELTIC_CROSS',
 }
 export enum TarotSpreadKind {
     UNIVERSAL = 'UNIVERSAL',
     PROPHETIC = 'PROPHETIC',
     BUSINESS = 'BUSINESS',
     ANALYTICAL = 'ANALYTICAL',
-    RELATIONSHIP = 'ANALYTICAL',
+    RELATIONSHIP = 'RELATIONSHIP',
 }
 export enum TarotSpreadMode {
     EDITABLE = 'EDITABLE',
