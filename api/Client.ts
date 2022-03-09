@@ -9,6 +9,7 @@ import { User } from '../user';
 import { ITarotSpreadDateDto, ITarotSpreadDtoResponse, ITarotSpreadQuestionDto } from './tarot/spread';
 import { IUserListDto, IUserListDtoResponse, IUserGetDtoResponse, IUserEditDto, IUserEditDtoResponse } from '../api/user';
 import { IGeo } from '../geo';
+import { IMoonDto, IMoonDtoResponse } from './moon';
 
 export class Client extends TransportHttp<ITransportHttpSettings> {
     // --------------------------------------------------------------------------
@@ -77,6 +78,11 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
         return item;
     }
 
+    public async moon(data: IMoonDto): Promise<IMoonDtoResponse> {
+        let item = await this.call<IMoonDtoResponse, IMoonDto>(MOON_URL, { data: TraceUtil.addIfNeed(data), isHandleError: false });
+        return item;
+    }
+
     // --------------------------------------------------------------------------
     //
     //  User Methods
@@ -118,6 +124,8 @@ export const USER_URL = PREFIX_URL + 'user';
 export const INIT_URL = PREFIX_URL + 'init';
 export const LOGIN_URL = PREFIX_URL + 'login';
 export const LOGOUT_URL = PREFIX_URL + 'logout';
+
+export const MOON_URL = PREFIX_URL + 'moon';
 export const CLOCK_URL = PREFIX_URL + 'clock';
 export const LOCALE_URL = PREFIX_URL + 'locale';
 
