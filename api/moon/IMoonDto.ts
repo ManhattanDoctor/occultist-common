@@ -13,5 +13,6 @@ export interface IMoonDtoResponse {
     hemisphere: string;
 
     age: number;
+    ageMax: number;
     agePercent: number;
 }
