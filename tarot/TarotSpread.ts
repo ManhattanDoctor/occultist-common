@@ -37,7 +37,3 @@ export enum TarotSpreadKind {
     ANALYTICAL = 'ANALYTICAL',
     RELATIONSHIP = 'RELATIONSHIP',
 }
-export enum TarotSpreadMode {
-    EDITABLE = 'EDITABLE',
-    COMPLETED = 'COMPLETED',
-}
