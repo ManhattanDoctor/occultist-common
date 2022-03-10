@@ -8,4 +8,10 @@ export interface IMoonDto extends IGeo, ITraceable {
 export interface IMoonDtoResponse {
     phase: string;
     phaseEmoji: string;
+    isWaning: boolean;
+    isWaxing: boolean;
+    hemisphere: string;
+
+    age: number;
+    agePercent: number;
 }
