@@ -14,5 +14,6 @@ export interface IMoonDtoResponse {
 
     age: number;
     ageMax: number;
+    ageItem: number;
     agePercent: number;
 }
