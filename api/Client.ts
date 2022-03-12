@@ -73,13 +73,12 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
 
     public async clock(data: IClockDto): Promise<IClockDtoResponse> {
         let item = await this.call<IClockDtoResponse, IClockDto>(CLOCK_URL, { data: TraceUtil.addIfNeed(data), isHandleError: false });
-        item.sunrise = new Date(item.sunrise);
-        item.sunset = new Date(item.sunset);
-        return item;
-    }
 
-    public async moon(data: IMoonDto): Promise<IMoonDtoResponse> {
-        let item = await this.call<IMoonDtoResponse, IMoonDto>(MOON_URL, { data: TraceUtil.addIfNeed(data), isHandleError: false });
+        item.date = new Date(item.date);
+        item.sunset = new Date(item.sunset);
+        item.sunrise = new Date(item.sunrise);
+
+        item.moon.date = new Date(item.moon.date);
         return item;
     }
 

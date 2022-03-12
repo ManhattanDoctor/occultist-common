@@ -6,6 +6,7 @@ export interface IMoonDto extends IGeo, ITraceable {
 }
 
 export interface IMoonDtoResponse {
+    date: Date;
     phase: string;
     phaseEmoji: string;
     isWaning: boolean;
