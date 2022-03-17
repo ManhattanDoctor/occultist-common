@@ -3,15 +3,13 @@ import * as _ from 'lodash';
 
 export class TarotSpread {
     public id: number;
+    public uid: string;
     public type: TarotSpreadType;
     public indexes: Array<number>;
 
     public seed?: string;
-
-    @Type(() => Date)
-    public date?: Date;
+    public desk?: TarotSpreadDesk;
     public querent?: string;
-    public comment?: string;
     public question?: string;
 
     @Type(() => Date)
@@ -23,6 +21,14 @@ export const TAROT_SPREAD_QUERENT_MAX_LENGTH = 50;
 export const TAROT_SPREAD_COMMENT_MAX_LENGTH = 256;
 export const TAROT_SPREAD_QUESTION_MAX_LENGTH = 256;
 
+export enum TarotSpreadDesk {
+    TOTH = 'TOTH',
+    WAITE = 'WAITE',
+    CEREMONIAL = 'CEREMONIAL',
+    MARSEILLE = 'MARSEILLE',
+    PAPUS = 'PAPUS',
+    CHARLE = 'CHARLE'
+}
 export enum TarotSpreadType {
     DAY = 'DAY',
     DATE = 'DATE',
