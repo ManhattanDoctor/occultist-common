@@ -1,8 +1,8 @@
 import { Type } from 'class-transformer';
-import { ITarotSpreadDto } from './ITarotSpreadDto';
 import { IsDate } from 'class-validator';
+import { ITraceable } from '@ts-core/common/trace';
 
-export interface ITarotSpreadDateDto extends ITarotSpreadDto {
+export interface ITarotSpreadDateDto extends ITraceable {
     date: Date;
 }
 

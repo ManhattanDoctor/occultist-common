@@ -5,6 +5,7 @@ export class TarotSpread {
     public id: number;
     public uid: string;
     public type: TarotSpreadType;
+    public privacy: TarotSpreadPrivacy;
     public indexes: Array<number>;
 
     public seed?: string;

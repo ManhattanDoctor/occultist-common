@@ -6,7 +6,7 @@ import { TransformUtil } from '@ts-core/common/util';
 import { IClockDto, IClockDtoResponse } from './clock/IClockDto';
 import { IInitDto, IInitDtoResponse, ILoginDto, ILoginDtoResponse } from './login';
 import { User } from '../user';
-import { ITarotSpreadDateDto, ITarotSpreadDtoResponse, ITarotSpreadQuestionDto } from './tarot/spread';
+import { ITarotSpreadAddDto, ITarotSpreadAddDtoResponse, ITarotSpreadDateDto, ITarotSpreadDtoResponse } from './tarot/spread';
 import { IUserListDto, IUserListDtoResponse, IUserGetDtoResponse, IUserEditDto, IUserEditDtoResponse } from '../api/user';
 import { IGeo } from '../geo';
 import { IMoonDto, IMoonDtoResponse } from './moon';
@@ -49,12 +49,12 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
     //
     // --------------------------------------------------------------------------
 
-    public async tarotSpreadDay(data: ITarotSpreadDateDto): Promise<ITarotSpreadDtoResponse> {
-        return this.call<ITarotSpreadDtoResponse, ITarotSpreadDateDto>(`${TAROT_SPREAD_DAY}`, { method: 'post', data });
+    public async tarotSpreadAdd(data: ITarotSpreadAddDto): Promise<ITarotSpreadAddDtoResponse> {
+        return this.call<ITarotSpreadAddDtoResponse, ITarotSpreadAddDto>(`${TAROT_SPREAD_URL}`, { method: 'post', data });
     }
 
-    public async tarotSpreadThree(data: ITarotSpreadQuestionDto): Promise<ITarotSpreadDtoResponse> {
-        return this.call<ITarotSpreadDtoResponse, ITarotSpreadQuestionDto>(`${TAROT_SPREAD_THREE}`, { method: 'post', data });
+    public async tarotSpreadDay(data: ITarotSpreadDateDto): Promise<ITarotSpreadDtoResponse> {
+        return this.call<ITarotSpreadDtoResponse, ITarotSpreadDateDto>(`${TAROT_SPREAD_DAY}`, { method: 'post', data });
     }
 
     // --------------------------------------------------------------------------
@@ -128,7 +128,7 @@ export const MOON_URL = PREFIX_URL + 'moon';
 export const CLOCK_URL = PREFIX_URL + 'clock';
 export const LOCALE_URL = PREFIX_URL + 'locale';
 
-export const TAROT_SPREAD_DAY = PREFIX_URL + 'tarot/spread/day';
-export const TAROT_SPREAD_THREE = PREFIX_URL + 'tarot/spread/three';
+export const TAROT_SPREAD_URL = PREFIX_URL + 'tarot/spread';
+export const TAROT_SPREAD_DAY = PREFIX_URL + 'tarot/spread-day';
 
 export const USER_PICTURE_UPLOAD_URL = PREFIX_URL + 'user/picture/upload';
