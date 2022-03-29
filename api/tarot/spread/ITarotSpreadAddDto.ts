@@ -11,6 +11,7 @@ export interface ITarotSpreadAddDto extends ITraceable {
     comment?: string;
     querent?: string;
     indexes?: Array<number>;
+    indexesAmount?: number;
 }
 
 export type ITarotSpreadAddDtoResponse = TarotSpread;

@@ -22,6 +22,7 @@ export class TarotSpread {
     public createdDate: Date;
 }
 
+export const TAROT_SPREAD_INDEXES_MIN_LENGTH = 1;
 export const TAROT_SPREAD_INDEXES_MAX_LENGTH = 78;
 export const TAROT_SPREAD_QUERENT_MAX_LENGTH = 50;
 export const TAROT_SPREAD_COMMENT_MAX_LENGTH = 256;
