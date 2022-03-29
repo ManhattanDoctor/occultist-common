@@ -6,6 +6,7 @@ export interface ITarotSpreadAddDto extends ITraceable {
     mode: TarotSpreadMode;
     desk: TarotSpreadDesk;
     privacy: TarotSpreadPrivacy
+    question: string
 
     comment?: string;
     querent?: string;
