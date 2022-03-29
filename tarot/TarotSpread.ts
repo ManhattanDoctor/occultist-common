@@ -13,6 +13,11 @@ export class TarotSpread {
     public querent?: string;
     public question?: string;
 
+    public userId?: number;
+
+    @Type(() => Date)
+    public date?: Date;
+
     @Type(() => Date)
     public createdDate: Date;
 }
