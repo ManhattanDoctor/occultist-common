@@ -6,10 +6,9 @@ import { TransformUtil } from '@ts-core/common/util';
 import { IClockDto, IClockDtoResponse } from './clock/IClockDto';
 import { IInitDto, IInitDtoResponse, ILoginDto, ILoginDtoResponse } from './login';
 import { User } from '../user';
-import { ITarotSpreadAddDto, ITarotSpreadAddDtoResponse, ITarotSpreadDateDto, ITarotSpreadDtoResponse } from './tarot/spread';
+import { ITarotSpreadAddCheckDto, ITarotSpreadAddDto, ITarotSpreadAddDtoResponse, ITarotSpreadDateDto, ITarotSpreadDtoResponse } from './tarot/spread';
 import { IUserListDto, IUserListDtoResponse, IUserGetDtoResponse, IUserEditDto, IUserEditDtoResponse } from '../api/user';
 import { IGeo } from '../geo';
-import { IMoonDto, IMoonDtoResponse } from './moon';
 
 export class Client extends TransportHttp<ITransportHttpSettings> {
     // --------------------------------------------------------------------------
@@ -51,6 +50,10 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
 
     public async tarotSpreadAdd(data: ITarotSpreadAddDto): Promise<ITarotSpreadAddDtoResponse> {
         return this.call<ITarotSpreadAddDtoResponse, ITarotSpreadAddDto>(`${TAROT_SPREAD_URL}`, { method: 'post', data });
+    }
+
+    public async tarotSpreadAddCheck(data?: ITarotSpreadAddCheckDto): Promise<void> {
+        return this.call<void, ITarotSpreadAddCheckDto>(`${TAROT_SPREAD_ADD_CHECK}`, { data });
     }
 
     public async tarotSpreadDay(data: ITarotSpreadDateDto): Promise<ITarotSpreadDtoResponse> {
@@ -130,5 +133,6 @@ export const LOCALE_URL = PREFIX_URL + 'locale';
 
 export const TAROT_SPREAD_URL = PREFIX_URL + 'tarot/spread';
 export const TAROT_SPREAD_DAY = PREFIX_URL + 'tarot/spread-day';
+export const TAROT_SPREAD_ADD_CHECK = PREFIX_URL + 'tarot/spread-check';
 
 export const USER_PICTURE_UPLOAD_URL = PREFIX_URL + 'user/picture/upload';
