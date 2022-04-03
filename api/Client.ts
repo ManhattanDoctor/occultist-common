@@ -57,11 +57,11 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
     }
     
     public async tarotSpreadAddCheck(data?: ITarotSpreadAddCheckDto): Promise<void> {
-        return this.call<void, ITarotSpreadAddCheckDto>(`${TAROT_SPREAD_ADD_CHECK}`, { data });
+        return this.call<void, ITarotSpreadAddCheckDto>(`${TAROT_SPREAD_ADD_CHECK_URL}`, { data });
     }
 
     public async tarotSpreadDay(data: ITarotSpreadDateDto): Promise<ITarotSpreadDtoResponse> {
-        return this.call<ITarotSpreadDtoResponse, ITarotSpreadDateDto>(`${TAROT_SPREAD_DAY}`, { method: 'post', data });
+        return this.call<ITarotSpreadDtoResponse, ITarotSpreadDateDto>(`${TAROT_SPREAD_DAY_URL}`, { method: 'post', data });
     }
 
     // --------------------------------------------------------------------------
@@ -136,7 +136,7 @@ export const CLOCK_URL = PREFIX_URL + 'clock';
 export const LOCALE_URL = PREFIX_URL + 'locale';
 
 export const TAROT_SPREAD_URL = PREFIX_URL + 'tarot/spread';
-export const TAROT_SPREAD_DAY = PREFIX_URL + 'tarot/spread-day';
-export const TAROT_SPREAD_ADD_CHECK = PREFIX_URL + 'tarot/spread-check';
+export const TAROT_SPREAD_DAY_URL = PREFIX_URL + 'tarot/spread-day';
+export const TAROT_SPREAD_ADD_CHECK_URL = PREFIX_URL + 'tarot/spread-check';
 
 export const USER_PICTURE_UPLOAD_URL = PREFIX_URL + 'user/picture/upload';
