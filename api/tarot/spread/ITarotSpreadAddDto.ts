@@ -7,11 +7,12 @@ export interface ITarotSpreadAddDto extends ITraceable {
     desk: TarotSpreadDesk;
     privacy: TarotSpreadPrivacy
     question: string
-
+    indexesAmount: number;
+    
     comment?: string;
     querent?: string;
     indexes?: Array<number>;
-    indexesAmount?: number;
+
 }
 
 export type ITarotSpreadAddDtoResponse = TarotSpread;
