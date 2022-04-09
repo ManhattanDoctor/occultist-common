@@ -48,6 +48,10 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
     //
     // --------------------------------------------------------------------------
 
+    public async tarotSpreadGet(uid: string): Promise<ITarotSpreadDtoResponse> {
+        return this.call<ITarotSpreadDtoResponse, void>(`${TAROT_SPREAD_URL}/${uid}`);
+    }
+
     public async tarotSpreadAdd(data: ITarotSpreadAddDto): Promise<ITarotSpreadAddDtoResponse> {
         return this.call<ITarotSpreadAddDtoResponse, ITarotSpreadAddDto>(`${TAROT_SPREAD_URL}`, { method: 'post', data });
     }
@@ -55,7 +59,7 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
     public async tarotSpreadList(data: ITarotSpreadListDto): Promise<ITarotSpreadListDtoResponse> {
         return this.call<ITarotSpreadListDtoResponse, ITarotSpreadListDto>(`${TAROT_SPREAD_URL}`, { data });
     }
-    
+
     public async tarotSpreadAddCheck(data?: ITarotSpreadAddCheckDto): Promise<void> {
         return this.call<void, ITarotSpreadAddCheckDto>(`${TAROT_SPREAD_ADD_CHECK_URL}`, { data });
     }
