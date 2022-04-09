@@ -9,6 +9,7 @@ import { User } from '../user';
 import { ITarotSpreadAddDto, ITarotSpreadListDto, ITarotSpreadListDtoResponse, ITarotSpreadAddDtoResponse, ITarotSpreadDateDto, ITarotSpreadDtoResponse, ITarotSpreadAddCheckDto } from './tarot/spread';
 import { IUserListDto, IUserListDtoResponse, IUserGetDtoResponse, IUserEditDto, IUserEditDtoResponse } from '../api/user';
 import { IGeo } from '../geo';
+import { TarotSpread } from '../tarot';
 
 export class Client extends TransportHttp<ITransportHttpSettings> {
     // --------------------------------------------------------------------------
@@ -53,7 +54,10 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
     }
 
     public async tarotSpreadList(data: ITarotSpreadListDto): Promise<ITarotSpreadListDtoResponse> {
-        return this.call<ITarotSpreadListDtoResponse, ITarotSpreadListDto>(`${TAROT_SPREAD_URL}`, { data });
+        let item = await this.call<ITarotSpreadListDtoResponse, ITarotSpreadListDto>(`${TAROT_SPREAD_URL}`, { data });
+        item.items = TransformUtil.toClassMany(TarotSpread, item.items);
+        console.log(item);
+        return item;
     }
     
     public async tarotSpreadAddCheck(data?: ITarotSpreadAddCheckDto): Promise<void> {
