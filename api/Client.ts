@@ -9,8 +9,8 @@ import { User } from '../user';
 import { ITarotSpreadAddDto, ITarotSpreadListDto, ITarotSpreadListDtoResponse, ITarotSpreadAddDtoResponse, ITarotSpreadDateDto, ITarotSpreadDtoResponse, ITarotSpreadAddCheckDto } from './tarot/spread';
 import { IUserListDto, IUserListDtoResponse, IUserGetDtoResponse, IUserEditDto, IUserEditDtoResponse } from '../api/user';
 import { IGeo } from '../geo';
-import { ICommentListDto, ICommentListDtoResponse } from '@project/common/api/comment';
-import { Comment } from '@project/common/comment';
+import { ICommentListDto, ICommentListDtoResponse } from './comment';
+import { Comment } from '../comment';
 import { TarotSpread } from '../tarot';
 
 export class Client extends TransportHttp<ITransportHttpSettings> {
