@@ -9,6 +9,8 @@ import { User } from '../user';
 import { ITarotSpreadAddDto, ITarotSpreadListDto, ITarotSpreadListDtoResponse, ITarotSpreadAddDtoResponse, ITarotSpreadDateDto, ITarotSpreadDtoResponse, ITarotSpreadAddCheckDto } from './tarot/spread';
 import { IUserListDto, IUserListDtoResponse, IUserGetDtoResponse, IUserEditDto, IUserEditDtoResponse } from '../api/user';
 import { IGeo } from '../geo';
+import { ICommentListDto, ICommentListDtoResponse } from '@project/common/api/comment';
+import { Comment } from '@project/common/comment';
 import { TarotSpread } from '../tarot';
 
 export class Client extends TransportHttp<ITransportHttpSettings> {
@@ -120,6 +122,18 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
         return item;
     }
 
+    // --------------------------------------------------------------------------
+    //
+    //  Comment Methods
+    //
+    // --------------------------------------------------------------------------
+
+    public async commentList(data?: ICommentListDto): Promise<ICommentListDtoResponse> {
+        let item = await this.call<ICommentListDtoResponse, ICommentListDto>(COMMENT_URL, { data: TraceUtil.addIfNeed(data) });
+        item.items = TransformUtil.toClassMany(Comment, item.items);
+        return item;
+    }
+
     //--------------------------------------------------------------------------
     //
     // 	Public Properties
@@ -143,6 +157,8 @@ export const LOGOUT_URL = PREFIX_URL + 'logout';
 export const MOON_URL = PREFIX_URL + 'moon';
 export const CLOCK_URL = PREFIX_URL + 'clock';
 export const LOCALE_URL = PREFIX_URL + 'locale';
+
+export const COMMENT_URL = PREFIX_URL + 'comment';
 
 export const TAROT_SPREAD_URL = PREFIX_URL + 'tarot/spread';
 export const TAROT_SPREAD_DAY_URL = PREFIX_URL + 'tarot/spread-day';
