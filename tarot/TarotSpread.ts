@@ -1,3 +1,4 @@
+import { Comment } from '@project/common/comment';
 import { Type } from 'class-transformer';
 import * as _ from 'lodash';
 
@@ -7,6 +8,7 @@ export class TarotSpread {
     public type: TarotSpreadType;
     public privacy: TarotSpreadPrivacy;
     public indexes: Array<number>;
+    public comments: Array<Comment>;
 
     public seed?: string;
     public desk?: TarotSpreadDesk;
