@@ -1,5 +1,6 @@
-import { User } from '@project/common/user';
+
 import { Type } from 'class-transformer';
+import { User } from '../user';
 
 export class Comment {
     public id: number;

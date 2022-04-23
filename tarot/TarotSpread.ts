@@ -1,6 +1,7 @@
-import { Comment } from '@project/common/comment';
+
 import { Type } from 'class-transformer';
 import * as _ from 'lodash';
+import { Comment } from '../comment';
 
 export class TarotSpread {
     public id: number;
