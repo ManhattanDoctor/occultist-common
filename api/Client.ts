@@ -9,7 +9,7 @@ import { User } from '../user';
 import { ITarotSpreadAddDto, ITarotSpreadListDto, ITarotSpreadListDtoResponse, ITarotSpreadAddDtoResponse, ITarotSpreadDateDto, ITarotSpreadDtoResponse, ITarotSpreadAddCheckDto } from './tarot/spread';
 import { IUserListDto, IUserListDtoResponse, IUserGetDtoResponse, IUserEditDto, IUserEditDtoResponse } from '../api/user';
 import { IGeo } from '../geo';
-import { ICommentListDto, ICommentListDtoResponse } from './comment';
+import { ICommentGetDtoResponse, ICommentListDto, ICommentListDtoResponse } from './comment';
 import { Comment } from '../comment';
 import { TarotSpread } from '../tarot';
 
@@ -107,7 +107,7 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
     // --------------------------------------------------------------------------
 
     public async userGet(id: string | number): Promise<IUserGetDtoResponse> {
-        let item = await this.call<User>(`${USER_URL}/${id}`);
+        let item = await this.call<IUserGetDtoResponse>(`${USER_URL}/${id}`);
         return TransformUtil.toClass(User, item);
     }
 
@@ -127,6 +127,11 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
     //  Comment Methods
     //
     // --------------------------------------------------------------------------
+
+    public async commentGet(id: number): Promise<ICommentGetDtoResponse> {
+        let item = await this.call<ICommentGetDtoResponse>(`${COMMENT_URL}/${id}`);
+        return TransformUtil.toClass(Comment, item);
+    }
 
     public async commentList(data?: ICommentListDto): Promise<ICommentListDtoResponse> {
         let item = await this.call<ICommentListDtoResponse, ICommentListDto>(COMMENT_URL, { data: TraceUtil.addIfNeed(data) });
