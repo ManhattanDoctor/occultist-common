@@ -2,6 +2,7 @@
 import { Type } from 'class-transformer';
 import * as _ from 'lodash';
 import { Comment } from '../comment';
+import { User } from '../user';
 
 export class TarotSpread {
     public id: number;
@@ -16,6 +17,7 @@ export class TarotSpread {
     public querent?: string;
     public question?: string;
 
+    public user?: User;
     public userId?: number;
 
     @Type(() => Date)
