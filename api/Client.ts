@@ -82,7 +82,7 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
     // --------------------------------------------------------------------------
 
     public async geo(): Promise<IGeo> {
-        return this.call<IGeo, void>(GEO_URL, { isHandleError: false });
+        return this.call<IGeo, void>(GEO_URL);
     }
 
     public async locale(locale: string): Promise<any> {
