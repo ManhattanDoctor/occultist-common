@@ -1,21 +1,8 @@
-import { Type } from 'class-transformer';
+import { UserPreferences } from '@project/common/user';
 
 export class LoginUser {
     id: string;
-    name: string;
-
-    isMale?: boolean;
-    picture?: string;
-    location?: string;
-    description?: string;
-
-    @Type(() => Date)
-    birthday?: Date;
-
-    vk?: string;
-    facebook?: string;
-    telegram?: string;
-    instagram?: string;
+    preferences: Partial<UserPreferences>;
 }
 
 export class VkLoginUser extends LoginUser {
