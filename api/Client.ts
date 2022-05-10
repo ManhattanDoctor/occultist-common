@@ -85,8 +85,8 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
         return this.call<IGeo, void>(GEO_URL);
     }
 
-    public async locale(locale: string): Promise<any> {
-        return this.call<any>(`${LOCALE_URL}/${locale}`);
+    public async locale(locale: string, version?: string): Promise<any> {
+        return this.call<any>(`${LOCALE_URL}/${locale}?version=${version}`);
     }
 
     public async clock(data: IClockDto): Promise<IClockDtoResponse> {

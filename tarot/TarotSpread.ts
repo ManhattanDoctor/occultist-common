@@ -47,25 +47,34 @@ export enum TarotSpreadPrivacy {
 export enum TarotSpreadDesk {
     TOTH = 'TOTH',
     WAITE = 'WAITE',
-    CEREMONIAL = 'CEREMONIAL',
-    MARSEILLE = 'MARSEILLE',
     PAPUS = 'PAPUS',
     SFORZ = 'SFORZ',
-    CHARLE = 'CHARLE'
+    CHARLE = 'CHARLE',
+    MARSEILLE = 'MARSEILLE',
+    CEREMONIAL = 'CEREMONIAL'
 }
+
+export const TarotSpreadDeskDefault = TarotSpreadDesk.TOTH;
 
 export enum TarotSpreadType {
     DAY = 'DAY',
     DATE = 'DATE',
     STAR = 'STAR',
     THREE = 'THREE',
+    EXPRESS = 'EXPRESS',
+    NEXT_STEP = 'NEXT_STEP',
+    OPEN_DOOR = 'OPEN_DOOR',
     CELTIC_CROSS = 'CELTIC_CROSS',
+    HUMAN_ANALYSIS = 'HUMAN_ANALYSIS',
+    WHEEL_OF_FORTUNE = 'WHEEL_OF_FORTUNE',
+    SITUATION_PROGRESS = 'SITUATION_PROGRESS',
+    TRAIN_STATION_FOR_TWO_2 = 'TRAIN_STATION_FOR_TWO_2',
 }
 
 export enum TarotSpreadKind {
     UNIVERSAL = 'UNIVERSAL',
     PROPHETIC = 'PROPHETIC',
-    BUSINESS = 'BUSINESS',
     ANALYTICAL = 'ANALYTICAL',
     RELATIONSHIP = 'RELATIONSHIP',
+    // BUSINESS = 'BUSINESS',
 }
