@@ -86,7 +86,7 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
     }
 
     public async locale(locale: string, version?: string): Promise<any> {
-        return this.call<any>(`${LOCALE_URL}/${locale}`, { data: { version } });
+        return this.call<any>(`${LOCALE_URL}/${locale}`, { data: TraceUtil.addIfNeed({ version }) });
     }
 
     public async clock(data: IClockDto): Promise<IClockDtoResponse> {
