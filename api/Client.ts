@@ -61,17 +61,17 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
     }
 
     public async tarotSpreadAdd(data: ITarotSpreadAddDto): Promise<ITarotSpreadAddDtoResponse> {
-        let item = await this.call<ITarotSpreadAddDtoResponse, ITarotSpreadAddDto>(`${TAROT_SPREAD_URL}`, { method: 'post', data });
+        let item = await this.call<ITarotSpreadAddDtoResponse, ITarotSpreadAddDto>(`${TAROT_SPREAD_URL}`, { method: 'post', data: TraceUtil.addIfNeed(data)  });
         return TransformUtil.toClass(TarotSpread, item);
     }
 
     public async tarotSpreadEdit(data: ITarotSpreadEditDto): Promise<ITarotSpreadEditDtoResponse> {
-        let item = await this.call<ITarotSpreadEditDtoResponse, ITarotSpreadEditDto>(`${TAROT_SPREAD_URL}`, { method: 'put', data });
+        let item = await this.call<ITarotSpreadEditDtoResponse, ITarotSpreadEditDto>(`${TAROT_SPREAD_URL}/${data.uid}`, { method: 'put', data: TraceUtil.addIfNeed(data)  });
         return TransformUtil.toClass(TarotSpread, item);
     }
 
     public async tarotSpreadList(data: ITarotSpreadListDto): Promise<ITarotSpreadListDtoResponse> {
-        let item = await this.call<ITarotSpreadListDtoResponse, ITarotSpreadListDto>(`${TAROT_SPREAD_URL}`, { data });
+        let item = await this.call<ITarotSpreadListDtoResponse, ITarotSpreadListDto>(`${TAROT_SPREAD_URL}`, { data: TraceUtil.addIfNeed(data)  });
         item.items = TransformUtil.toClassMany(TarotSpread, item.items);
         return item;
     }
@@ -81,7 +81,7 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
     }
 
     public async tarotSpreadDay(data: ITarotSpreadDateDto): Promise<ITarotSpreadDtoResponse> {
-        return this.call<ITarotSpreadDtoResponse, ITarotSpreadDateDto>(`${TAROT_SPREAD_DAY_URL}`, { method: 'post', data });
+        return this.call<ITarotSpreadDtoResponse, ITarotSpreadDateDto>(`${TAROT_SPREAD_DAY_URL}`, { method: 'post', data: TraceUtil.addIfNeed(data) });
     }
 
     // --------------------------------------------------------------------------
@@ -121,7 +121,7 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
     }
 
     public async userEdit(data: IUserEditDto): Promise<IUserEditDtoResponse> {
-        let item = await this.call<IUserEditDtoResponse, IUserEditDto>(`${USER_URL}/${data.uid}`, { method: 'put', data });
+        let item = await this.call<IUserEditDtoResponse, IUserEditDto>(`${USER_URL}/${data.uid}`, { method: 'put', data: TraceUtil.addIfNeed(data) });
         return TransformUtil.toClass(User, item);
     }
 
@@ -138,7 +138,7 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
     // --------------------------------------------------------------------------
 
     public async commentAdd(data: ICommentAddDto): Promise<ICommentAddDtoResponse> {
-        let item = await this.call<ICommentAddDtoResponse, ICommentAddDto>(`${COMMENT_URL}`, { method: 'post', data });
+        let item = await this.call<ICommentAddDtoResponse, ICommentAddDto>(`${COMMENT_URL}`, { method: 'post', data: TraceUtil.addIfNeed(data) });
         return TransformUtil.toClass(Comment, item);
     }
 
