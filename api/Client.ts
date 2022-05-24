@@ -100,12 +100,6 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
         return TransformUtil.toClass(User, item);
     }
 
-    public async userList(data?: IUserListDto): Promise<IUserListDtoResponse> {
-        let item = await this.call<IUserListDtoResponse, IUserListDto>(USER_URL, { data: TraceUtil.addIfNeed(data) });
-        item.items = TransformUtil.toClassMany(User, item.items);
-        return item;
-    }
-
     // --------------------------------------------------------------------------
     //
     //  Comment Methods
@@ -143,6 +137,12 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
     // 	Management Methods
     //
     //--------------------------------------------------------------------------
+
+    public async managementUserList(data?: IUserListDto): Promise<IUserListDtoResponse> {
+        let item = await this.call<IUserListDtoResponse, IUserListDto>(MANAGEMENT_USER_URL, { data: TraceUtil.addIfNeed(data) });
+        item.items = TransformUtil.toClassMany(User, item.items);
+        return item;
+    }
 
     public async managementCommentList(data?: ICommentListDto): Promise<ICommentListDtoResponse> {
         let item = await this.call<ICommentListDtoResponse, ICommentListDto>(MANAGEMENT_COMMENT_URL, { data: TraceUtil.addIfNeed(data) });
@@ -210,6 +210,7 @@ export const TAROT_SPREAD_URL = PREFIX_URL + 'tarot/spread';
 export const TAROT_SPREAD_DAY_URL = PREFIX_URL + 'tarot/spread-day';
 export const TAROT_SPREAD_ADD_CHECK_URL = PREFIX_URL + 'tarot/spread-check';
 
+export const MANAGEMENT_USER_URL = PREFIX_URL + 'management/user';
 export const MANAGEMENT_COMMENT_URL = PREFIX_URL + 'management/comment';
 export const MANAGEMENT_TAROT_SPREAD_URL = PREFIX_URL + 'management/tarot/spread';
 

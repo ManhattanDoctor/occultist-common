@@ -4,11 +4,12 @@ import { User } from '../user';
 
 export class Comment {
     public id: number;
-    public user: User;
     public text: string;
-
     public targetId: number;
     public targetType: CommentTargetType;
+
+    public user: User;
+    public userId: number;
 
     @Type(() => Date)
     public createdDate: Date;

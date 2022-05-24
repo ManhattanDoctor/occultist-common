@@ -1,8 +1,9 @@
 import { ITraceable } from '@ts-core/common/trace';
-import { User, UserAccount, UserPreferences } from '../../user';
+import { User, UserAccount, UserPreferences, UserStatus } from '../../user';
 
 export interface IUserEditDto extends ITraceable {
     uid?: string | number;
+    status?: UserStatus;
     account?: Partial<UserAccount>;
     preferences?: Partial<UserPreferences>;
 }
