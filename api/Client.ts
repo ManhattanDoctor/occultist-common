@@ -61,17 +61,17 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
     }
 
     public async tarotSpreadAdd(data: ITarotSpreadAddDto): Promise<ITarotSpreadAddDtoResponse> {
-        let item = await this.call<ITarotSpreadAddDtoResponse, ITarotSpreadAddDto>(`${TAROT_SPREAD_URL}`, { method: 'post', data: TraceUtil.addIfNeed(data)  });
+        let item = await this.call<ITarotSpreadAddDtoResponse, ITarotSpreadAddDto>(`${TAROT_SPREAD_URL}`, { method: 'post', data: TraceUtil.addIfNeed(data) });
         return TransformUtil.toClass(TarotSpread, item);
     }
 
     public async tarotSpreadEdit(data: ITarotSpreadEditDto): Promise<ITarotSpreadEditDtoResponse> {
-        let item = await this.call<ITarotSpreadEditDtoResponse, ITarotSpreadEditDto>(`${TAROT_SPREAD_URL}/${data.uid}`, { method: 'put', data: TraceUtil.addIfNeed(data)  });
+        let item = await this.call<ITarotSpreadEditDtoResponse, ITarotSpreadEditDto>(`${TAROT_SPREAD_URL}/${data.uid}`, { method: 'put', data: TraceUtil.addIfNeed(data) });
         return TransformUtil.toClass(TarotSpread, item);
     }
 
     public async tarotSpreadList(data: ITarotSpreadListDto): Promise<ITarotSpreadListDtoResponse> {
-        let item = await this.call<ITarotSpreadListDtoResponse, ITarotSpreadListDto>(`${TAROT_SPREAD_URL}`, { data: TraceUtil.addIfNeed(data)  });
+        let item = await this.call<ITarotSpreadListDtoResponse, ITarotSpreadListDto>(`${TAROT_SPREAD_URL}`, { data: TraceUtil.addIfNeed(data) });
         item.items = TransformUtil.toClassMany(TarotSpread, item.items);
         return item;
     }
@@ -82,31 +82,6 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
 
     public async tarotSpreadDay(data: ITarotSpreadDateDto): Promise<ITarotSpreadDtoResponse> {
         return this.call<ITarotSpreadDtoResponse, ITarotSpreadDateDto>(`${TAROT_SPREAD_DAY_URL}`, { method: 'post', data: TraceUtil.addIfNeed(data) });
-    }
-
-    // --------------------------------------------------------------------------
-    //
-    //  Other Methods
-    //
-    // --------------------------------------------------------------------------
-
-    public async geo(): Promise<IGeo> {
-        return this.call<IGeo, void>(GEO_URL);
-    }
-
-    public async locale(locale: string, version?: string): Promise<any> {
-        return this.call<any>(`${LOCALE_URL}/${locale}`, { data: { version } });
-    }
-
-    public async clock(data: IClockDto): Promise<IClockDtoResponse> {
-        let item = await this.call<IClockDtoResponse, IClockDto>(CLOCK_URL, { data: TraceUtil.addIfNeed(data), isHandleError: false });
-
-        item.date = new Date(item.date);
-        item.sunset = new Date(item.sunset);
-        item.sunrise = new Date(item.sunrise);
-
-        item.moon.date = new Date(item.moon.date);
-        return item;
     }
 
     // --------------------------------------------------------------------------
@@ -165,6 +140,48 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
 
     //--------------------------------------------------------------------------
     //
+    // 	Management Methods
+    //
+    //--------------------------------------------------------------------------
+
+    public async managementCommentList(data?: ICommentListDto): Promise<ICommentListDtoResponse> {
+        let item = await this.call<ICommentListDtoResponse, ICommentListDto>(MANAGEMENT_COMMENT_URL, { data: TraceUtil.addIfNeed(data) });
+        item.items = TransformUtil.toClassMany(Comment, item.items);
+        return item;
+    }
+
+    public async managementTarotSpreadList(data: ITarotSpreadListDto): Promise<ITarotSpreadListDtoResponse> {
+        let item = await this.call<ITarotSpreadListDtoResponse, ITarotSpreadListDto>(`${MANAGEMENT_TAROT_SPREAD_URL}`, { data: TraceUtil.addIfNeed(data) });
+        item.items = TransformUtil.toClassMany(TarotSpread, item.items);
+        return item;
+    }
+
+    // --------------------------------------------------------------------------
+    //
+    //  Other Methods
+    //
+    // --------------------------------------------------------------------------
+
+    public async geo(): Promise<IGeo> {
+        return this.call<IGeo, void>(GEO_URL);
+    }
+
+    public async locale(locale: string, version?: string): Promise<any> {
+        return this.call<any>(`${LOCALE_URL}/${locale}`, { data: { version } });
+    }
+
+    public async clock(data: IClockDto): Promise<IClockDtoResponse> {
+        let item = await this.call<IClockDtoResponse, IClockDto>(CLOCK_URL, { data: TraceUtil.addIfNeed(data), isHandleError: false });
+
+        item.date = new Date(item.date);
+        item.sunset = new Date(item.sunset);
+        item.sunrise = new Date(item.sunrise);
+
+        item.moon.date = new Date(item.moon.date);
+        return item;
+    }
+    //--------------------------------------------------------------------------
+    //
     // 	Public Properties
     //
     //--------------------------------------------------------------------------
@@ -192,5 +209,8 @@ export const COMMENT_URL = PREFIX_URL + 'comment';
 export const TAROT_SPREAD_URL = PREFIX_URL + 'tarot/spread';
 export const TAROT_SPREAD_DAY_URL = PREFIX_URL + 'tarot/spread-day';
 export const TAROT_SPREAD_ADD_CHECK_URL = PREFIX_URL + 'tarot/spread-check';
+
+export const MANAGEMENT_COMMENT_URL = PREFIX_URL + 'management/comment';
+export const MANAGEMENT_TAROT_SPREAD_URL = PREFIX_URL + 'management/tarot/spread';
 
 export const USER_PICTURE_UPLOAD_URL = PREFIX_URL + 'user/picture/upload';
