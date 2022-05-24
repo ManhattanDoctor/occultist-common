@@ -21,6 +21,7 @@ export const LOCALE_PREFIXES = [
     'Alchemy.json',
     'Qliphoths.json',
 
+    'Management.json',
     'Bibliography.json',
 
     'Tarots.json',
