@@ -78,3 +78,5 @@ export enum TarotSpreadKind {
     RELATIONSHIP = 'RELATIONSHIP',
     // BUSINESS = 'BUSINESS',
 }
+
+export type TarotSpreadUID = string | number;
