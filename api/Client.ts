@@ -51,8 +51,8 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
     //
     // --------------------------------------------------------------------------
 
-    public async tarotSpreadGet(uid: string): Promise<ITarotSpreadDtoResponse> {
-        let item = await this.call<ITarotSpreadDtoResponse, void>(`${TAROT_SPREAD_URL}/${uid}`);
+    public async tarotSpreadGet(idOrUid: string | number): Promise<ITarotSpreadDtoResponse> {
+        let item = await this.call<ITarotSpreadDtoResponse, void>(`${TAROT_SPREAD_URL}/${idOrUid}`);
         return TransformUtil.toClass(TarotSpread, item);
     }
 
