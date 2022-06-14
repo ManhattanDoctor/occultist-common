@@ -11,10 +11,10 @@ export const LOCALE_PREFIXES = [
 
     'Myth.json',
     'Demons.json',
-    'Angels.json',
     'Natures.json',
     'Planets.json',
     'Zodiacs.json',
+    'ZodiacAngels.json',
     'Sefiras.json',
     'Columns.json',
     'Hebrews.json',
