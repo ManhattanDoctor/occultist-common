@@ -171,7 +171,7 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
     }
 
     public async clock(data: IClockDto): Promise<IClockDtoResponse> {
-        let item = await this.call<IClockDtoResponse, IClockDto>(CLOCK_URL, { data: TraceUtil.addIfNeed(data), isHandleError: false });
+        let item = await this.call<IClockDtoResponse, IClockDto>(CLOCK_URL, { data: TraceUtil.addIfNeed(data), isHandleError: true });
 
         item.date = new Date(item.date);
         item.sunset = new Date(item.sunset);
