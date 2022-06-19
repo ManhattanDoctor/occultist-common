@@ -42,7 +42,7 @@ export class UserPreferences {
 
 export const USER_PREFERENCES_STRING_MAX_LENGTH = 256;
 
-export const USER_PREFERENCES_NAME_MIN_LENGTH = 5;
+export const USER_PREFERENCES_NAME_MIN_LENGTH = 1;
 export const USER_PREFERENCES_NAME_MAX_LENGTH = 50;
 
 export const USER_PREFERENCES_PHONE_MAX_LENGTH = 12;
