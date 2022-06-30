@@ -10,6 +10,7 @@ export const LOCALE_PREFIXES = [
     'Comment.json',
 
     'Myth.json',
+    'Ahet.json',
     'Demons.json',
     'Natures.json',
     'Planets.json',

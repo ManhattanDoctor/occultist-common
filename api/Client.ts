@@ -42,7 +42,7 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
     }
 
     public async logout(traceId?: string): Promise<void> {
-        return this.call<void, ITraceable>(LOGOUT_URL, { data: TraceUtil.addIfNeed({ traceId }), method: 'post' });
+        return this.call<void, ITraceable>(LOGOUT_URL, { data: TraceUtil.addIfNeed({ traceId }), method: 'post', isHandleError: false });
     }
 
     // --------------------------------------------------------------------------
