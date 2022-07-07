@@ -45,6 +45,10 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
         return this.call<void, ITraceable>(LOGOUT_URL, { data: TraceUtil.addIfNeed({ traceId }), method: 'post', isHandleError: false });
     }
 
+    public async logoutOthers(traceId?: string): Promise<void> {
+        return this.call<void, ITraceable>(LOGOUT_OTHERS_URL, { data: TraceUtil.addIfNeed({ traceId }), method: 'post', isHandleError: false });
+    }
+
     // --------------------------------------------------------------------------
     //
     //  Tarot Methods
@@ -199,6 +203,7 @@ export const USER_URL = PREFIX_URL + 'user';
 export const INIT_URL = PREFIX_URL + 'init';
 export const LOGIN_URL = PREFIX_URL + 'login';
 export const LOGOUT_URL = PREFIX_URL + 'logout';
+export const LOGOUT_OTHERS_URL = PREFIX_URL + 'logoutOthers';
 
 export const MOON_URL = PREFIX_URL + 'moon';
 export const CLOCK_URL = PREFIX_URL + 'clock';
