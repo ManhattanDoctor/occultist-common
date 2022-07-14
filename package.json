@@ -6,9 +6,7 @@
     "author": "Anter Athanor",
     "license": "ISC",
     "dependencies": {
-        "@ts-core/common": "^2.0.2",
-        "@ts-core/socket": "^2.0.2",
-        "@ts-core/notification": "^2.0.7",
+        "@ts-core/common": "^3.0.3",
         "random-seed": "^0.3.0"
     },
     "devDependencies": {}

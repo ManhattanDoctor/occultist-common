@@ -1,5 +1,5 @@
 import { TarotSpread, TarotSpreadDesk, TarotSpreadMode, TarotSpreadPrivacy, TarotSpreadType } from '../../../tarot';
-import { ITraceable } from '@ts-core/common/trace';
+import { ITraceable } from '@ts-core/common';
 
 export interface ITarotSpreadAddDto extends ITraceable {
     type: TarotSpreadType;

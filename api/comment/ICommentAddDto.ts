@@ -1,4 +1,4 @@
-import { ITraceable } from '@ts-core/common/trace';
+import { ITraceable } from '@ts-core/common';
 import { Comment, CommentTargetType } from '../../comment';
 
 export interface ICommentAddDto extends ITraceable {
