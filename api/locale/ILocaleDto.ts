@@ -30,6 +30,7 @@ export const LOCALE_PREFIXES = [
     'TarotsChart.json',
     'TarotsSpread.json',
     'TarotsHistory.json',
+    'TarotsSefiras.json',
     'TarotsQuestion.json',
 
     'Clock.json',
