@@ -17,6 +17,7 @@ export const LOCALE_PREFIXES = [
     'Planets.json',
     'Zodiacs.json',
     'ZodiacSpirits.json',
+    'ZodiacDecanSpirits.json',
     'Sefiras.json',
     'Columns.json',
     'Hebrews.json',
