@@ -1,6 +1,7 @@
 import { Type } from 'class-transformer';
 import { UserAccount } from './UserAccount';
 import { UserPreferences } from './UserPreferences';
+import { UserStatistics } from './UserStatistics';
 
 export class User {
     public id: number;
@@ -13,8 +14,12 @@ export class User {
 
     @Type(() => UserAccount)
     public account: UserAccount;
+
     @Type(() => UserPreferences)
     public preferences: UserPreferences;
+
+    @Type(() => UserStatistics)
+    public statistics: UserStatistics;
 }
 
 export enum UserResource {
