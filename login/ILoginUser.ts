@@ -1,4 +1,4 @@
-import { UserPreferences } from '@project/common/user';
+import { UserPreferences } from "../user";
 
 export class LoginUser {
     id: string;
