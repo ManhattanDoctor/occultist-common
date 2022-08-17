@@ -1,8 +1,7 @@
-import { ITraceable } from "@ts-core/common";
+import { TarotSpread } from "@project/common/tarot";
+import { IPaginable, IPagination, ITraceable } from "@ts-core/common";
 import { User } from "../../../user";
 
-export interface ITarotSpreadUserListDto extends ITraceable {
-    pageIndex: number;
-}
+export interface ITarotSpreadUserListDto extends IPaginable<TarotSpread>, ITraceable { }
 
-export type ITarotSpreadUserListDtoResponse = Array<User>;
+export interface ITarotSpreadUserListDtoResponse extends IPagination<User> { }
