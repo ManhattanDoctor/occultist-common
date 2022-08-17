@@ -1,6 +1,8 @@
-import { IPage, IPagination, ITraceable } from "@ts-core/common";
+import { ITraceable } from "@ts-core/common";
 import { User } from "../../../user";
 
-export interface ITarotSpreadUserListDto extends IPage, ITraceable { }
+export interface ITarotSpreadUserListDto extends ITraceable {
+    pageIndex: number;
+}
 
-export interface ITarotSpreadUserListDtoResponse extends IPagination<User> { }
+export type ITarotSpreadUserListDtoResponse = Array<User>;
