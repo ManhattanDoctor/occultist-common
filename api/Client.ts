@@ -4,7 +4,7 @@ import * as _ from 'lodash';
 import { IClockDto, IClockDtoResponse } from './clock/IClockDto';
 import { IInitDto, IInitDtoResponse, ILoginDto, ILoginDtoResponse } from './login';
 import { User } from '../user';
-import { ITarotSpreadAddDto, ITarotSpreadListDto, ITarotSpreadListDtoResponse, ITarotSpreadAddDtoResponse, ITarotSpreadDateDto, ITarotSpreadDtoResponse, ITarotSpreadAddCheckDto, ITarotSpreadEditDto, ITarotSpreadEditDtoResponse } from './tarot/spread';
+import { ITarotSpreadAddDto, ITarotSpreadListDto, ITarotSpreadListDtoResponse, ITarotSpreadAddDtoResponse, ITarotSpreadDateDto, ITarotSpreadDtoResponse, ITarotSpreadAddCheckDto, ITarotSpreadEditDto, ITarotSpreadEditDtoResponse, ITarotSpreadUserListDto, ITarotSpreadUserListDtoResponse } from './tarot/spread';
 import { IUserListDto, IUserListDtoResponse, IUserGetDtoResponse, IUserEditDto, IUserEditDtoResponse } from '../api/user';
 import { IGeo } from '../geo';
 import { ICommentAddDto, ICommentAddDtoResponse, ICommentEditDto, ICommentEditDtoResponse, ICommentGetDtoResponse, ICommentListDto, ICommentListDtoResponse, ICommentRemoveDtoResponse } from './comment';
@@ -86,6 +86,12 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
         return this.call<ITarotSpreadDtoResponse, ITarotSpreadDateDto>(`${TAROT_SPREAD_DAY_URL}`, { method: 'post', data: TraceUtil.addIfNeed(data) });
     }
 
+    public async tarotSpreadUserList(data: ITarotSpreadUserListDto): Promise<ITarotSpreadUserListDtoResponse> {
+        let item = await this.call<ITarotSpreadUserListDtoResponse, ITarotSpreadUserListDto>(`${TAROT_SPREAD_USER_LIST_URL}`, { data: TraceUtil.addIfNeed(data) });
+        item.items = TransformUtil.toClassMany(User, item.items);
+        return item;
+    }
+    
     // --------------------------------------------------------------------------
     //
     //  User Methods
@@ -212,6 +218,7 @@ export const COMMENT_URL = PREFIX_URL + 'comment';
 export const TAROT_SPREAD_URL = PREFIX_URL + 'tarot/spread';
 export const TAROT_SPREAD_DAY_URL = PREFIX_URL + 'tarot/spread-day';
 export const TAROT_SPREAD_ADD_CHECK_URL = PREFIX_URL + 'tarot/spread-check';
+export const TAROT_SPREAD_USER_LIST_URL = PREFIX_URL + 'tarot/users';
 
 export const MANAGEMENT_USER_URL = PREFIX_URL + 'management/user';
 export const MANAGEMENT_COMMENT_URL = PREFIX_URL + 'management/comment';

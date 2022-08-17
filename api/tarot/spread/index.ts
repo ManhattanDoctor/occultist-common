@@ -5,3 +5,5 @@ export * from './ITarotSpreadAddCheckDto';
 
 export * from './ITarotSpreadDto';
 export * from './ITarotSpreadListDto';
+
+export * from './ITarotSpreadUserListDto';
