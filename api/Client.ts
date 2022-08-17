@@ -88,7 +88,7 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
 
     public async tarotSpreadUserList(data: ITarotSpreadUserListDto): Promise<ITarotSpreadUserListDtoResponse> {
         let item = await this.call<ITarotSpreadUserListDtoResponse, ITarotSpreadUserListDto>(`${TAROT_SPREAD_USER_LIST_URL}`, { data: TraceUtil.addIfNeed(data) });
-        item.items = TransformUtil.toClassMany(User, item.items);
+        item.items = _.uniqBy(TransformUtil.toClassMany(User, item.items), 'id');
         return item;
     }
 
