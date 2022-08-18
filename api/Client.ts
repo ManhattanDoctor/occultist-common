@@ -87,8 +87,9 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
     }
 
     public async tarotSpreadUserList(data: ITarotSpreadUserListDto): Promise<ITarotSpreadUserListDtoResponse> {
-        let items = await this.call<ITarotSpreadUserListDtoResponse, ITarotSpreadUserListDto>(`${TAROT_SPREAD_USER_LIST_URL}`, { data: TraceUtil.addIfNeed(data) });
-        return TransformUtil.toClassMany(User, items);
+        let item = await this.call<ITarotSpreadUserListDtoResponse, ITarotSpreadUserListDto>(`${TAROT_SPREAD_USER_LIST_URL}`, { data: TraceUtil.addIfNeed(data) });
+        item.items = TransformUtil.toClassMany(User, item.items);
+        return item;
     }
 
     // --------------------------------------------------------------------------

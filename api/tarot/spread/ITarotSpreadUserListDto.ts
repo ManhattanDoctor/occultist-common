@@ -4,4 +4,4 @@ import { User } from "../../../user";
 
 export interface ITarotSpreadUserListDto extends IPaginable<TarotSpread>, ITraceable { }
 
-export type ITarotSpreadUserListDtoResponse = Array<User>;
+export interface ITarotSpreadUserListDtoResponse extends IPagination<User> {}
