@@ -4,6 +4,7 @@ export const LOCALE_PREFIXES = [
     'Custom.json',
 
     'User.json',
+    'People.json',
     'Comment.json',
 
     'Myth.json',
