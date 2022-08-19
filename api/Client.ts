@@ -1,15 +1,16 @@
 import { TransportHttp, ITransportHttpSettings } from '@ts-core/common';
 import { ILogger, TransformUtil, ITraceable, TraceUtil } from '@ts-core/common';
 import * as _ from 'lodash';
-import { IClockDto, IClockDtoResponse } from './clock/IClockDto';
+import { IClockDto, IClockDtoResponse } from './clock';
 import { IInitDto, IInitDtoResponse, ILoginDto, ILoginDtoResponse } from './login';
 import { User } from '../user';
-import { ITarotSpreadAddDto, ITarotSpreadListDto, ITarotSpreadListDtoResponse, ITarotSpreadAddDtoResponse, ITarotSpreadDateDto, ITarotSpreadDtoResponse, ITarotSpreadAddCheckDto, ITarotSpreadEditDto, ITarotSpreadEditDtoResponse, ITarotSpreadUserListDto, ITarotSpreadUserListDtoResponse } from './tarot/spread';
+import { ITarotSpreadAddDto, ITarotSpreadListDto, ITarotSpreadListDtoResponse, ITarotSpreadAddDtoResponse, ITarotSpreadDateDto, ITarotSpreadDtoResponse, ITarotSpreadAddCheckDto, ITarotSpreadEditDto, ITarotSpreadEditDtoResponse } from './tarot/spread';
 import { IUserListDto, IUserListDtoResponse, IUserGetDtoResponse, IUserEditDto, IUserEditDtoResponse } from '../api/user';
 import { IGeo } from '../geo';
 import { ICommentAddDto, ICommentAddDtoResponse, ICommentEditDto, ICommentEditDtoResponse, ICommentGetDtoResponse, ICommentListDto, ICommentListDtoResponse, ICommentRemoveDtoResponse } from './comment';
 import { Comment } from '../comment';
 import { TarotSpread } from '../tarot';
+import { IPeopleListDto, IPeopleListDtoResponse } from './people';
 
 export class Client extends TransportHttp<ITransportHttpSettings> {
     // --------------------------------------------------------------------------
@@ -84,12 +85,6 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
 
     public async tarotSpreadDay(data: ITarotSpreadDateDto): Promise<ITarotSpreadDtoResponse> {
         return this.call<ITarotSpreadDtoResponse, ITarotSpreadDateDto>(`${TAROT_SPREAD_DAY_URL}`, { method: 'post', data: TraceUtil.addIfNeed(data) });
-    }
-
-    public async tarotSpreadUserList(data: ITarotSpreadUserListDto): Promise<ITarotSpreadUserListDtoResponse> {
-        let item = await this.call<ITarotSpreadUserListDtoResponse, ITarotSpreadUserListDto>(`${TAROT_SPREAD_USER_LIST_URL}`, { data: TraceUtil.addIfNeed(data) });
-        item.items = TransformUtil.toClassMany(User, item.items);
-        return item;
     }
 
     // --------------------------------------------------------------------------
@@ -180,14 +175,19 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
 
     public async clock(data: IClockDto): Promise<IClockDtoResponse> {
         let item = await this.call<IClockDtoResponse, IClockDto>(CLOCK_URL, { data: TraceUtil.addIfNeed(data), isHandleError: true });
-
         item.date = new Date(item.date);
         item.sunset = new Date(item.sunset);
         item.sunrise = new Date(item.sunrise);
-
         item.moon.date = new Date(item.moon.date);
         return item;
     }
+
+    public async peopleList(data: IPeopleListDto): Promise<IPeopleListDtoResponse> {
+        let item = await this.call<IPeopleListDtoResponse, IPeopleListDto>(`${PEOPLE_URL}`, { data: TraceUtil.addIfNeed(data) });
+        item.items = TransformUtil.toClassMany(User, item.items);
+        return item;
+    }
+
     //--------------------------------------------------------------------------
     //
     // 	Public Properties
@@ -212,13 +212,13 @@ export const LOGOUT_OTHERS_URL = PREFIX_URL + 'logoutOthers';
 export const MOON_URL = PREFIX_URL + 'moon';
 export const CLOCK_URL = PREFIX_URL + 'clock';
 export const LOCALE_URL = PREFIX_URL + 'locale';
+export const PEOPLE_URL = PREFIX_URL + 'people';
 
 export const COMMENT_URL = PREFIX_URL + 'comment';
 
 export const TAROT_SPREAD_URL = PREFIX_URL + 'tarot/spread';
 export const TAROT_SPREAD_DAY_URL = PREFIX_URL + 'tarot/spread-day';
 export const TAROT_SPREAD_ADD_CHECK_URL = PREFIX_URL + 'tarot/spread-check';
-export const TAROT_SPREAD_USER_LIST_URL = PREFIX_URL + 'tarot/users';
 
 export const MANAGEMENT_USER_URL = PREFIX_URL + 'management/user';
 export const MANAGEMENT_COMMENT_URL = PREFIX_URL + 'management/comment';

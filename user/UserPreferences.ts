@@ -21,6 +21,8 @@ export class UserPreferences {
 
     tarotDesk?: string;
 
+    isHideFromPeople?: boolean;
+
     @Type(() => Date)
     birthday?: Date;
 
