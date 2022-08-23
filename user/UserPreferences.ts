@@ -23,6 +23,7 @@ export class UserPreferences {
 
     isHideFromPeople?: boolean;
     isNotSuggestAddToFavorites?: boolean;
+    isNotSuggestAllowSendNotifications?: boolean;
 
     @Type(() => Date)
     birthday?: Date;
