@@ -59,6 +59,7 @@ export const TarotSpreadDeskDefault = TarotSpreadDesk.TOTH;
 export enum TarotSpreadType {
     DAY = 'DAY',
     DATE = 'DATE',
+    
     STAR = 'STAR',
     THREE = 'THREE',
     MONTH = 'MONTH',
