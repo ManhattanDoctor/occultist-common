@@ -14,6 +14,8 @@ export class TarotSpread {
 
     public seed?: string;
     public desk?: TarotSpreadDesk;
+    public color?: TarotSpreadColor;
+    public status?: TarotSpreadStatus;
     public querent?: string;
     public question?: string;
 
@@ -59,7 +61,7 @@ export const TarotSpreadDeskDefault = TarotSpreadDesk.TOTH;
 export enum TarotSpreadType {
     DAY = 'DAY',
     DATE = 'DATE',
-    
+
     STAR = 'STAR',
     THREE = 'THREE',
     MONTH = 'MONTH',
@@ -86,6 +88,20 @@ export enum TarotSpreadKind {
     ANALYTICAL = 'ANALYTICAL',
     RELATIONSHIP = 'RELATIONSHIP',
     WEALTH = 'WEALTH',
+}
+
+export enum TarotSpreadStatus {
+    REMOVED = 'REMOVED',
+}
+
+export enum TarotSpreadColor {
+    FIRST = 'FIRST',
+    SECOND = 'SECOND',
+    THREE = 'THREE',
+    FOUR = 'FOUR',
+    FIVE = 'FIVE',
+    SIX = 'SIX',
+    SEVEN = 'SEVEN'
 }
 
 export type TarotSpreadUID = string | number;

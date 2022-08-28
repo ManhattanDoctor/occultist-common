@@ -1,5 +1,5 @@
 import * as _ from 'lodash';
-import { TarotSpread, TarotSpreadPrivacy } from '../tarot';
+import { TarotSpread, TarotSpreadPrivacy, TarotSpreadStatus } from '../tarot';
 import { Comment } from '../comment';
 import { User, UserAccountType } from '../user';
 import { IUserEditDto } from '../api/user';
@@ -31,13 +31,16 @@ export class PermissionUtil {
     //--------------------------------------------------------------------------
 
     public static spreadIsCanGet(item: TarotSpread, user: User): boolean {
+        if (item.status === TarotSpreadStatus.REMOVED) {
+            return !_.isNil(user) && user.account.type === UserAccountType.ADMINISTRATOR;
+        }
         if (item.privacy !== TarotSpreadPrivacy.PRIVATE) {
             return true;
         }
         if (_.isNil(user)) {
             return false;
         }
-        return user.account.type === UserAccountType.ADMINISTRATOR || item.userId === user.id;
+        return user.account.type === UserAccountType.ADMINISTRATOR;
     }
 
     public static spreadIsCanEdit(item: TarotSpread, user: User): boolean {
