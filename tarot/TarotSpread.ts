@@ -95,8 +95,8 @@ export enum TarotSpreadStatus {
 }
 
 export enum TarotSpreadColor {
-    FIRST = 'FIRST',
-    SECOND = 'SECOND',
+    ONE = 'ONE',
+    TWO = 'TWO',
     THREE = 'THREE',
     FOUR = 'FOUR',
     FIVE = 'FIVE',

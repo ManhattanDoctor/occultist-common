@@ -1,4 +1,4 @@
-import { TarotSpread, TarotSpreadDesk, TarotSpreadMode, TarotSpreadPrivacy, TarotSpreadType } from '../../../tarot';
+import { TarotSpread, TarotSpreadColor, TarotSpreadDesk, TarotSpreadMode, TarotSpreadPrivacy, TarotSpreadType } from '../../../tarot';
 import { ITraceable } from '@ts-core/common';
 
 export interface ITarotSpreadAddDto extends ITraceable {
@@ -9,6 +9,7 @@ export interface ITarotSpreadAddDto extends ITraceable {
     question: string
     indexesAmount: number;
     
+    color?: TarotSpreadColor;
     comment?: string;
     querent?: string;
     indexes?: Array<number>;
