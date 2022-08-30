@@ -12,6 +12,7 @@ import { Comment } from '../comment';
 import { TarotSpread } from '../tarot';
 import { IPeopleListDto, IPeopleListDtoResponse } from './people';
 import { IManagementTarotSpreadListDto } from './management';
+import { IStatisticsGetDtoResponse } from '@project/common/api/statistics';
 
 export class Client extends TransportHttp<ITransportHttpSettings> {
     // --------------------------------------------------------------------------
@@ -174,6 +175,10 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
         return this.call<any>(`${LOCALE_URL}/${locale}`, { data: { version } });
     }
 
+    public async statistics(): Promise<IStatisticsGetDtoResponse> {
+        return this.call<IStatisticsGetDtoResponse, void>(STATISTICS_URL);
+    }
+
     public async clock(data: IClockDto): Promise<IClockDtoResponse> {
         let item = await this.call<IClockDtoResponse, IClockDto>(CLOCK_URL, { data: TraceUtil.addIfNeed(data), isHandleError: true });
         item.date = new Date(item.date);
@@ -214,6 +219,7 @@ export const MOON_URL = PREFIX_URL + 'moon';
 export const CLOCK_URL = PREFIX_URL + 'clock';
 export const LOCALE_URL = PREFIX_URL + 'locale';
 export const PEOPLE_URL = PREFIX_URL + 'people';
+export const STATISTICS_URL = PREFIX_URL + 'statistics';
 
 export const COMMENT_URL = PREFIX_URL + 'comment';
 
