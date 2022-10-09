@@ -8,6 +8,9 @@ export class LoginUser {
 export class VkLoginUser extends LoginUser {
     params: string;
 }
+export class YaUser extends LoginUser {
+    params: string;
+}
 
 export class GoUser extends LoginUser {
     //--------------------------------------------------------------------------
