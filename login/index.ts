@@ -1,2 +1,2 @@
 export * from './ILoginUser';
-export * from './ILoginAuthToken';
+export * from './ILoginAuthCode';

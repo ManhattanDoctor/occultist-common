@@ -24,6 +24,7 @@ export class User {
 
 export enum UserResource {
     VK = 'VK',
+    YANDEX = 'YANDEX',
     GOOGLE = 'GOOGLE',
 }
 
