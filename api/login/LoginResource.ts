@@ -1,6 +1,7 @@
 export enum LoginResource {
     VK_SITE = 'VK_SITE',
     VK_INTERNAL = 'VK_INTERNAL',
+    YANDEX_SITE = 'YANDEX_SITE',
     GOOGLE_SITE = 'GOOGLE_SITE',
     YANDEX_SITE = 'YANDEX_SITE',
     FACEBOOK_SITE = 'FACEBOOK_SITE',
