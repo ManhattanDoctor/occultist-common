@@ -1,5 +1,5 @@
 import { ITraceable } from '@ts-core/common';
-import { ILoginAuthCode, LoginUser } from '../../login';
+import { VkUser, IOAuthDto } from '@ts-core/oauth';
 import { LoginResource } from './LoginResource';
 
 export interface ILoginDto<T = LoginData> extends ITraceable {
@@ -11,4 +11,4 @@ export interface ILoginDtoResponse {
     sid: string;
 }
 
-export type LoginData = ILoginAuthCode | LoginUser;
+export type LoginData = IOAuthDto | VkUser;
