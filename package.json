@@ -7,7 +7,7 @@
     "license": "ISC",
     "dependencies": {
         "@ts-core/common": "^3.0.8",
-        "@ts-core/oauth": "^3.0.2",
+        "@ts-core/oauth": "^3.0.7",
         "random-seed": "^0.3.0"
     },
     "devDependencies": {}
