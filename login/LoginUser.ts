@@ -10,7 +10,7 @@ export class LoginUser {
     //
     //--------------------------------------------------------------------------
 
-    public id: string;
+    public id: number | string;
     public preferences: Partial<UserPreferences>;
 
     //--------------------------------------------------------------------------
