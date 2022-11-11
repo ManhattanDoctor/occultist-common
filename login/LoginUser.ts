@@ -10,7 +10,7 @@ export class LoginUser {
     //
     //--------------------------------------------------------------------------
 
-    public id: number | string;
+    public id: string;
     public preferences: Partial<UserPreferences>;
 
     //--------------------------------------------------------------------------
@@ -32,9 +32,8 @@ export class LoginUser {
     //--------------------------------------------------------------------------
 
     protected parse(item: OAuthUser): void {
-        this.id = item.id.toString();
         this.preferences = { location: item.location };
-        ObjectUtil.copyProperties(item, this.preferences, ['name', 'email', 'phone', 'locale', 'isMale', 'picture', 'location', 'birthday', 'description', 'vk'])
+        ObjectUtil.copyProperties(item, this.preferences, ['id', 'name', 'email', 'phone', 'locale', 'isMale', 'picture', 'location', 'birthday', 'description', 'vk'])
     }
 
 }
