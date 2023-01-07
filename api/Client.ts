@@ -172,12 +172,8 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
         return this.call<IGeo, void>(GEO_URL);
     }
 
-    public async locale(locale: string, version?: string): Promise<any> {
-        return this.call<any>(`${LOCALE_URL}/${locale}`, { data: { version } });
-    }
-
-    public async locale2(project: LocaleProject, locale: string, version?: string): Promise<any> {
-        return this.call<any>(`${LOCALE_URL2}/${project}/${locale}`, { data: { version } });
+    public async locale(project: LocaleProject, locale: string, version?: string): Promise<any> {
+        return this.call<any>(`${LOCALE_URL}/${project}/${locale}`, { data: { version } });
     }
 
     public async statistics(): Promise<IStatisticsGetDtoResponse> {
@@ -223,7 +219,6 @@ export const LOGOUT_OTHERS_URL = PREFIX_URL + 'logoutOthers';
 export const MOON_URL = PREFIX_URL + 'moon';
 export const CLOCK_URL = PREFIX_URL + 'clock';
 export const LOCALE_URL = PREFIX_URL + 'locale';
-export const LOCALE_URL2 = PREFIX_URL + 'locale2';
 export const PEOPLE_URL = PREFIX_URL + 'people';
 export const STATISTICS_URL = PREFIX_URL + 'statistics';
 
