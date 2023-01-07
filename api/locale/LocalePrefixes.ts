@@ -1,5 +1,10 @@
 
-export const LOCALE_PREFIXES = [
+export enum LocaleProject {
+    TAROT = 'tarot',
+    DEMONOLOGY = 'demonology',
+}
+
+export const TAROT_LOCALE_PREFIXES = [
     '.json',
     'Custom.json',
 
@@ -14,8 +19,6 @@ export const LOCALE_PREFIXES = [
     'Natures.json',
     'Planets.json',
     'Zodiacs.json',
-    'ZodiacSpirits.json',
-    'ZodiacDecanSpirits.json',
     'Sefiras.json',
     'Columns.json',
     'Hebrews.json',
@@ -37,5 +40,34 @@ export const LOCALE_PREFIXES = [
 
     'Main.json',
     'About.json'
+];
+
+export const DEMONOLOGY_LOCALE_PREFIXES = [
+    '.json',
+    'Custom.json',
+
+    'Myth.json',
+    'Ahet.json',
+    'Demons.json',
+    'Geniuses.json',
+    'Natures.json',
+    'Planets.json',
+    'Zodiacs.json',
+    'ZodiacSpirits.json',
+    'ZodiacDecanSpirits.json',
+    'Sefiras.json',
+    'Columns.json',
+    'Hebrews.json',
+    'Alchemy.json',
+    'Qliphoths.json',
+
+    'Bibliography.json',
+
+    'Gematria.json',
+
+    'Main.json',
+    'About.json'
 ]
+
+
 

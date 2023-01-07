@@ -11,6 +11,7 @@ import { Comment } from '../comment';
 import { TarotSpread } from '../tarot';
 import { IPeopleListDto, IPeopleListDtoResponse } from './people';
 import { IManagementTarotSpreadListDto } from './management';
+import { LocaleProject } from './locale';
 import { IUserEditDto, IUserEditDtoResponse, IUserGetDtoResponse, IUserListDto, IUserListDtoResponse } from './user';
 import { IStatisticsGetDtoResponse } from './statistics';
 
@@ -171,8 +172,8 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
         return this.call<IGeo, void>(GEO_URL);
     }
 
-    public async locale(locale: string, version?: string): Promise<any> {
-        return this.call<any>(`${LOCALE_URL}/${locale}`, { data: { version } });
+    public async locale(project: LocaleProject, locale: string, version?: string): Promise<any> {
+        return this.call<any>(`${LOCALE_URL}/${project}/${locale}`, { data: { version } });
     }
 
     public async statistics(): Promise<IStatisticsGetDtoResponse> {
