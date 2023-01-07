@@ -1,5 +1,9 @@
 
-export const LOCALE_PREFIXES = [
+export enum LocaleProject {
+    TAROT = 'tarot',
+    DEMONOLOGY = 'demonology',
+}
+export const TAROT_LOCALE_PREFIXES = [
     '.json',
     'Custom.json',
 

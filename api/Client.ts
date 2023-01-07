@@ -13,6 +13,7 @@ import { TarotSpread } from '../tarot';
 import { IPeopleListDto, IPeopleListDtoResponse } from './people';
 import { IManagementTarotSpreadListDto } from './management';
 import { IStatisticsGetDtoResponse } from '@project/common/api/statistics';
+import { LocaleProject } from './locale';
 
 export class Client extends TransportHttp<ITransportHttpSettings> {
     // --------------------------------------------------------------------------
@@ -175,6 +176,10 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
         return this.call<any>(`${LOCALE_URL}/${locale}`, { data: { version } });
     }
 
+    public async locale2(project: LocaleProject, locale: string, version?: string): Promise<any> {
+        return this.call<any>(`${LOCALE_URL2}/${project}/${locale}`, { data: { version } });
+    }
+
     public async statistics(): Promise<IStatisticsGetDtoResponse> {
         return this.call<IStatisticsGetDtoResponse, void>(STATISTICS_URL);
     }
@@ -218,6 +223,7 @@ export const LOGOUT_OTHERS_URL = PREFIX_URL + 'logoutOthers';
 export const MOON_URL = PREFIX_URL + 'moon';
 export const CLOCK_URL = PREFIX_URL + 'clock';
 export const LOCALE_URL = PREFIX_URL + 'locale';
+export const LOCALE_URL2 = PREFIX_URL + 'locale2';
 export const PEOPLE_URL = PREFIX_URL + 'people';
 export const STATISTICS_URL = PREFIX_URL + 'statistics';
 
