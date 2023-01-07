@@ -37,10 +37,7 @@ export class PermissionUtil {
         if (item.privacy !== TarotSpreadPrivacy.PRIVATE) {
             return true;
         }
-        if (_.isNil(user)) {
-            return false;
-        }
-        return user.account.type === UserAccountType.ADMINISTRATOR;
+        return PermissionUtil.spreadIsCanEdit(item, user);
     }
 
     public static spreadIsCanEdit(item: TarotSpread, user: User): boolean {

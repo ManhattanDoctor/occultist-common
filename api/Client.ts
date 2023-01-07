@@ -3,16 +3,16 @@ import { ILogger, TransformUtil, ITraceable, TraceUtil } from '@ts-core/common';
 import * as _ from 'lodash';
 import { IClockDto, IClockDtoResponse } from './clock';
 import { IInitDto, IInitDtoResponse, ILoginDto, ILoginDtoResponse } from './login';
-import { User, UserPreferences } from '../user';
+import { User } from '../user';
 import { ITarotSpreadAddDto, ITarotSpreadListDto, ITarotSpreadListDtoResponse, ITarotSpreadAddDtoResponse, ITarotSpreadDateDto, ITarotSpreadDtoResponse, ITarotSpreadAddCheckDto, ITarotSpreadEditDto, ITarotSpreadEditDtoResponse } from './tarot/spread';
-import { IUserListDto, IUserListDtoResponse, IUserGetDtoResponse, IUserEditDto, IUserEditDtoResponse } from '../api/user';
 import { IGeo } from '../geo';
 import { ICommentAddDto, ICommentAddDtoResponse, ICommentEditDto, ICommentEditDtoResponse, ICommentGetDtoResponse, ICommentListDto, ICommentListDtoResponse, ICommentRemoveDtoResponse } from './comment';
 import { Comment } from '../comment';
 import { TarotSpread } from '../tarot';
 import { IPeopleListDto, IPeopleListDtoResponse } from './people';
 import { IManagementTarotSpreadListDto } from './management';
-import { IStatisticsGetDtoResponse } from '@project/common/api/statistics';
+import { IUserEditDto, IUserEditDtoResponse, IUserGetDtoResponse, IUserListDto, IUserListDtoResponse } from './user';
+import { IStatisticsGetDtoResponse } from './statistics';
 
 export class Client extends TransportHttp<ITransportHttpSettings> {
     // --------------------------------------------------------------------------
