@@ -1,4 +1,4 @@
-import { TransportHttp, ITransportHttpSettings, IPaginable } from '@ts-core/common';
+import { TransportHttp, ITransportHttpSettings, IPaginable, LoggerLevel } from '@ts-core/common';
 import { ILogger, TransformUtil, ITraceable, TraceUtil } from '@ts-core/common';
 import * as _ from 'lodash';
 import { IClockDto, IClockDtoResponse } from './clock';
@@ -22,9 +22,13 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
     //
     // --------------------------------------------------------------------------
 
-    constructor(logger: ILogger, url?: string) {
+    constructor(logger: ILogger, url?: string, level?: LoggerLevel) {
         super(logger, { method: 'get', isHandleError: true, isHandleLoading: true, headers: {} });
-        this.url = url;
+
+        if (!_.isNil(level)) {
+            this.level = level;
+        }
+
     }
 
     // --------------------------------------------------------------------------
