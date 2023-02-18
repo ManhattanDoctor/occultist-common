@@ -53,7 +53,7 @@ export const DEMONOLOGY_LOCALE_PREFIXES = [
     'Natures.json',
     'Planets.json',
     'Zodiacs.json',
-    'ZodiacSpirits.json',
+    'ZodiacAngleSpirits.json',
     'ZodiacDecanSpirits.json',
     'Sefiras.json',
     'Columns.json',
