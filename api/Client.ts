@@ -14,6 +14,7 @@ import { IManagementTarotSpreadListDto } from './management';
 import { LocaleProject } from './locale';
 import { IUserEditDto, IUserEditDtoResponse, IUserGetDtoResponse, IUserListDto, IUserListDtoResponse } from './user';
 import { IStatisticsGetDtoResponse } from './statistics';
+import { IOAuthPopUpDto } from '@ts-core/oauth';
 
 export class Client extends TransportHttp<ITransportHttpSettings> {
     // --------------------------------------------------------------------------
@@ -172,6 +173,10 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
         return this.call<IGeo, void>(GEO_URL);
     }
 
+    public async oauth(state: string): Promise<IOAuthPopUpDto> {
+        return this.call<IOAuthPopUpDto>(`${OAUTH_URL}/${state}`, { data: TraceUtil.addIfNeed({}) });
+    }
+
     public async locale(project: LocaleProject, locale: string, version?: string): Promise<any> {
         return this.call<any>(`${LOCALE_URL}/${project}/${locale}`, { data: { version } });
     }
@@ -181,7 +186,7 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
     }
 
     public async clock(data: IClockDto): Promise<IClockDtoResponse> {
-        let item = await this.call<IClockDtoResponse, IClockDto>(CLOCK_URL, { data: TraceUtil.addIfNeed(data), isHandleError: true });
+        let item = await this.call<IClockDtoResponse, IClockDto>(CLOCK_URL, { data: TraceUtil.addIfNeed(data) });
         item.date = new Date(item.date);
         item.sunset = new Date(item.sunset);
         item.sunrise = new Date(item.sunrise);
@@ -216,7 +221,7 @@ export const LOGIN_URL = PREFIX_URL + 'login';
 export const LOGOUT_URL = PREFIX_URL + 'logout';
 export const LOGOUT_OTHERS_URL = PREFIX_URL + 'logoutOthers';
 
-export const MOON_URL = PREFIX_URL + 'moon';
+export const OAUTH_URL = PREFIX_URL + 'oauth';
 export const CLOCK_URL = PREFIX_URL + 'clock';
 export const LOCALE_URL = PREFIX_URL + 'locale';
 export const PEOPLE_URL = PREFIX_URL + 'people';
