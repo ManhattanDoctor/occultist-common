@@ -210,6 +210,10 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
     //
     //--------------------------------------------------------------------------
 
+    public get oauthRedirectUrl(): string {
+        return `${this.url}${OAUTH_URL}`;
+    }
+
     public set sid(value: string) {
         if (!_.isNil(this.headers)) {
             this.headers.Authorization = `Bearer ${value}`;
