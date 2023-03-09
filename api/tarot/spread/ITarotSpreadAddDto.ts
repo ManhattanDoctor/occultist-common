@@ -10,6 +10,7 @@ export interface ITarotSpreadAddDto extends ITraceable {
     indexesAmount: number;
 
     color?: TarotSpreadColor;
+    advice?: number;
     comment?: string;
     querent?: string;
     indexes?: Array<number>;
