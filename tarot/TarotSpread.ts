@@ -15,6 +15,7 @@ export class TarotSpread {
     public seed?: string;
     public desk?: TarotSpreadDesk;
     public color?: TarotSpreadColor;
+    public advice?: number;
     public status?: TarotSpreadStatus;
     public querent?: string;
     public question?: string;

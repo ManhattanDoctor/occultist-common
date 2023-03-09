@@ -8,11 +8,12 @@ export interface ITarotSpreadAddDto extends ITraceable {
     privacy: TarotSpreadPrivacy
     question: string
     indexesAmount: number;
-    
+
     color?: TarotSpreadColor;
     comment?: string;
     querent?: string;
     indexes?: Array<number>;
+    isNeedAdvice?: boolean;
 }
 
 export type ITarotSpreadAddDtoResponse = TarotSpread;
