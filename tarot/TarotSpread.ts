@@ -59,6 +59,8 @@ export enum TarotSpreadDesk {
 
 export const TarotSpreadDeskDefault = TarotSpreadDesk.TOTH;
 
+export type TarotSpreadPosition = number | string;
+
 export enum TarotSpreadType {
     DAY = 'DAY',
     DATE = 'DATE',
@@ -68,8 +70,10 @@ export enum TarotSpreadType {
     MONTH = 'MONTH',
     EXPRESS = 'EXPRESS',
     MARRIAGE = 'MARRIAGE',
+    FULL_CAP = 'FULL_CAP',
     NEXT_STEP = 'NEXT_STEP',
     OPEN_DOOR = 'OPEN_DOOR',
+    HOUSES_12 = 'HOUSES_12',
     MARRIAGE_2 = 'MARRIAGE_2',
     MONEY_TREE = 'MONEY_TREE',
     CELTIC_CROSS = 'CELTIC_CROSS',
