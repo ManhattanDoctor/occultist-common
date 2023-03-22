@@ -66,6 +66,7 @@ export enum TarotSpreadType {
     DATE = 'DATE',
 
     STAR = 'STAR',
+    FORK = 'FORK',
     THREE = 'THREE',
     MONTH = 'MONTH',
     EXPRESS = 'EXPRESS',
@@ -73,6 +74,7 @@ export enum TarotSpreadType {
     FULL_CAP = 'FULL_CAP',
     NEXT_STEP = 'NEXT_STEP',
     OPEN_DOOR = 'OPEN_DOOR',
+    CROSSROAD = 'CROSSROAD',
     HOUSES_12 = 'HOUSES_12',
     MARRIAGE_2 = 'MARRIAGE_2',
     MONEY_TREE = 'MONEY_TREE',
