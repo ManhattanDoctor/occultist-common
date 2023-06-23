@@ -26,10 +26,12 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
     constructor(logger: ILogger, url?: string, level?: LoggerLevel) {
         super(logger, { method: 'get', isHandleError: true, isHandleLoading: true, headers: {} });
 
+        if (!_.isNil(url)) {
+            this.url = url;
+        }
         if (!_.isNil(level)) {
             this.level = level;
         }
-
     }
 
     // --------------------------------------------------------------------------

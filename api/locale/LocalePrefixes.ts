@@ -12,6 +12,7 @@ export const TAROT_LOCALE_PREFIXES = [
     'People.json',
     'Comment.json',
 
+    'Myth.json',
     'Natures.json',
     'Planets.json',
     'Zodiacs.json',
