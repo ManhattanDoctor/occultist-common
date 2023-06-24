@@ -8,7 +8,7 @@ import { ITarotSpreadAddDto, ITarotSpreadListDto, ITarotSpreadListDtoResponse, I
 import { IGeo } from '../geo';
 import { ICommentAddDto, ICommentAddDtoResponse, ICommentEditDto, ICommentEditDtoResponse, ICommentGetDtoResponse, ICommentListDto, ICommentListDtoResponse, ICommentRemoveDtoResponse } from './comment';
 import { Comment } from '../comment';
-import { TarotSpread } from '../tarot';
+import { TarotSpread, TarotSpreadUID } from '../tarot';
 import { IPeopleListDto, IPeopleListDtoResponse } from './people';
 import { IManagementTarotSpreadListDto } from './management';
 import { LocaleProject } from './locale';
@@ -64,12 +64,12 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
     //
     // --------------------------------------------------------------------------
 
-    public async tarotSpreadGet(idOrUid: string | number): Promise<ITarotSpreadDtoResponse> {
-        let item = await this.call<ITarotSpreadDtoResponse, void>(`${TAROT_SPREAD_URL}/${idOrUid}`);
+    public async tarotSpreadGet(uid: TarotSpreadUID): Promise<ITarotSpreadDtoResponse> {
+        let item = await this.call<ITarotSpreadDtoResponse, void>(`${TAROT_SPREAD_URL}/${uid}`);
         return TransformUtil.toClass(TarotSpread, item);
     }
 
-    public async tarotSpreadRemove(uid: string): Promise<void> {
+    public async tarotSpreadRemove(uid: TarotSpreadUID): Promise<void> {
         return this.call<void, void>(`${TAROT_SPREAD_URL}/${uid}`, { method: 'delete' });
     }
 
