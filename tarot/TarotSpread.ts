@@ -3,6 +3,7 @@ import { Type } from 'class-transformer';
 import * as _ from 'lodash';
 import { Comment } from '../comment';
 import { User } from '../user';
+import { TarotSpreadMeaning } from './TarotSpreadMeaning';
 
 export class TarotSpread {
     public id: number;
@@ -20,8 +21,17 @@ export class TarotSpread {
     public querent?: string;
     public question?: string;
 
+    @Type(() => TarotSpreadMeaning)
+    public meaning?: TarotSpreadMeaning;
+
     public user?: User;
     public userId?: number;
+
+    public parent?: TarotSpread;
+    public parentId?: number;
+
+    public child?: TarotSpread;
+    public childId?: number;
 
     @Type(() => Date)
     public date?: Date;
