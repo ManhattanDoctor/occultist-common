@@ -45,13 +45,13 @@ export class PermissionUtil {
     }
 
     public static spreadIsCanAskMeaning(item: TarotSpread, user: User): boolean {
-        if (PermissionUtil.spreadIsCanEdit(item, user)) {
+        if (!PermissionUtil.spreadIsCanEdit(item, user)) {
             return false;
         }
         if (_.isNil(item.meaning)) {
             return true;
         }
-        if (item.meaning.status === TarotSpreadMeaningStatus.IN_PROGRESS) {
+        if (item.meaning.status === TarotSpreadMeaningStatus.WAITING || item.meaning.status === TarotSpreadMeaningStatus.IN_PROGRESS) {
             return false;
         }
         return PermissionUtil.userIsAdministrator(user);
