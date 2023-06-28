@@ -48,11 +48,16 @@ export class PermissionUtil {
         if (!PermissionUtil.spreadIsCanEdit(item, user)) {
             return false;
         }
-        if (_.isNil(item.meaning)) {
+        let meaning = item.meaning;
+        if (_.isNil(meaning)) {
             return true;
         }
-        if (item.meaning.status === TarotSpreadMeaningStatus.WAITING || item.meaning.status === TarotSpreadMeaningStatus.IN_PROGRESS) {
-            return false;
+        switch (meaning.status) {
+            case TarotSpreadMeaningStatus.AWAITING:
+            case TarotSpreadMeaningStatus.FINISHED:
+            case TarotSpreadMeaningStatus.IN_PROGRESS:
+                return false;
+                break;
         }
         return PermissionUtil.userIsAdministrator(user);
     }

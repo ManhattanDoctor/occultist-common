@@ -23,10 +23,11 @@ export class TarotSpreadMeaning {
 export enum TarotSpreadMeaningStatus {
     ERROR = 'ERROR',
     PENDING = 'PENDING',
-    WAITING = 'WAITING',
-    COMPLETE = 'COMPLETE',
+    PREPARED = 'PREPARED',
+    FINISHED = 'COMPLETE',
     APPROVED = 'APPROVED',
     REJECTED = 'REJECTED',
+    AWAITING = 'AWAITING',
     IN_PROGRESS = 'IN_PROGRESS',
 }
 
