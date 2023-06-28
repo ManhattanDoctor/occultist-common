@@ -1,5 +1,5 @@
 import * as _ from 'lodash';
-import { TarotSpread, TarotSpreadPrivacy, TarotSpreadStatus } from '../tarot';
+import { TarotSpread, TarotSpreadMeaning, TarotSpreadMeaningStatus, TarotSpreadPrivacy, TarotSpreadStatus } from '../tarot';
 import { Comment } from '../comment';
 import { User, UserAccountType } from '../user';
 import { IUserEditDto } from '../api/user';
@@ -15,13 +15,17 @@ export class PermissionUtil {
         if (_.isNil(user)) {
             return false;
         }
-        if (user.account.type === UserAccountType.ADMINISTRATOR) {
+        if (PermissionUtil.userIsAdministrator(user)) {
             return true;
         }
         if (!_.isNil(params) && (!_.isNil(params.account) || !_.isNil(params.status))) {
             return false;
         }
         return item.id === user.id;
+    }
+
+    public static userIsAdministrator(item: User): boolean {
+        return !_.isNil(item) ? item.account.type === UserAccountType.ADMINISTRATOR : false;
     }
 
     //--------------------------------------------------------------------------
@@ -32,7 +36,7 @@ export class PermissionUtil {
 
     public static spreadIsCanGet(item: TarotSpread, user: User): boolean {
         if (item.status === TarotSpreadStatus.REMOVED) {
-            return !_.isNil(user) && user.account.type === UserAccountType.ADMINISTRATOR;
+            return PermissionUtil.userIsAdministrator(user);
         }
         if (item.privacy !== TarotSpreadPrivacy.PRIVATE) {
             return true;
@@ -40,11 +44,24 @@ export class PermissionUtil {
         return PermissionUtil.spreadIsCanEdit(item, user);
     }
 
+    public static spreadIsCanAskMeaning(item: TarotSpread, user: User): boolean {
+        if (PermissionUtil.spreadIsCanEdit(item, user)) {
+            return false;
+        }
+        if (_.isNil(item.meaning)) {
+            return true;
+        }
+        if (item.meaning.status === TarotSpreadMeaningStatus.IN_PROGRESS) {
+            return false;
+        }
+        return PermissionUtil.userIsAdministrator(user);
+    }
+
     public static spreadIsCanEdit(item: TarotSpread, user: User): boolean {
         if (_.isNil(user)) {
             return false;
         }
-        return user.account.type === UserAccountType.ADMINISTRATOR || item.userId === user.id;
+        return item.userId === user.id || PermissionUtil.userIsAdministrator(user);
     }
 
     public static spreadIsCanRemove(item: TarotSpread, user: User): boolean {
@@ -61,7 +78,7 @@ export class PermissionUtil {
         if (_.isNil(user)) {
             return false;
         }
-        return user.account.type === UserAccountType.ADMINISTRATOR || item.userId === user.id;
+        return PermissionUtil.userIsAdministrator(user) || item.userId === user.id;
     }
 
     public static commentIsCanRemove(item: Comment, user: User): boolean {
