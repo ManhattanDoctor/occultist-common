@@ -10,7 +10,7 @@ import { ICommentAddDto, ICommentAddDtoResponse, ICommentEditDto, ICommentEditDt
 import { Comment } from '../comment';
 import { TarotSpread, TarotSpreadMeaning, TarotSpreadUID } from '../tarot';
 import { IPeopleListDto, IPeopleListDtoResponse } from './people';
-import { IManagementTarotSpreadListDto } from './management';
+import { IManagementTarotSpreadListDto, IManagementTarotSpreadListDtoResponse, IManagementTarotSpreadMeaningListDto, IManagementTarotSpreadMeaningListDtoResponse } from './management';
 import { LocaleProject } from './locale';
 import { IUserEditDto, IUserEditDtoResponse, IUserGetDtoResponse, IUserListDto, IUserListDtoResponse } from './user';
 import { IStatisticsGetDtoResponse } from './statistics';
@@ -194,7 +194,13 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
     }
 
     public async managementTarotSpreadList(data: IManagementTarotSpreadListDto): Promise<ITarotSpreadListDtoResponse> {
-        let item = await this.call<ITarotSpreadListDtoResponse, IManagementTarotSpreadListDto>(`${MANAGEMENT_TAROT_SPREAD_URL}`, { data: TraceUtil.addIfNeed(data) });
+        let item = await this.call<IManagementTarotSpreadListDtoResponse, IManagementTarotSpreadListDto>(`${MANAGEMENT_TAROT_SPREAD_URL}`, { data: TraceUtil.addIfNeed(data) });
+        item.items = TransformUtil.toClassMany(TarotSpread, item.items);
+        return item;
+    }
+
+    public async managementTarotSpreadMeaningList(data: IManagementTarotSpreadListDto): Promise<ITarotSpreadListDtoResponse> {
+        let item = await this.call<IManagementTarotSpreadMeaningListDtoResponse, IManagementTarotSpreadMeaningListDto>(`${MANAGEMENT_TAROT_SPREAD_MEANING_URL}`, { data: TraceUtil.addIfNeed(data) });
         item.items = TransformUtil.toClassMany(TarotSpread, item.items);
         return item;
     }
@@ -276,5 +282,6 @@ export const TAROT_SPREAD_MEANING_URL = PREFIX_URL + 'tarot/spread-meaning';
 export const MANAGEMENT_USER_URL = PREFIX_URL + 'management/user';
 export const MANAGEMENT_COMMENT_URL = PREFIX_URL + 'management/comment';
 export const MANAGEMENT_TAROT_SPREAD_URL = PREFIX_URL + 'management/tarot/spread';
+export const MANAGEMENT_TAROT_SPREAD_MEANING_URL = PREFIX_URL + 'management/tarot/spread-meaning';
 
 export const USER_PICTURE_UPLOAD_URL = PREFIX_URL + 'user/picture/upload';
