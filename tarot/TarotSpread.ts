@@ -11,6 +11,8 @@ export class TarotSpread {
     public type: TarotSpreadType;
     public privacy: TarotSpreadPrivacy;
     public indexes: Array<number>;
+
+    @Type(() => Comment)
     public comments: Array<Comment>;
 
     public seed?: string;
@@ -27,9 +29,11 @@ export class TarotSpread {
     public user?: User;
     public userId?: number;
 
+    @Type(() => TarotSpread)
     public parent?: TarotSpread;
     public parentId?: number;
 
+    @Type(() => TarotSpread)
     public child?: TarotSpread;
     public childId?: number;
 

@@ -8,6 +8,7 @@ export class Comment {
     public targetId: number;
     public targetType: CommentTargetType;
 
+    @Type(() => User)
     public user: User;
     public userId: number;
 

@@ -199,9 +199,9 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
         return item;
     }
 
-    public async managementTarotSpreadMeaningList(data: IManagementTarotSpreadListDto): Promise<ITarotSpreadListDtoResponse> {
+    public async managementTarotSpreadMeaningList(data: IManagementTarotSpreadMeaningListDto): Promise<IManagementTarotSpreadMeaningListDtoResponse> {
         let item = await this.call<IManagementTarotSpreadMeaningListDtoResponse, IManagementTarotSpreadMeaningListDto>(`${MANAGEMENT_TAROT_SPREAD_MEANING_URL}`, { data: TraceUtil.addIfNeed(data) });
-        item.items = TransformUtil.toClassMany(TarotSpread, item.items);
+        item.items = TransformUtil.toClassMany(TarotSpreadMeaning, item.items);
         return item;
     }
 

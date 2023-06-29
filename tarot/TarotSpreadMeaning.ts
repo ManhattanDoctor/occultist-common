@@ -2,16 +2,22 @@
 import { Type } from 'class-transformer';
 import { User } from '../user';
 import * as _ from 'lodash';
+import { TarotSpread } from './TarotSpread';
 
 export class TarotSpreadMeaning {
     public id: number;
     public status: TarotSpreadMeaningStatus;
 
-    public user?: User;
     public mode?: TarotSpreadMeaningMode;
     public value?: string;
     public rating?: number;
     public reason?: TarotSpreadMeaningRejectReason;
+
+    @Type(() => User)
+    public user?: User;
+
+    @Type(() => TarotSpread)
+    public spread?: TarotSpread;
 
     @Type(() => Date)
     public updatedDate?: Date;
