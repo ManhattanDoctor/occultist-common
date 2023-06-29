@@ -30,7 +30,7 @@ export enum TarotSpreadMeaningStatus {
     ERROR = 'ERROR',
     PENDING = 'PENDING',
     PREPARED = 'PREPARED',
-    FINISHED = 'COMPLETE',
+    FINISHED = 'FINISHED',
     APPROVED = 'APPROVED',
     REJECTED = 'REJECTED',
     AWAITING = 'AWAITING',
