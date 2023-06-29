@@ -19,7 +19,7 @@ export class User {
     public preferences: UserPreferences;
 
     @Type(() => UserStatistics)
-    public statistics: UserStatistics;
+    public statistics?: UserStatistics;
 }
 
 export enum UserResource {
