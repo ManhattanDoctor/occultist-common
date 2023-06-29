@@ -16,7 +16,7 @@ export class TarotSpreadMeaning {
     @Type(() => User)
     public user?: User;
 
-    @Type(() => TarotSpread)
+    // @Type(() => TarotSpread)
     public spread?: TarotSpread;
 
     @Type(() => Date)

@@ -26,14 +26,15 @@ export class TarotSpread {
     @Type(() => TarotSpreadMeaning)
     public meaning?: TarotSpreadMeaning;
 
+    @Type(() => User)
     public user?: User;
     public userId?: number;
 
-    @Type(() => TarotSpread)
+    // @Type(() => TarotSpread)
     public parent?: TarotSpread;
     public parentId?: number;
 
-    @Type(() => TarotSpread)
+    // @Type(() => TarotSpread)
     public child?: TarotSpread;
     public childId?: number;
 
