@@ -28,6 +28,7 @@ export const TAROT_LOCALE_PREFIXES = [
     'Tarots.json',
     'TarotsChart.json',
     'TarotsSpread.json',
+    'TarotsSpreadMeaning.json',
     'TarotsHistory.json',
     'TarotsSefiras.json',
     'TarotsQuestion.json',

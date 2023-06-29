@@ -1,6 +1,5 @@
 
-import { TarotSpreadMeaningStatus } from '@project/common/tarot';
-import { TarotSpreadMeaning, TarotSpreadMeaningRejectReason } from '../../../tarot';
+import { TarotSpreadMeaning, TarotSpreadMeaningRejectReason, TarotSpreadMeaningStatus } from '../../../tarot';
 import { ITraceable } from '@ts-core/common';
 
 export interface ITarotSpreadMeaningEditDto extends ITraceable {

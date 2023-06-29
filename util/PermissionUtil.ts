@@ -53,11 +53,11 @@ export class PermissionUtil {
             return true;
         }
         switch (meaning.status) {
+            case TarotSpreadMeaningStatus.APPROVED:
             case TarotSpreadMeaningStatus.AWAITING:
             case TarotSpreadMeaningStatus.FINISHED:
             case TarotSpreadMeaningStatus.IN_PROGRESS:
                 return false;
-                break;
         }
         return PermissionUtil.userIsAdministrator(user);
     }
