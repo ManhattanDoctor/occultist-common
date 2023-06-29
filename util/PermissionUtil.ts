@@ -45,21 +45,7 @@ export class PermissionUtil {
     }
 
     public static spreadIsCanAskMeaning(item: TarotSpread, user: User): boolean {
-        if (!PermissionUtil.spreadIsCanEdit(item, user)) {
-            return false;
-        }
-        let meaning = item.meaning;
-        if (_.isNil(meaning)) {
-            return true;
-        }
-        switch (meaning.status) {
-            case TarotSpreadMeaningStatus.APPROVED:
-            case TarotSpreadMeaningStatus.AWAITING:
-            case TarotSpreadMeaningStatus.FINISHED:
-            case TarotSpreadMeaningStatus.IN_PROGRESS:
-                return false;
-        }
-        return PermissionUtil.userIsAdministrator(user);
+        return PermissionUtil.spreadIsCanEdit(item, user) && _.isNil(item.meaning);
     }
 
     public static spreadIsCanEdit(item: TarotSpread, user: User): boolean {
