@@ -4,7 +4,7 @@ import * as _ from 'lodash';
 import { IClockDto, IClockDtoResponse } from './clock';
 import { IInitDto, IInitDtoResponse, ILoginDto, ILoginDtoResponse } from './login';
 import { User } from '../user';
-import { ITarotSpreadMeaningAddDto, ITarotSpreadMeaningEditDto, ITarotSpreadMeaningEditDtoResponse, ITarotSpreadAddDto, ITarotSpreadListDto, ITarotSpreadListDtoResponse, ITarotSpreadAddDtoResponse, ITarotSpreadDateDto, ITarotSpreadDtoResponse, ITarotSpreadAddCheckDto, ITarotSpreadEditDto, ITarotSpreadEditDtoResponse, ITarotSpreadMeaningAddDtoResponse, ITarotSpreadMeaningRejectDto, ITarotSpreadMeaningRejectDtoResponse, ITarotSpreadMeaningRateDto, ITarotSpreadMeaningRateDtoResponse } from './tarot/spread';
+import { ITarotSpreadMeaningAddDto, ITarotSpreadMeaningEditDto, ITarotSpreadMeaningEditDtoResponse, ITarotSpreadAddDto, ITarotSpreadListDto, ITarotSpreadListDtoResponse, ITarotSpreadAddDtoResponse, ITarotSpreadDateDto, ITarotSpreadDtoResponse, ITarotSpreadAddCheckDto, ITarotSpreadEditDto, ITarotSpreadEditDtoResponse, ITarotSpreadMeaningAddDtoResponse, ITarotSpreadMeaningRejectDto, ITarotSpreadMeaningRejectDtoResponse, ITarotSpreadMeaningRateDto, ITarotSpreadMeaningRateDtoResponse, ITarotSpreadMeaningApproveDto, ITarotSpreadMeaningApproveDtoResponse, ITarotSpreadMeaningDtoResponse } from './tarot/spread';
 import { IGeo } from '../geo';
 import { ICommentAddDto, ICommentAddDtoResponse, ICommentEditDto, ICommentEditDtoResponse, ICommentGetDtoResponse, ICommentListDto, ICommentListDtoResponse, ICommentRemoveDtoResponse } from './comment';
 import { Comment } from '../comment';
@@ -60,7 +60,7 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
 
     // --------------------------------------------------------------------------
     //
-    //  Tarot Methods
+    //  Tarot Spread Methods
     //
     // --------------------------------------------------------------------------
 
@@ -78,10 +78,6 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
         return TransformUtil.toClass(TarotSpread, item);
     }
 
-    public async tarotSpreadMeaningRemove(id: number): Promise<void> {
-        return this.call<void, void>(`${TAROT_SPREAD_MEANING_URL}/${id}`, { method: 'delete' });
-    }
-
     public async tarotSpreadEdit(data: ITarotSpreadEditDto): Promise<ITarotSpreadEditDtoResponse> {
         let item = await this.call<ITarotSpreadEditDtoResponse, ITarotSpreadEditDto>(`${TAROT_SPREAD_URL}/${data.uid}`, { method: 'put', data: TraceUtil.addIfNeed(data) });
         return TransformUtil.toClass(TarotSpread, item);
@@ -91,6 +87,21 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
         let item = await this.call<ITarotSpreadListDtoResponse, ITarotSpreadListDto>(`${TAROT_SPREAD_URL}`, { data: TraceUtil.addIfNeed(data) });
         item.items = TransformUtil.toClassMany(TarotSpread, item.items);
         return item;
+    }
+
+    public async tarotSpreadDay(data: ITarotSpreadDateDto): Promise<ITarotSpreadDtoResponse> {
+        return this.call<ITarotSpreadDtoResponse, ITarotSpreadDateDto>(`${TAROT_SPREAD_DAY_URL}`, { method: 'post', data: TraceUtil.addIfNeed(data) });
+    }
+
+    // --------------------------------------------------------------------------
+    //
+    //  Tarot Spread Meaning Methods
+    //
+    // --------------------------------------------------------------------------
+
+    public async tarotSpreadMeaningGet(id: number): Promise<ITarotSpreadMeaningDtoResponse> {
+        let item = await this.call<ITarotSpreadMeaningDtoResponse, void>(`${TAROT_SPREAD_MEANING_URL}/${id}`);
+        return TransformUtil.toClass(TarotSpreadMeaning, item);
     }
 
     public async tarotSpreadMeaningAdd(data: ITarotSpreadMeaningAddDto): Promise<ITarotSpreadMeaningAddDtoResponse> {
@@ -108,8 +119,8 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
         return TransformUtil.toClass(TarotSpreadMeaning, item);
     }
 
-    public async tarotSpreadMeaningApprove(id: number): Promise<TarotSpreadMeaning> {
-        let item = await this.call(`${TAROT_SPREAD_MEANING_URL}/${id}/approve`, { method: 'put' });
+    public async tarotSpreadMeaningApprove(data: ITarotSpreadMeaningApproveDto): Promise<ITarotSpreadMeaningApproveDtoResponse> {
+        let item = await this.call<ITarotSpreadMeaningApproveDtoResponse, ITarotSpreadMeaningApproveDto>(`${TAROT_SPREAD_MEANING_URL}/${data.id}/approve`, { method: 'put', data: TraceUtil.addIfNeed(data) });
         return TransformUtil.toClass(TarotSpreadMeaning, item);
     }
 
@@ -118,13 +129,18 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
         return TransformUtil.toClass(TarotSpreadMeaning, item);
     }
 
-    public async tarotSpreadMeaningRate(data: ITarotSpreadMeaningRateDto): Promise<ITarotSpreadMeaningRateDtoResponse> {
-        let item = await this.call<ITarotSpreadMeaningRateDtoResponse, ITarotSpreadMeaningRateDto>(`${TAROT_SPREAD_MEANING_URL}/${data.id}/rate`, { method: 'put', data: TraceUtil.addIfNeed(data) });
+    public async tarotSpreadMeaningMean(id: number): Promise<ITarotSpreadMeaningDtoResponse> {
+        let item = await this.call<ITarotSpreadMeaningDtoResponse, void>(`${TAROT_SPREAD_MEANING_URL}/${id}/mean`, { method: 'put' });
         return TransformUtil.toClass(TarotSpreadMeaning, item);
     }
 
-    public async tarotSpreadDay(data: ITarotSpreadDateDto): Promise<ITarotSpreadDtoResponse> {
-        return this.call<ITarotSpreadDtoResponse, ITarotSpreadDateDto>(`${TAROT_SPREAD_DAY_URL}`, { method: 'post', data: TraceUtil.addIfNeed(data) });
+    public async tarotSpreadMeaningRemove(id: number): Promise<void> {
+        return this.call<void, void>(`${TAROT_SPREAD_MEANING_URL}/${id}`, { method: 'delete' });
+    }
+
+    public async tarotSpreadMeaningRate(data: ITarotSpreadMeaningRateDto): Promise<ITarotSpreadMeaningRateDtoResponse> {
+        let item = await this.call<ITarotSpreadMeaningRateDtoResponse, ITarotSpreadMeaningRateDto>(`${TAROT_SPREAD_MEANING_URL}/${data.id}/rate`, { method: 'put', data: TraceUtil.addIfNeed(data) });
+        return TransformUtil.toClass(TarotSpreadMeaning, item);
     }
 
     // --------------------------------------------------------------------------
