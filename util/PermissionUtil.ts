@@ -1,5 +1,5 @@
 import * as _ from 'lodash';
-import { TarotSpread, TarotSpreadMeaning, TarotSpreadMeaningStatus, TarotSpreadPrivacy, TarotSpreadStatus } from '../tarot';
+import { TarotSpread, TarotSpreadMeaning, TarotSpreadMeaningStatus, TarotSpreadPrivacy, TarotSpreadStatus, TarotSpreadType, getTarotSpreadAmount } from '../tarot';
 import { Comment } from '../comment';
 import { User, UserAccountType } from '../user';
 import { IUserEditDto } from '../api/user';
@@ -62,7 +62,11 @@ export class PermissionUtil {
     //--------------------------------------------------------------------------
 
     public static spreadMeaningIsCanAdd(item: TarotSpread, user: User): boolean {
-        return PermissionUtil.spreadIsCanEdit(item, user) && _.isNil(item.meaning);
+        if (!PermissionUtil.spreadIsCanEdit(item, user) || !_.isNil(item.meaning)) {
+            return false;
+        }
+        let amount = getTarotSpreadAmount(item);
+        return amount <= 7;
     }
 
     public static spreadMeaningIsCanGet(item: TarotSpreadMeaning, user: User): boolean {
@@ -70,6 +74,13 @@ export class PermissionUtil {
             return false;
         }
         return true;
+    }
+
+    public static spreadMeaningIsCanGetValue(item: TarotSpreadMeaning, user: User): boolean {
+        if (_.isNil(item) || !PermissionUtil.userIsAdministrator(user)) {
+            return false;
+        }
+        return item.status === TarotSpreadMeaningStatus.APPROVED || item.status === TarotSpreadMeaningStatus.FINISHED;
     }
 
     public static spreadMeaningIsCanMean(item: TarotSpreadMeaning, user: User): boolean {

@@ -7,7 +7,6 @@ export interface ITarotSpreadEditDto extends ITraceable {
     color?: TarotSpreadColor;
     querent?: string;
     privacy?: TarotSpreadPrivacy
-    question?: string
 }
 
 export type ITarotSpreadEditDtoResponse = TarotSpread;
