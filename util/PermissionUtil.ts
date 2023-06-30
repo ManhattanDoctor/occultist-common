@@ -44,8 +44,29 @@ export class PermissionUtil {
         return PermissionUtil.spreadIsCanEdit(item, user);
     }
 
-    public static spreadIsCanAskMeaning(item: TarotSpread, user: User): boolean {
+    public static spreadMeaningIsCanAdd(item: TarotSpread, user: User): boolean {
         return PermissionUtil.spreadIsCanEdit(item, user) && _.isNil(item.meaning);
+    }
+
+    public static spreadMeaningIsCanAwait(item: TarotSpreadMeaning, user: User): boolean {
+        if (_.isNil(item) || !PermissionUtil.userIsAdministrator(user)) {
+            return false;
+        }
+        return item.status === TarotSpreadMeaningStatus.PENDING || item.status === TarotSpreadMeaningStatus.ERROR;
+    }
+
+    public static spreadMeaningIsCanApprove(item: TarotSpreadMeaning, user: User): boolean {
+        if (_.isNil(item) || !PermissionUtil.userIsAdministrator(user)) {
+            return false;
+        }
+        return item.status === TarotSpreadMeaningStatus.PREPARED;
+    }
+
+    public static spreadMeaningIsCanReject(item: TarotSpreadMeaning, user: User): boolean {
+        if (_.isNil(item) || !PermissionUtil.userIsAdministrator(user)) {
+            return false;
+        }
+        return item.status === TarotSpreadMeaningStatus.PENDING || item.status === TarotSpreadMeaningStatus.AWAITING;
     }
 
     public static spreadIsCanEdit(item: TarotSpread, user: User): boolean {
