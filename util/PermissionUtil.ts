@@ -48,6 +48,13 @@ export class PermissionUtil {
         return PermissionUtil.spreadIsCanEdit(item, user) && _.isNil(item.meaning);
     }
 
+    public static spreadMeaningIsCanMean(item: TarotSpreadMeaning, user: User): boolean {
+        if (_.isNil(item) || !PermissionUtil.userIsAdministrator(user)) {
+            return false;
+        }
+        return item.status === TarotSpreadMeaningStatus.ERROR || item.status === TarotSpreadMeaningStatus.PREPARED;
+    }
+
     public static spreadMeaningIsCanAwait(item: TarotSpreadMeaning, user: User): boolean {
         if (_.isNil(item) || !PermissionUtil.userIsAdministrator(user)) {
             return false;
