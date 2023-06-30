@@ -30,7 +30,7 @@ export class PermissionUtil {
 
     //--------------------------------------------------------------------------
     //
-    // 	Spread Methods
+    // 	Tarot Spread Methods
     //
     //--------------------------------------------------------------------------
 
@@ -44,8 +44,32 @@ export class PermissionUtil {
         return PermissionUtil.spreadIsCanEdit(item, user);
     }
 
+    public static spreadIsCanEdit(item: TarotSpread, user: User): boolean {
+        if (_.isNil(user)) {
+            return false;
+        }
+        return item.userId === user.id || PermissionUtil.userIsAdministrator(user);
+    }
+
+    public static spreadIsCanRemove(item: TarotSpread, user: User): boolean {
+        return PermissionUtil.spreadIsCanEdit(item, user);
+    }
+
+    //--------------------------------------------------------------------------
+    //
+    // 	Tarot Spread Meaning
+    //
+    //--------------------------------------------------------------------------
+
     public static spreadMeaningIsCanAdd(item: TarotSpread, user: User): boolean {
         return PermissionUtil.spreadIsCanEdit(item, user) && _.isNil(item.meaning);
+    }
+
+    public static spreadMeaningIsCanGet(item: TarotSpreadMeaning, user: User): boolean {
+        if (_.isNil(item) || !PermissionUtil.userIsAdministrator(user)) {
+            return false;
+        }
+        return true;
     }
 
     public static spreadMeaningIsCanMean(item: TarotSpreadMeaning, user: User): boolean {
@@ -74,17 +98,6 @@ export class PermissionUtil {
             return false;
         }
         return item.status === TarotSpreadMeaningStatus.PENDING || item.status === TarotSpreadMeaningStatus.AWAITING;
-    }
-
-    public static spreadIsCanEdit(item: TarotSpread, user: User): boolean {
-        if (_.isNil(user)) {
-            return false;
-        }
-        return item.userId === user.id || PermissionUtil.userIsAdministrator(user);
-    }
-
-    public static spreadIsCanRemove(item: TarotSpread, user: User): boolean {
-        return PermissionUtil.spreadIsCanEdit(item, user);
     }
 
     //--------------------------------------------------------------------------
