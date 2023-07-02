@@ -108,7 +108,7 @@ export class PermissionUtil {
         if (_.isNil(item) || !PermissionUtil.userIsAdministrator(user)) {
             return false;
         }
-        return item.status === TarotSpreadMeaningStatus.PENDING || item.status === TarotSpreadMeaningStatus.AWAITING;
+        return item.status === TarotSpreadMeaningStatus.PENDING || item.status === TarotSpreadMeaningStatus.AWAITING || item.status === TarotSpreadMeaningStatus.PREPARED;
     }
 
     //--------------------------------------------------------------------------
