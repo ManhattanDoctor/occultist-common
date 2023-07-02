@@ -1,8 +1,9 @@
 import * as _ from 'lodash';
-import { TarotSpread, TarotSpreadMeaning, TarotSpreadMeaningStatus, TarotSpreadPrivacy, TarotSpreadStatus, TarotSpreadType, getTarotSpreadAmount } from '../tarot';
+import { TarotSpread, TarotSpreadMeaning, TarotSpreadMeaningStatus, TarotSpreadPrivacy, TarotSpreadStatus } from '../tarot';
 import { Comment } from '../comment';
 import { User, UserAccountType } from '../user';
 import { IUserEditDto } from '../api/user';
+import { getTarotSpreadAmount } from '../tarot';
 
 export class PermissionUtil {
     //--------------------------------------------------------------------------
@@ -65,8 +66,7 @@ export class PermissionUtil {
         if (!PermissionUtil.spreadIsCanEdit(item, user) || !_.isNil(item.meaning)) {
             return false;
         }
-        let amount = getTarotSpreadAmount(item);
-        return amount <= 7;
+        return getTarotSpreadAmount(item.type) <= 7;
     }
 
     public static spreadMeaningIsCanGet(item: TarotSpreadMeaning, user: User): boolean {

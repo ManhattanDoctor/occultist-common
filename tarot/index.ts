@@ -4,6 +4,7 @@ export * from './TarotSpreadMeaning';
 import { UnreachableStatementError } from '@ts-core/common';
 import { RandomGenerator } from '../util';
 import { TarotSpread, TarotSpreadType } from './TarotSpread';
+import * as _ from 'lodash';
 
 export function getTarotSpreadIndexes(seed: string): Array<number> {
     let length = 78;
@@ -18,10 +19,7 @@ export function getTarotSpreadIndexes(seed: string): Array<number> {
     return indexes;
 }
 
-export function getTarotSpreadAmount(item: TarotSpread | TarotSpreadType): number {
-    if (item instanceof TarotSpread) {
-        item = item.type;
-    }
+export function getTarotSpreadAmount(item: TarotSpreadType): number {
     switch (item) {
         case TarotSpreadType.DAY:
         case TarotSpreadType.DATE:
