@@ -3,7 +3,7 @@ export * from './TarotSpreadMeaning';
 
 import { UnreachableStatementError } from '@ts-core/common';
 import { RandomGenerator } from '../util';
-import { TarotSpread, TarotSpreadType } from './TarotSpread';
+import { TarotSpreadType } from './TarotSpread';
 import * as _ from 'lodash';
 
 export function getTarotSpreadIndexes(seed: string): Array<number> {

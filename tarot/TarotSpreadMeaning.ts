@@ -50,3 +50,6 @@ export enum TarotSpreadMeaningRejectReason {
 
 export const TAROT_SPREAD_MEANING_VALUE_MIN_LENGTH = 64;
 export const TAROT_SPREAD_MEANING_VALUE_MAX_LENGTH = 4096;
+
+export const TAROT_SPREAD_MEANING_RATING_MIN = 1;
+export const TAROT_SPREAD_MEANING_RATING_MAX = 5;

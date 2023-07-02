@@ -69,16 +69,12 @@ export class PermissionUtil {
         return getTarotSpreadAmount(item.type) <= 7;
     }
 
-    public static spreadMeaningIsCanGet(item: TarotSpreadMeaning, user: User): boolean {
-        if (_.isNil(item) || !PermissionUtil.userIsAdministrator(user)) {
+    public static spreadMeaningIsCanGetValue(item: TarotSpreadMeaning, user: User): boolean {
+        if (_.isNil(item)) {
             return false;
         }
-        return true;
-    }
-
-    public static spreadMeaningIsCanGetValue(item: TarotSpreadMeaning, user: User): boolean {
-        if (_.isNil(item) || !PermissionUtil.userIsAdministrator(user)) {
-            return false;
+        if (PermissionUtil.userIsAdministrator(user)) {
+            return true;
         }
         return item.status === TarotSpreadMeaningStatus.APPROVED || item.status === TarotSpreadMeaningStatus.FINISHED;
     }
@@ -109,6 +105,13 @@ export class PermissionUtil {
             return false;
         }
         return item.status === TarotSpreadMeaningStatus.PENDING || item.status === TarotSpreadMeaningStatus.AWAITING || item.status === TarotSpreadMeaningStatus.PREPARED;
+    }
+
+    public static spreadMeaningIsCanRate(item: TarotSpreadMeaning, user: User): boolean {
+        if (_.isNil(item) || _.isNil(item.spread)) {
+            return false;
+        }
+        return item.status === TarotSpreadMeaningStatus.APPROVED || item.spread.userId === user.id;
     }
 
     //--------------------------------------------------------------------------
