@@ -10,15 +10,19 @@ export class TarotUtil {
     //--------------------------------------------------------------------------
 
     public static getSpreadUrl(options: ITarotSpreadUrlOptions): string {
-        let item = !_.isEmpty(options.origin) ? options.origin : 'https://occultist.one';
+        let item = 'https://occultist.one';
         if (options.isVk) {
             item = `https://vk.com/occultdivination`;
         }
-        else if (options.isCordova) {
-            item = 'https://occultist.one';
+        else if (!_.isEmpty(options.origin) && !options.isCordova) {
+            item = options.origin;
         }
-        item += `#${TAROT_SPREAD_URL}=${options.uid}`;
+        item += `#${TarotUtil.getSpreadFragmentUrl(options.uid)}`;
         return item;
+    }
+
+    public static getSpreadFragmentUrl(uid: string): string {
+        return `${TAROT_SPREAD_URL}=${uid}`;
     }
 }
 
