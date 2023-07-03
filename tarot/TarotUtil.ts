@@ -1,5 +1,6 @@
-import { TAROT_SPREAD_URL } from "../api";
+
 import * as _ from 'lodash';
+import { TAROT_SPREAD_URL } from './TarotSpread';
 
 export class TarotUtil {
     //--------------------------------------------------------------------------
