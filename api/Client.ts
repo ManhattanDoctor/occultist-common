@@ -36,6 +36,20 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
 
     // --------------------------------------------------------------------------
     //
+    //  Private Methods
+    //
+    // --------------------------------------------------------------------------
+
+    private tarotSpreadMeaningSpreadSet(item: TarotSpread): TarotSpread {
+        let meaning = item.meaning;
+        if (!_.isNil(meaning)) {
+            item.meaning.spread = item;
+        }
+        return item;
+    }
+
+    // --------------------------------------------------------------------------
+    //
     //  Auth Methods
     //
     // --------------------------------------------------------------------------
@@ -66,7 +80,7 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
 
     public async tarotSpreadGet(uid: TarotSpreadUID): Promise<ITarotSpreadDtoResponse> {
         let item = await this.call<ITarotSpreadDtoResponse, void>(`${TAROT_SPREAD_URL}/${uid}`);
-        return TransformUtil.toClass(TarotSpread, item);
+        return this.tarotSpreadMeaningSpreadSet(TransformUtil.toClass(TarotSpread, item));
     }
 
     public async tarotSpreadRemove(uid: TarotSpreadUID): Promise<void> {
