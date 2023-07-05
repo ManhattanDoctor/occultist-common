@@ -66,7 +66,7 @@ export class PermissionUtil {
         if (!PermissionUtil.spreadIsCanEdit(item, user) || !_.isNil(item.meaning)) {
             return false;
         }
-        return getTarotSpreadAmount(item.type) <= 7;
+        return getTarotSpreadAmount(item.type) <= 20;
     }
 
     public static spreadMeaningIsCanGetValue(item: TarotSpreadMeaning, user: User): boolean {
