@@ -12,7 +12,8 @@ export class TarotSpreadMeaning {
     public value?: string;
     public rating?: number;
     public reason?: TarotSpreadMeaningRejectReason;
-
+    public question?: string;
+    
     @Type(() => User)
     public user?: User;
 
@@ -47,6 +48,8 @@ export enum TarotSpreadMeaningRejectReason {
     UNCLEAR_QUESTION = 'UNCLEAR_QUESTION',
     INCORRECT_QUESTION = 'INCORRECT_QUESTION',
 }
+
+export const TAROT_SPREAD_MEANING_QUESTION_MAX_LENGTH = 4096;
 
 export const TAROT_SPREAD_MEANING_VALUE_MIN_LENGTH = 64;
 export const TAROT_SPREAD_MEANING_VALUE_MAX_LENGTH = 4096;

@@ -90,7 +90,7 @@ export class PermissionUtil {
         if (_.isNil(item) || !PermissionUtil.userIsAdministrator(user)) {
             return false;
         }
-        return item.status === TarotSpreadMeaningStatus.PENDING || item.status === TarotSpreadMeaningStatus.ERROR;
+        return item.status === TarotSpreadMeaningStatus.PENDING || item.status === TarotSpreadMeaningStatus.ERROR || item.status === TarotSpreadMeaningStatus.IN_PROGRESS;
     }
 
     public static spreadMeaningIsCanApprove(item: TarotSpreadMeaning, user: User): boolean {
