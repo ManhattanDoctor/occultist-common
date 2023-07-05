@@ -1,4 +1,4 @@
-import { TransportHttp, ITransportHttpSettings, IPaginable, LoggerLevel } from '@ts-core/common';
+import { TransportHttp, ITransportHttpSettings, IPaginable, LoggerLevel, DateUtil } from '@ts-core/common';
 import { ILogger, TransformUtil, ITraceable, TraceUtil } from '@ts-core/common';
 import * as _ from 'lodash';
 import { IClockDto, IClockDtoResponse } from './clock';
@@ -144,7 +144,7 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
     }
 
     public async tarotSpreadMeaningMean(id: number): Promise<ITarotSpreadMeaningDtoResponse> {
-        let item = await this.call<ITarotSpreadMeaningDtoResponse, void>(`${TAROT_SPREAD_MEANING_URL}/${id}/mean`, { method: 'put' });
+        let item = await this.call<ITarotSpreadMeaningDtoResponse, void>(`${TAROT_SPREAD_MEANING_URL}/${id}/mean`, { method: 'put' }, { timeout: 3 * DateUtil.MILLISECONDS_MINUTE });
         return TransformUtil.toClass(TarotSpreadMeaning, item);
     }
 
