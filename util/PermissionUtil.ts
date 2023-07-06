@@ -111,7 +111,7 @@ export class PermissionUtil {
         if (_.isNil(item) || _.isNil(item.spread)) {
             return false;
         }
-        return item.status === TarotSpreadMeaningStatus.APPROVED || item.spread.userId === user.id;
+        return item.status === TarotSpreadMeaningStatus.APPROVED && item.spread.userId === user.id;
     }
 
     //--------------------------------------------------------------------------
