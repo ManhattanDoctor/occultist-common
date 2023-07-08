@@ -49,6 +49,8 @@ export enum TarotSpreadMeaningRejectReason {
     INCORRECT_QUESTION = 'INCORRECT_QUESTION',
 }
 
+export const TAROT_SPREAD_MEANING_MAX_COUNT = 3;
+
 export const TAROT_SPREAD_MEANING_QUESTION_MAX_LENGTH = 4096;
 
 export const TAROT_SPREAD_MEANING_VALUE_MIN_LENGTH = 64;

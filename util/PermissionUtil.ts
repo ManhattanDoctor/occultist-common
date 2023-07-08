@@ -8,6 +8,14 @@ import { getTarotSpreadAmount } from '../tarot';
 export class PermissionUtil {
     //--------------------------------------------------------------------------
     //
+    // 	Static Properties
+    //
+    //--------------------------------------------------------------------------
+
+    public static TAROT_SPREAD_MEANING_MAX = 10;
+
+    //--------------------------------------------------------------------------
+    //
     // 	User Methods
     //
     //--------------------------------------------------------------------------
@@ -66,7 +74,7 @@ export class PermissionUtil {
         if (!PermissionUtil.spreadIsCanEdit(item, user) || !_.isNil(item.meaning)) {
             return false;
         }
-        return getTarotSpreadAmount(item.type) <= 7;
+        return getTarotSpreadAmount(item.type) <= PermissionUtil.TAROT_SPREAD_MEANING_MAX;
     }
 
     public static spreadMeaningIsCanGetValue(item: TarotSpreadMeaning, user: User): boolean {
