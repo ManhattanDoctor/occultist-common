@@ -22,6 +22,7 @@ export class UserPreferences {
     tarotDesk?: string;
 
     isHideFromPeople?: boolean;
+    isNotSuggestShowHelp?: boolean;
     isNotSuggestAddToFavorites?: boolean;
     isNotSuggestAllowSendNotifications?: boolean;
 
