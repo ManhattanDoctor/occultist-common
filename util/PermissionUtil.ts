@@ -60,6 +60,10 @@ export class PermissionUtil {
         return item.userId === user.id || PermissionUtil.userIsAdministrator(user);
     }
 
+    public static spreadIsCanShare(item: TarotSpread): boolean {
+        return item.privacy !== TarotSpreadPrivacy.PRIVATE;
+    }
+
     public static spreadIsCanRemove(item: TarotSpread, user: User): boolean {
         return PermissionUtil.spreadIsCanEdit(item, user);
     }
