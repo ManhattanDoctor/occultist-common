@@ -74,17 +74,10 @@ export class PermissionUtil {
         if (!PermissionUtil.spreadIsCanEdit(item, user) || !_.isNil(item.meaning)) {
             return false;
         }
-        return getTarotSpreadAmount(item.type) <= PermissionUtil.TAROT_SPREAD_MEANING_MAX;
-    }
-
-    public static spreadMeaningIsCanGetValue(item: TarotSpreadMeaning, user: User): boolean {
-        if (_.isNil(item)) {
+        if (item.privacy === TarotSpreadPrivacy.PRIVATE) {
             return false;
         }
-        if (PermissionUtil.userIsAdministrator(user)) {
-            return true;
-        }
-        return item.status === TarotSpreadMeaningStatus.APPROVED || item.status === TarotSpreadMeaningStatus.FINISHED;
+        return getTarotSpreadAmount(item.type) <= PermissionUtil.TAROT_SPREAD_MEANING_MAX;
     }
 
     public static spreadMeaningIsCanMean(item: TarotSpreadMeaning, user: User): boolean {
