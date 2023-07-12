@@ -36,11 +36,11 @@ export class TarotUtil {
 }
 
 export interface ITarotSpreadUrl {
-    vk: string,
-    web: string,
-    picture: string,
-    fragment: string;
-    application: string,
+    vk?: string,
+    web?: string,
+    picture?: string,
+    fragment?: string;
+    application?: string,
 }
 
 export interface ITarotSpreadUrlOptions {
