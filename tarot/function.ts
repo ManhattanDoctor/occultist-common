@@ -22,8 +22,12 @@ export function getTarotSpreadAmount(item: TarotSpreadType): number {
         case TarotSpreadType.DAY:
         case TarotSpreadType.DATE:
             return 1;
+        case TarotSpreadType.WORK:
         case TarotSpreadType.THREE:
         case TarotSpreadType.EXPRESS:
+        case TarotSpreadType.BLACK_STRIPE:
+        case TarotSpreadType.RECONCILIATION:
+        case TarotSpreadType.PROSPECTS_IN_RELATIONSHIP:
             return 3;
         case TarotSpreadType.FULL_CAP:
         case TarotSpreadType.CROSSROAD:
@@ -39,6 +43,7 @@ export function getTarotSpreadAmount(item: TarotSpreadType): number {
         case TarotSpreadType.HELP_YOURSELF:
         case TarotSpreadType.IMPROVE_FINANCIAL_SITUATION:
             return 5;
+        case TarotSpreadType.MY_DREAM:
         case TarotSpreadType.MARRIAGE_2:
             return 6;
         case TarotSpreadType.STAR:
