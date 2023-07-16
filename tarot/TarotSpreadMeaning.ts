@@ -47,6 +47,7 @@ export enum TarotSpreadMeaningMode {
 export enum TarotSpreadMeaningRejectReason {
     UNCLEAR_QUESTION = 'UNCLEAR_QUESTION',
     INCORRECT_QUESTION = 'INCORRECT_QUESTION',
+    INCONSEQUENTIAL_QUESTION = 'INCONSEQUENTIAL_QUESTION',
 }
 
 export const TAROT_SPREAD_MEANING_MAX_COUNT = 3;
