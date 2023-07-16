@@ -1,4 +1,4 @@
-import { TransportHttp, ITransportHttpSettings, IPaginable, LoggerLevel, DateUtil } from '@ts-core/common';
+import { TransportHttp, ITransportHttpSettings, LoggerLevel, DateUtil } from '@ts-core/common';
 import { ILogger, TransformUtil, ITraceable, TraceUtil } from '@ts-core/common';
 import * as _ from 'lodash';
 import { IClockDto, IClockDtoResponse } from './clock';
@@ -80,6 +80,11 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
 
     public async tarotSpreadGet(uid: TarotSpreadUID): Promise<ITarotSpreadDtoResponse> {
         let item = await this.call<ITarotSpreadDtoResponse, void>(`${TAROT_SPREAD_URL}/${uid}`);
+        return this.tarotSpreadMeaningSpreadSet(TransformUtil.toClass(TarotSpread, item));
+    }
+
+    public async tarotSpreadGetById(id: number): Promise<ITarotSpreadDtoResponse> {
+        let item = await this.call<ITarotSpreadDtoResponse, void>(`${TAROT_SPREAD_URL_ID}/${id}`);
         return this.tarotSpreadMeaningSpreadSet(TransformUtil.toClass(TarotSpread, item));
     }
 
@@ -306,6 +311,7 @@ export const STATISTICS_URL = PREFIX_URL + 'statistics';
 export const COMMENT_URL = PREFIX_URL + 'comment';
 
 export const TAROT_SPREAD_URL = PREFIX_URL + 'tarot/spread';
+export const TAROT_SPREAD_URL_ID = PREFIX_URL + 'tarot/spread-id';
 export const TAROT_SPREAD_DAY_URL = PREFIX_URL + 'tarot/spread-day';
 export const TAROT_SPREAD_MEANING_URL = PREFIX_URL + 'tarot/spread-meaning';
 
