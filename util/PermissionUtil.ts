@@ -75,10 +75,13 @@ export class PermissionUtil {
     //--------------------------------------------------------------------------
 
     public static spreadMeaningIsCanAdd(item: TarotSpread, user: User): boolean {
-        if (!PermissionUtil.spreadIsCanEdit(item, user) || !_.isNil(item.meaning)) {
+        if (!PermissionUtil.spreadIsCanEdit(item, user)) {
             return false;
         }
         if (item.privacy === TarotSpreadPrivacy.PRIVATE) {
+            return false;
+        }
+        if (!_.isNil(item.meaning) && item.meaning.status !== TarotSpreadMeaningStatus.CANCELED) {
             return false;
         }
         return getTarotSpreadAmount(item.type) <= PermissionUtil.TAROT_SPREAD_MEANING_MAX;
@@ -117,6 +120,13 @@ export class PermissionUtil {
             return false;
         }
         return item.status === TarotSpreadMeaningStatus.APPROVED && item.spread.userId === user.id;
+    }
+
+    public static spreadMeaningIsCanCancel(item: TarotSpreadMeaning, user: User): boolean {
+        if (_.isNil(item) || _.isNil(item.spread)) {
+            return false;
+        }
+        return item.status === TarotSpreadMeaningStatus.PENDING && item.spread.userId === user.id;
     }
 
     //--------------------------------------------------------------------------

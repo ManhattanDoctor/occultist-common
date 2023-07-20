@@ -33,9 +33,11 @@ export enum TarotSpreadMeaningStatus {
     PREPARED = 'PREPARED',
     FINISHED = 'FINISHED',
     APPROVED = 'APPROVED',
+    CANCELED = 'CANCELED',
     REJECTED = 'REJECTED',
     AWAITING = 'AWAITING',
     IN_PROGRESS = 'IN_PROGRESS',
+    WAITING_APPROVE = 'WAITING_APPROVE',
 }
 
 export enum TarotSpreadMeaningMode {
@@ -54,10 +56,10 @@ export enum TarotSpreadMeaningRejectReason {
 
 export const TAROT_SPREAD_MEANING_MAX_COUNT = 1;
 
+export const TAROT_SPREAD_MEANING_RATING_MIN = 1;
+export const TAROT_SPREAD_MEANING_RATING_MAX = 5;
+
 export const TAROT_SPREAD_MEANING_QUESTION_MAX_LENGTH = 4096;
 
 export const TAROT_SPREAD_MEANING_VALUE_MIN_LENGTH = 64;
 export const TAROT_SPREAD_MEANING_VALUE_MAX_LENGTH = 16384;
-
-export const TAROT_SPREAD_MEANING_RATING_MIN = 1;
-export const TAROT_SPREAD_MEANING_RATING_MAX = 5;
