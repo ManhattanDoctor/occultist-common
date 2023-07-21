@@ -112,7 +112,7 @@ export class PermissionUtil {
         if (_.isNil(item) || !PermissionUtil.userIsAdministrator(user)) {
             return false;
         }
-        return item.status === TarotSpreadMeaningStatus.PENDING || item.status === TarotSpreadMeaningStatus.AWAITING || item.status === TarotSpreadMeaningStatus.PREPARED;
+        return item.status === TarotSpreadMeaningStatus.PENDING || item.status === TarotSpreadMeaningStatus.AWAITING_MEAN || item.status === TarotSpreadMeaningStatus.PREPARED;
     }
 
     public static spreadMeaningIsCanRate(item: TarotSpreadMeaning, user: User): boolean {
@@ -123,7 +123,6 @@ export class PermissionUtil {
     }
 
     public static spreadMeaningIsCanCancel(item: TarotSpreadMeaning, user: User): boolean {
-        console.log(item);
         if (_.isNil(item) || _.isNil(item.spread)) {
             return false;
         }
