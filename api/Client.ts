@@ -43,7 +43,7 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
     private tarotSpreadMeaningSpreadSet(item: TarotSpread): TarotSpread {
         let meaning = item.meaning;
         if (!_.isNil(meaning)) {
-            item.meaning.spread = item;
+            meaning.spread = item;
         }
         return item;
     }
@@ -105,6 +105,7 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
     public async tarotSpreadList(data: ITarotSpreadListDto): Promise<ITarotSpreadListDtoResponse> {
         let item = await this.call<ITarotSpreadListDtoResponse, ITarotSpreadListDto>(`${TAROT_SPREAD_URL}`, { data: TraceUtil.addIfNeed(data) });
         item.items = TransformUtil.toClassMany(TarotSpread, item.items);
+        // item.items.forEach(this.tarotSpreadMeaningSpreadSet);
         return item;
     }
 

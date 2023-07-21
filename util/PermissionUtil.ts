@@ -54,7 +54,7 @@ export class PermissionUtil {
     }
 
     public static spreadIsCanEdit(item: TarotSpread, user: User): boolean {
-        if (_.isNil(user)) {
+        if (_.isNil(item) || _.isNil(user)) {
             return false;
         }
         return item.userId === user.id || PermissionUtil.userIsAdministrator(user);
@@ -123,6 +123,7 @@ export class PermissionUtil {
     }
 
     public static spreadMeaningIsCanCancel(item: TarotSpreadMeaning, user: User): boolean {
+        console.log(item);
         if (_.isNil(item) || _.isNil(item.spread)) {
             return false;
         }
