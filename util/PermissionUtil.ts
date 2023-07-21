@@ -94,7 +94,7 @@ export class PermissionUtil {
         return item.status === TarotSpreadMeaningStatus.ERROR || item.status === TarotSpreadMeaningStatus.PREPARED;
     }
 
-    public static spreadMeaningIsCanAwait(item: TarotSpreadMeaning, user: User): boolean {
+    public static spreadMeaningIsCanAwaitMean(item: TarotSpreadMeaning, user: User): boolean {
         if (_.isNil(item) || !PermissionUtil.userIsAdministrator(user)) {
             return false;
         }

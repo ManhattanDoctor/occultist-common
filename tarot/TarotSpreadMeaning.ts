@@ -29,15 +29,15 @@ export class TarotSpreadMeaning {
 
 export enum TarotSpreadMeaningStatus {
     ERROR = 'ERROR',
+    RATED = 'RATED',
     PENDING = 'PENDING',
     PREPARED = 'PREPARED',
-    FINISHED = 'FINISHED',
     APPROVED = 'APPROVED',
     CANCELED = 'CANCELED',
     REJECTED = 'REJECTED',
-    AWAITING = 'AWAITING',
     IN_PROGRESS = 'IN_PROGRESS',
-    WAITING_APPROVE = 'WAITING_APPROVE',
+    AWAITING_MEAN = 'AWAITING_MEAN',
+    AWAITING_APPROVE = 'AWAITING_APPROVE',
 }
 
 export enum TarotSpreadMeaningMode {

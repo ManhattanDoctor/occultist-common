@@ -134,7 +134,7 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
     }
 
     public async tarotSpreadMeaningAwait(id: number): Promise<TarotSpreadMeaning> {
-        let item = await this.call(`${TAROT_SPREAD_MEANING_URL}/${id}/await`, { method: 'put' });
+        let item = await this.call(`${TAROT_SPREAD_MEANING_URL}/${id}/awaitMean`, { method: 'put' });
         return TransformUtil.toClass(TarotSpreadMeaning, item);
     }
 
