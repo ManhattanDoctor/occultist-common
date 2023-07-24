@@ -16,7 +16,7 @@ export class TarotSpread {
     public comments: Array<Comment>;
 
     public seed?: string;
-    public desk?: TarotSpreadDesk;
+    public desk?: TarotDesk;
     public color?: TarotSpreadColor;
     public advice?: number;
     public status?: TarotSpreadStatus;
@@ -62,7 +62,7 @@ export enum TarotSpreadPrivacy {
     PUBLIC = 'PUBLIC',
 }
 
-export enum TarotSpreadDesk {
+export enum TarotDesk {
     TOTH = 'TOTH',
     WAITE = 'WAITE',
     PAPUS = 'PAPUS',
@@ -75,7 +75,7 @@ export enum TarotSpreadDesk {
     CEREMONIAL = 'CEREMONIAL',
 }
 
-export const TarotSpreadDeskDefault = TarotSpreadDesk.TOTH;
+export const TarotDeskDefault = TarotDesk.TOTH;
 
 export type TarotSpreadPosition = number | string;
 
