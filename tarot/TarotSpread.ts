@@ -68,8 +68,11 @@ export enum TarotSpreadDesk {
     PAPUS = 'PAPUS',
     SFORZ = 'SFORZ',
     CHARLE = 'CHARLE',
+    MANARA = 'MANARA',
+    VAMPIRE = 'VAMPIRE',
+    KAZANOVA = 'KAZANOVA',
     MARSEILLE = 'MARSEILLE',
-    CEREMONIAL = 'CEREMONIAL'
+    CEREMONIAL = 'CEREMONIAL',
 }
 
 export const TarotSpreadDeskDefault = TarotSpreadDesk.TOTH;
