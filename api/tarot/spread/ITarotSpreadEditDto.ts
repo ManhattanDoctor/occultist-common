@@ -8,5 +8,3 @@ export interface ITarotSpreadEditDto extends ITraceable {
     querent?: string;
     privacy?: TarotSpreadPrivacy
 }
-
-export type ITarotSpreadEditDtoResponse = TarotSpread;

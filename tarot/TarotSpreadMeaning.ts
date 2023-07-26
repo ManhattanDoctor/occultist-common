@@ -3,6 +3,7 @@ import { Type } from 'class-transformer';
 import { User } from '../user';
 import * as _ from 'lodash';
 import { TarotSpread } from './TarotSpread';
+import { DateUtil } from '@ts-core/common';
 
 export class TarotSpreadMeaning {
     public id: number;
@@ -13,7 +14,7 @@ export class TarotSpreadMeaning {
     public rating?: number;
     public reason?: TarotSpreadMeaningRejectReason;
     public question?: string;
-    
+
     @Type(() => User)
     public user?: User;
 
@@ -54,7 +55,8 @@ export enum TarotSpreadMeaningRejectReason {
     INCORRECT_QUESTION_FOR_SPREAD = 'INCORRECT_QUESTION_FOR_SPREAD',
 }
 
-export const TAROT_SPREAD_MEANING_MAX_COUNT = 1;
+export const TAROT_SPREAD_MEANING_ADD_DELAY = 6 * DateUtil.MILLISECONDS_HOUR;
+export const TAROT_SPREAD_MEANING_ADD_MAX_COUNT = 1;
 
 export const TAROT_SPREAD_MEANING_RATING_MIN = 1;
 export const TAROT_SPREAD_MEANING_RATING_MAX = 5;
