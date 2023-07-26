@@ -130,7 +130,7 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
     }
 
     public async tarotSpreadMeaningIsCanAdd(): Promise<void> {
-        return this.call<void, void>(`${TAROT_SPREAD_MEANING_URL}/check`);
+        return this.call<void, void>(`${TAROT_SPREAD_MEANING_URL}/isCanAdd`);
     }
 
     public async tarotSpreadMeaningEdit(data: ITarotSpreadMeaningEditDto): Promise<ITarotSpreadMeaningEditDtoResponse> {
