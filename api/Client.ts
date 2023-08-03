@@ -12,7 +12,7 @@ import { TarotSpread, TarotSpreadMeaning, TarotSpreadUID } from '../tarot';
 import { IPeopleListDto, IPeopleListDtoResponse } from './people';
 import { IManagementTarotSpreadListDto, IManagementTarotSpreadListDtoResponse, IManagementTarotSpreadMeaningListDto, IManagementTarotSpreadMeaningListDtoResponse } from './management';
 import { LocaleProject } from './locale';
-import { IUserEditDto, IUserEditDtoResponse, IUserGetDtoResponse, IUserListDto, IUserListDtoResponse } from './user';
+import { IUserEditDto, IUserEditDtoResponse, IUserGetDtoResponse, IUserListDto, IUserListDtoResponse, UserUID } from './user';
 import { IStatisticsGetDtoResponse } from './statistics';
 import { IOAuthPopUpDto } from '@ts-core/oauth';
 
@@ -177,8 +177,8 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
     //
     // --------------------------------------------------------------------------
 
-    public async userGet(id: string | number): Promise<IUserGetDtoResponse> {
-        let item = await this.call<IUserGetDtoResponse>(`${USER_URL}/${id}`);
+    public async userGet(uid: UserUID): Promise<IUserGetDtoResponse> {
+        let item = await this.call<IUserGetDtoResponse>(`${USER_URL}/${uid}`);
         return TransformUtil.toClass(User, item);
     }
 
