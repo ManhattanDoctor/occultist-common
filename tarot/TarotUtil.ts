@@ -14,6 +14,16 @@ export class TarotUtil {
 
     //--------------------------------------------------------------------------
     //
+    // 	Private Methods
+    //
+    //--------------------------------------------------------------------------
+
+    private static parseIndex(item: TarotIndex): number {
+        return _.isString(item) ? parseInt(item) : item;
+    }
+
+    //--------------------------------------------------------------------------
+    //
     // 	Url Methods
     //
     //--------------------------------------------------------------------------
@@ -33,7 +43,36 @@ export class TarotUtil {
     public static getSpreadFragmentUrl(uid: string): string {
         return `${TAROT_SPREAD_URL}=${uid}`;
     }
+
+    public static isTypeMajor(index: TarotIndex): boolean {
+        index = TarotUtil.parseIndex(index);
+        return index > -1 && index < 22;
+    }
+
+    public static isTypeCourt(index: TarotIndex): boolean {
+        index = TarotUtil.parseIndex(index);
+        return index > 21 && index < 38;
+    }
+
+    public static isTypeNumber(index: TarotIndex): boolean {
+        index = TarotUtil.parseIndex(index);
+        return index > 38 && index < 78 && !TarotUtil.isTypeAce(index);
+    }
+
+    public static isTypeAce(index: TarotIndex): boolean {
+        switch (TarotUtil.parseIndex(index)) {
+            case 38:
+            case 48:
+            case 58:
+            case 68:
+                return true;
+            default:
+                return false;
+        }
+    }
 }
+
+export type TarotIndex = string | number;
 
 export interface ITarotSpreadUrl {
     vk?: string,

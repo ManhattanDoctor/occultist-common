@@ -317,6 +317,7 @@ export const LOCALE_URL = PREFIX_URL + 'locale';
 export const PEOPLE_URL = PREFIX_URL + 'people';
 export const STATISTICS_URL = PREFIX_URL + 'statistics';
 
+export const VOICE_URL = PREFIX_URL + 'voice';
 export const COMMENT_URL = PREFIX_URL + 'comment';
 
 export const TAROT_SPREAD_URL = PREFIX_URL + 'tarot/spread';
