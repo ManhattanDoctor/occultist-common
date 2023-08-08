@@ -1,6 +1,6 @@
 
 import * as _ from 'lodash';
-import { TAROT_SPREAD_URL } from './TarotSpread';
+import { TAROT_SPREAD_URL, TarotDesk } from './TarotSpread';
 
 export class TarotUtil {
     //--------------------------------------------------------------------------
@@ -11,6 +11,7 @@ export class TarotUtil {
 
     private static VK_URL = 'https://vk.com/occultdivination';
     private static SITE_URL = 'https://occultist.one';
+    private static ASSETS_URL = 'https://vk.occultist.one/tarot/assets';
 
     //--------------------------------------------------------------------------
     //
@@ -24,24 +25,15 @@ export class TarotUtil {
 
     //--------------------------------------------------------------------------
     //
-    // 	Url Methods
+    // 	Tarot Methods
     //
     //--------------------------------------------------------------------------
 
-    public static getSpreadUrl(options: ITarotSpreadUrlOptions): ITarotSpreadUrl {
-        let fragment = TarotUtil.getSpreadFragmentUrl(options.uid);
-        return {
-            vk: `${TarotUtil.VK_URL}#${fragment}`,
-            web: !_.isEmpty(options.origin) ? `${options.origin}#${fragment}` : `${TarotUtil.SITE_URL}#${fragment}`,
-            application: `${TarotUtil.SITE_URL}#${fragment}`,
-            // application: `https://localhost/${TAROT_SPREAD_URL}/${options.uid}`,
-            picture: `https://occultist.one/assets/icon/512.png`,
-            fragment
+    public static getPictureUrl(index: number, desk?: TarotDesk): string {
+        if (_.isNil(desk)) {
+            desk = TarotDesk.TOTH;
         }
-    }
-
-    public static getSpreadFragmentUrl(uid: string): string {
-        return `${TAROT_SPREAD_URL}=${uid}`;
+        return `${TarotUtil.ASSETS_URL}/image/tarot/${desk.toLowerCase()}/${index}.jpg`;
     }
 
     public static isTypeMajor(index: TarotIndex): boolean {
@@ -69,6 +61,28 @@ export class TarotUtil {
             default:
                 return false;
         }
+    }
+
+    //--------------------------------------------------------------------------
+    //
+    // 	Spread Methods
+    //
+    //--------------------------------------------------------------------------
+
+    public static getSpreadUrl(options: ITarotSpreadUrlOptions): ITarotSpreadUrl {
+        let fragment = TarotUtil.getSpreadFragmentUrl(options.uid);
+        return {
+            vk: `${TarotUtil.VK_URL}#${fragment}`,
+            web: !_.isEmpty(options.origin) ? `${options.origin}#${fragment}` : `${TarotUtil.SITE_URL}#${fragment}`,
+            application: `${TarotUtil.SITE_URL}#${fragment}`,
+            // application: `https://localhost/${TAROT_SPREAD_URL}/${options.uid}`,
+            picture: `https://occultist.one/assets/icon/512.png`,
+            fragment
+        }
+    }
+
+    public static getSpreadFragmentUrl(uid: string): string {
+        return `${TAROT_SPREAD_URL}=${uid}`;
     }
 }
 

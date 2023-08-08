@@ -17,6 +17,10 @@ export function getTarotSpreadIndexes(seed: string): Array<number> {
     return indexes;
 }
 
+export function getTarotSpreadIndex(seed: string): number {
+    return new RandomGenerator(seed).integerFromZeroTo(78);
+}
+
 export function getTarotSpreadAmount(item: TarotSpreadType): number {
     switch (item) {
         case TarotSpreadType.DAY:
