@@ -104,20 +104,11 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
     public async tarotSpreadDay(data: ITarotSpreadDateDto): Promise<ITarotSpreadDtoResponse> {
         return this.call<ITarotSpreadDtoResponse, ITarotSpreadDateDto>(`${TAROT_SPREAD_DAY_URL}`, { method: 'post', data: TraceUtil.addIfNeed(data) });
     }
-    
+
     public async tarotSpreadList(data: ITarotSpreadListDto): Promise<ITarotSpreadListDtoResponse> {
         let item = await this.call<ITarotSpreadListDtoResponse, ITarotSpreadListDto>(`${TAROT_SPREAD_URL}`, { data: TraceUtil.addIfNeed(data) });
         item.items = TransformUtil.toClassMany(TarotSpread, item.items);
         // item.items.forEach(this.tarotSpreadMeaningSpreadSet);
-        return item;
-    }
-
-    public async tarotSpreadListUser(data: ITarotSpreadListDto): Promise<ITarotSpreadListDtoResponse> {
-        if (_.isNil(data.conditions) || !_.isNumber(data.conditions.userId)) {
-            throw new ExtendedError(`Conditions "userId" must be number`);
-        }
-        let item = await this.call<ITarotSpreadListDtoResponse, ITarotSpreadListDto>(`${USER_URL}/${data.conditions.userId}/${TAROT_SPREAD_URL}`, { data: TraceUtil.addIfNeed(data) });
-        item.items = TransformUtil.toClassMany(TarotSpread, item.items);
         return item;
     }
 
@@ -194,6 +185,15 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
     public async userEdit(data: IUserEditDto): Promise<IUserEditDtoResponse> {
         let item = await this.call<IUserEditDtoResponse, IUserEditDto>(`${USER_URL}/${data.uid}`, { method: 'put', data: TraceUtil.addIfNeed(data) });
         return TransformUtil.toClass(User, item);
+    }
+
+    public async userTarotSpreadList(data: ITarotSpreadListDto): Promise<ITarotSpreadListDtoResponse> {
+        if (_.isNil(data.conditions) || !_.isNumber(data.conditions.userId)) {
+            throw new ExtendedError(`Conditions "userId" must be number`);
+        }
+        let item = await this.call<ITarotSpreadListDtoResponse, ITarotSpreadListDto>(`${USER_URL}/${data.conditions.userId}/tarot/spread`, { data: TraceUtil.addIfNeed(data) });
+        item.items = TransformUtil.toClassMany(TarotSpread, item.items);
+        return item;
     }
 
     // --------------------------------------------------------------------------
