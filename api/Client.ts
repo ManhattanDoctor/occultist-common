@@ -1,4 +1,4 @@
-import { TransportHttp, ITransportHttpSettings, LoggerLevel, DateUtil } from '@ts-core/common';
+import { TransportHttp, ITransportHttpSettings, LoggerLevel, DateUtil, ExtendedError } from '@ts-core/common';
 import { ILogger, TransformUtil, ITraceable, TraceUtil } from '@ts-core/common';
 import * as _ from 'lodash';
 import { IClockDto, IClockDtoResponse } from './clock';
@@ -101,6 +101,10 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
         return this.call<void, ITarotSpreadEditDto>(`${TAROT_SPREAD_URL}/${data.uid}`, { method: 'put', data: TraceUtil.addIfNeed(data) });
     }
 
+    public async tarotSpreadDay(data: ITarotSpreadDateDto): Promise<ITarotSpreadDtoResponse> {
+        return this.call<ITarotSpreadDtoResponse, ITarotSpreadDateDto>(`${TAROT_SPREAD_DAY_URL}`, { method: 'post', data: TraceUtil.addIfNeed(data) });
+    }
+    
     public async tarotSpreadList(data: ITarotSpreadListDto): Promise<ITarotSpreadListDtoResponse> {
         let item = await this.call<ITarotSpreadListDtoResponse, ITarotSpreadListDto>(`${TAROT_SPREAD_URL}`, { data: TraceUtil.addIfNeed(data) });
         item.items = TransformUtil.toClassMany(TarotSpread, item.items);
@@ -108,8 +112,13 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
         return item;
     }
 
-    public async tarotSpreadDay(data: ITarotSpreadDateDto): Promise<ITarotSpreadDtoResponse> {
-        return this.call<ITarotSpreadDtoResponse, ITarotSpreadDateDto>(`${TAROT_SPREAD_DAY_URL}`, { method: 'post', data: TraceUtil.addIfNeed(data) });
+    public async tarotSpreadListUser(data: ITarotSpreadListDto): Promise<ITarotSpreadListDtoResponse> {
+        if (_.isNil(data.conditions) || !_.isNumber(data.conditions.userId)) {
+            throw new ExtendedError(`Conditions "userId" must be number`);
+        }
+        let item = await this.call<ITarotSpreadListDtoResponse, ITarotSpreadListDto>(`${USER_URL}/${data.conditions.userId}/${TAROT_SPREAD_URL}`, { data: TraceUtil.addIfNeed(data) });
+        item.items = TransformUtil.toClassMany(TarotSpread, item.items);
+        return item;
     }
 
     // --------------------------------------------------------------------------
