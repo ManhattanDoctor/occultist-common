@@ -15,6 +15,7 @@ import { LocaleProject } from './locale';
 import { IUserEditDto, IUserEditDtoResponse, IUserGetDtoResponse, IUserListDto, IUserListDtoResponse, UserUID } from './user';
 import { IStatisticsGetDtoResponse } from './statistics';
 import { IOAuthPopUpDto } from '@ts-core/oauth';
+import { ICoinAccountsGetDto } from './coin';
 
 export class Client extends TransportHttp<ITransportHttpSettings> {
     // --------------------------------------------------------------------------
@@ -180,6 +181,10 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
     public async userGet(uid: UserUID): Promise<IUserGetDtoResponse> {
         let item = await this.call<IUserGetDtoResponse>(`${USER_URL}/${uid}`);
         return TransformUtil.toClass(User, item);
+    }
+
+    public async userCoinAccountsGet(uid: UserUID): Promise<ICoinAccountsGetDto> {
+        return this.call<ICoinAccountsGetDto>(`${USER_URL}/${uid}/coin`);
     }
 
     public async userEdit(data: IUserEditDto): Promise<IUserEditDtoResponse> {

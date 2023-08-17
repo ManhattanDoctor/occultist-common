@@ -33,6 +33,16 @@ export class PermissionUtil {
         return item.id === user.id;
     }
 
+    public static userIsCanCoinAccountsGet(item: User, user: User): boolean {
+        if (_.isNil(user)) {
+            return false;
+        }
+        if (PermissionUtil.userIsAdministrator(user)) {
+            return true;
+        }
+        return item.id === user.id;
+    }
+
     public static userIsAdministrator(item: User): boolean {
         return !_.isNil(item) ? item.account.type === UserAccountType.ADMINISTRATOR : false;
     }
