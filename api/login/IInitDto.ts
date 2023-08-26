@@ -1,6 +1,5 @@
 import { ITraceable } from '@ts-core/common';
 import { User } from '../../user';
-import { ICoinAmount } from '../../coin';
 import { IPaymentBonus } from '../../payment';
 
 export interface IInitDto extends ITraceable { }

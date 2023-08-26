@@ -16,6 +16,8 @@ import { IUserEditDto, IUserEditDtoResponse, IUserGetDtoResponse, IUserListDto, 
 import { IStatisticsGetDtoResponse } from './statistics';
 import { IOAuthPopUpDto } from '@ts-core/oauth';
 import { ICoinAccountsGetDto } from './coin';
+import { IPaymentListDto, IPaymentListDtoResponse, IPaymentTransactionListDto, IPaymentTransactionListDtoResponse } from './payment';
+import { Payment, PaymentTransaction } from '../payment';
 
 export class Client extends TransportHttp<ITransportHttpSettings> {
     // --------------------------------------------------------------------------
@@ -235,6 +237,24 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
 
     //--------------------------------------------------------------------------
     //
+    // 	Payment Methods
+    //
+    //--------------------------------------------------------------------------
+
+    public async paymentList(data?: IPaymentListDto): Promise<IPaymentListDtoResponse> {
+        let item = await this.call<IPaymentListDtoResponse, IPaymentListDto>(PAYMENT_URL, { data: TraceUtil.addIfNeed(data) });
+        item.items = TransformUtil.toClassMany(Payment, item.items);
+        return item;
+    }
+
+    public async paymentTransactionList(data?: IPaymentTransactionListDto): Promise<IPaymentTransactionListDtoResponse> {
+        let item = await this.call<IPaymentTransactionListDtoResponse, IPaymentTransactionListDto>(PAYMENT_TRANSACTION_URL, { data: TraceUtil.addIfNeed(data) });
+        item.items = TransformUtil.toClassMany(PaymentTransaction, item.items);
+        return item;
+    }
+
+    //--------------------------------------------------------------------------
+    //
     // 	Management Methods
     //
     //--------------------------------------------------------------------------
@@ -333,6 +353,8 @@ export const STATISTICS_URL = PREFIX_URL + 'statistics';
 
 export const VOICE_URL = PREFIX_URL + 'voice';
 export const COMMENT_URL = PREFIX_URL + 'comment';
+export const PAYMENT_URL = PREFIX_URL + 'payment';
+export const PAYMENT_TRANSACTION_URL = PREFIX_URL + 'paymentTransaction';
 
 export const TAROT_SPREAD_URL = PREFIX_URL + 'tarot/spread';
 export const TAROT_SPREAD_URL_ID = PREFIX_URL + 'tarot/spread-id';
