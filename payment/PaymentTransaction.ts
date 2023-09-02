@@ -12,6 +12,9 @@ export class PaymentTransaction implements ICoinAmount {
     coinId: CoinId;
     userId: number;
 
+    itemId?: number;
+    itemType?: PaymentTransactionItemType;
+
     @Type(() => Date)
     createdDate: Date;
 
@@ -21,12 +24,16 @@ export class PaymentTransaction implements ICoinAmount {
     activatedDate?: Date;
 }
 
+export enum PaymentTransactionItemType {
+    TAROT_SPREAD_MEANING = 'TAROT_SPREAD_MEANING'
+}
+
 export enum PaymentTransactionType {
     BURNING = 'BURNING',
     PURCHASE = 'PURCHASE',
     EMISSION = 'EMISSION',
     DAILY_BONUS = 'DAILY_BONUS',
     REGISTRATION_BONUS = 'REGISTRATION_BONUS',
-    TAROT_SPREAD_BONUS = 'TAROT_SPREAD_BONUS',
-    TAROT_SPREAD_PURCHASE = 'TAROT_SPREAD_PURCHASE',
+    TAROT_SPREAD_MEANING_BONUS = 'TAROT_SPREAD_MEANING_BONUS',
+    TAROT_SPREAD_MEANING_PURCHASE = 'TAROT_SPREAD_MEANING_PURCHASE',
 }

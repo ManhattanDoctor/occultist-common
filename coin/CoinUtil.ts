@@ -1,6 +1,6 @@
 import { MathUtil, MathUtilConfig, UnreachableStatementError } from '@ts-core/common';
-import * as _ from 'lodash';
 import { CoinId } from './CoinId';
+import * as _ from 'lodash';
 
 export class CoinUtil {
     // --------------------------------------------------------------------------

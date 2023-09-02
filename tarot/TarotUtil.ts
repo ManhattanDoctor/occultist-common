@@ -1,17 +1,9 @@
 
 import * as _ from 'lodash';
 import { TAROT_SPREAD_URL, TarotDesk } from './TarotSpread';
+import { ShareUtil } from '../util';
 
 export class TarotUtil {
-    //--------------------------------------------------------------------------
-    //
-    // 	Static Properties
-    //
-    //--------------------------------------------------------------------------
-
-    private static VK_URL = 'https://vk.com/occultdivination';
-    private static SITE_URL = 'https://occultist.one';
-    private static ASSETS_URL = 'https://vk.occultist.one/tarot/assets';
 
     //--------------------------------------------------------------------------
     //
@@ -33,7 +25,7 @@ export class TarotUtil {
         if (_.isNil(desk)) {
             desk = TarotDesk.TOTH;
         }
-        return `${TarotUtil.ASSETS_URL}/image/tarot/${desk.toLowerCase()}/${index}.jpg`;
+        return `${ShareUtil.ASSETS_URL}/image/tarot/${desk.toLowerCase()}/${index}.jpg`;
     }
 
     public static isTypeMajor(index: TarotIndex): boolean {
@@ -69,12 +61,12 @@ export class TarotUtil {
     //
     //--------------------------------------------------------------------------
 
-    public static getSpreadUrl(options: ITarotSpreadUrlOptions): ITarotSpreadUrl {
+    public static getSpreadUrl(options: ITarotSpreadUrlOptions): IShareUrl {
         let fragment = TarotUtil.getSpreadFragmentUrl(options.uid);
         return {
-            vk: `${TarotUtil.VK_URL}#${fragment}`,
-            web: !_.isEmpty(options.origin) ? `${options.origin}#${fragment}` : `${TarotUtil.SITE_URL}#${fragment}`,
-            application: `${TarotUtil.SITE_URL}#${fragment}`,
+            vk: `${ShareUtil.VK_URL}#${fragment}`,
+            web: !_.isEmpty(options.origin) ? `${options.origin}#${fragment}` : `${ShareUtil.SITE_URL}#${fragment}`,
+            application: `${ShareUtil.SITE_URL}#${fragment}`,
             // application: `https://localhost/${TAROT_SPREAD_URL}/${options.uid}`,
             picture: `https://occultist.one/assets/icon/512.png`,
             fragment
@@ -88,7 +80,7 @@ export class TarotUtil {
 
 export type TarotIndex = string | number;
 
-export interface ITarotSpreadUrl {
+export interface IShareUrl {
     vk?: string,
     web?: string,
     picture?: string,

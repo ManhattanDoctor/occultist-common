@@ -22,6 +22,7 @@ export const TAROT_LOCALE_PREFIXES = [
     'Alchemy.json',
     'Qliphoths.json',
 
+    'Payment.json',
     'Management.json',
     'Bibliography.json',
 
