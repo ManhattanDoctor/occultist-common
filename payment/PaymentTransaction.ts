@@ -25,7 +25,7 @@ export class PaymentTransaction implements ICoinAmount {
 }
 
 export enum PaymentTransactionItemType {
-    TAROT_SPREAD_MEANING = 'TAROT_SPREAD_MEANING'
+    TAROT_SPREAD = 'TAROT_SPREAD'
 }
 
 export enum PaymentTransactionType {

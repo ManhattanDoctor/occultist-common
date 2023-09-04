@@ -66,3 +66,7 @@ export function getTarotSpreadAmount(item: TarotSpreadType): number {
             throw new UnreachableStatementError(item);
     }
 }
+
+export function getTarotSpreadPrice(item: TarotSpreadType): string {
+    return getTarotSpreadAmount(item).toString();
+}
