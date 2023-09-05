@@ -185,13 +185,13 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
         return TransformUtil.toClass(User, item);
     }
 
-    public async userCoinAccountsGet(uid: UserUID): Promise<ICoinAccountsGetDto> {
-        return this.call<ICoinAccountsGetDto>(`${USER_URL}/${uid}/coin`);
-    }
-
     public async userEdit(data: IUserEditDto): Promise<IUserEditDtoResponse> {
         let item = await this.call<IUserEditDtoResponse, IUserEditDto>(`${USER_URL}/${data.uid}`, { method: 'put', data: TraceUtil.addIfNeed(data) });
         return TransformUtil.toClass(User, item);
+    }
+
+    public async userCoinAccountsGet(uid: UserUID): Promise<ICoinAccountsGetDto> {
+        return this.call<ICoinAccountsGetDto>(`${USER_URL}/${uid}/coin`);
     }
 
     public async userTarotSpreadList(data: ITarotSpreadListDto): Promise<ITarotSpreadListDtoResponse> {
@@ -293,6 +293,15 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
         return this.call<IGeo, void>(GEO_URL);
     }
 
+    public async clock(data: IClockDto): Promise<IClockDtoResponse> {
+        let item = await this.call<IClockDtoResponse, IClockDto>(CLOCK_URL, { data: TraceUtil.addIfNeed(data) });
+        item.date = new Date(item.date);
+        item.sunset = new Date(item.sunset);
+        item.sunrise = new Date(item.sunrise);
+        item.moon.date = new Date(item.moon.date);
+        return item;
+    }
+
     public async oauth(state: string): Promise<IOAuthPopUpDto> {
         return this.call<IOAuthPopUpDto>(`${OAUTH_URL}/${state}`, { data: TraceUtil.addIfNeed({}) });
     }
@@ -303,15 +312,6 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
 
     public async statistics(): Promise<IStatisticsGetDtoResponse> {
         return this.call<IStatisticsGetDtoResponse, void>(STATISTICS_URL);
-    }
-
-    public async clock(data: IClockDto): Promise<IClockDtoResponse> {
-        let item = await this.call<IClockDtoResponse, IClockDto>(CLOCK_URL, { data: TraceUtil.addIfNeed(data) });
-        item.date = new Date(item.date);
-        item.sunset = new Date(item.sunset);
-        item.sunrise = new Date(item.sunrise);
-        item.moon.date = new Date(item.moon.date);
-        return item;
     }
 
     public async peopleList(data: IPeopleListDto): Promise<IPeopleListDtoResponse> {
@@ -326,14 +326,14 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
     //
     //--------------------------------------------------------------------------
 
-    public get oauthRedirectUrl(): string {
-        return `${this.url}${OAUTH_URL}`;
-    }
-
     public set sid(value: string) {
         if (!_.isNil(this.headers)) {
             this.headers.Authorization = `Bearer ${value}`;
         }
+    }
+
+    public get oauthRedirectUrl(): string {
+        return `${this.url}${OAUTH_URL}`;
     }
 }
 

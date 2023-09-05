@@ -1,5 +1,10 @@
+import { FilterableConditionType } from "@ts-core/common";
+import { PaymentTransactionType } from "../payment";
+import { CoinId } from "../coin";
+
 export enum ErrorCode {
     REQUEST_INVALID = 'REQUEST_INVALID',
+    INSUFFICIENT_FUNDS = 'INSUFFICIENT_FUNDS',
     LOCALE_PROJECT_NOT_FOUND = 'LOCALE_PROJECT_NOT_FOUND',
 
     LOGIN_ID_INVALID = 'LOGIN_ID_INVALID',
@@ -23,4 +28,18 @@ export enum ErrorCode {
     TAROT_SPREAD_MEANING_NOT_FOUND = 'TAROT_SPREAD_MEANING_NOT_FOUND',
     TAROT_SPREAD_MEANING_MAX_COUNT_EXCEED = 'TAROT_SPREAD_MEANING_MAX_COUNT_EXCEED',
     TAROT_SPREAD_MEANING_DELAY_NOT_FINISHED= 'TAROT_SPREAD_MEANING_DELAY_NOT_FINISHED',
+}
+
+export interface IInvalidDto<T = any> {
+    name?: string;
+    value: T | Array<T>;
+    expected?: T | Array<T>;
+    condition?: FilterableConditionType;
+}
+
+export interface IInsufficientFundsDto {
+    value: string;
+    target: PaymentTransactionType;
+    coinId: CoinId;
+    expected: string;
 }

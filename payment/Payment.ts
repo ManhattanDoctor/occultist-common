@@ -36,5 +36,5 @@ export enum PaymentStatus {
 export enum PaymentAccountId {
     CO_00 = 'CO-00', // Счет компании
     AG_00 = 'AG-00', // Счет аггрегатора
-    CL_00 = 'PR-00', // Персональный счет клиента
+    PR_00 = 'PR-00', // Персональный счет клиента
 }
