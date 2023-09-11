@@ -1,6 +1,6 @@
 
 import * as _ from 'lodash';
-import { LanguageTranslator } from '@ts-core/language';
+import { ILanguageTranslator } from '@ts-core/language';
 import { TarotUtil } from './TarotUtil';
 import { getTarotSpreadIndex } from './function';
 import { TarotDesk } from './TarotSpread';
@@ -24,7 +24,7 @@ export class TarotSpreadDayUtil {
     //
     // --------------------------------------------------------------------------
 
-    public static getText(index: number, language: LanguageTranslator): string {
+    public static getText(index: number, language: ILanguageTranslator): string {
         let item = _.get(language.locale.rawTranslation, `tarot.${index}`);
         let items = [language.translate({ key: 'voice.tarot.spread.day.day', params: { title: TarotUtil.getName(index, language, true) } }), this.getDescription(index, language)];
         if (!_.isEmpty(item.dark)) {
@@ -36,7 +36,7 @@ export class TarotSpreadDayUtil {
         return items.map(TarotSpreadDayUtil.parseSentence).join(' ');
     }
 
-    public static getDescription(index: number, language: LanguageTranslator): string {
+    public static getDescription(index: number, language: ILanguageTranslator): string {
         let item = _.get(language.locale.rawTranslation, `tarot.${index}`);
         let key = 'number';
         if (TarotUtil.isTypeMajor(index)) {

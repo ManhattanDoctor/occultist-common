@@ -2,7 +2,7 @@
 import * as _ from 'lodash';
 import { TAROT_SPREAD_URL, TarotDesk } from './TarotSpread';
 import { ShareUtil } from '../util';
-import { LanguageTranslator } from '@ts-core/language';
+import { ILanguageTranslator } from '@ts-core/language';
 
 export class TarotUtil {
 
@@ -22,7 +22,7 @@ export class TarotUtil {
     //
     //--------------------------------------------------------------------------
 
-    public static getName(index: number, language: LanguageTranslator, isNeedName?: boolean): string {
+    public static getName(index: number, language: ILanguageTranslator, isNeedName?: boolean): string {
         let item = language.translate({ key: `tarot.${index}.title` });
         if (!TarotUtil.isTypeNumber(index) && !TarotUtil.isTypeMajor(index)) {
             return item;
