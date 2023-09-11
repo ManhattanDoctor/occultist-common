@@ -2,6 +2,7 @@
 import * as _ from 'lodash';
 import { TAROT_SPREAD_URL, TarotDesk } from './TarotSpread';
 import { ShareUtil } from '../util';
+import { LanguageTranslator } from '@ts-core/language';
 
 export class TarotUtil {
 
@@ -20,6 +21,25 @@ export class TarotUtil {
     // 	Tarot Methods
     //
     //--------------------------------------------------------------------------
+
+    public static getName(index: number, language: LanguageTranslator, isNeedName?: boolean): string {
+        let item = language.translate({ key: `tarot.${index}.title` });
+        if (!TarotUtil.isTypeNumber(index) && !TarotUtil.isTypeMajor(index)) {
+            return item;
+        }
+        let array = item.split(' ');
+        if (array.length !== 2) {
+            return item;
+        }
+        if (TarotUtil.isTypeMajor(index)) {
+            return _.capitalize(array[1]);
+        }
+        item = _.capitalize(`${language.translate({ key: 'format.tarotCardNumberSelect', params: { tarotCardNumber: array[0] } })} ${array[1]}`);
+        if (isNeedName) {
+            item += ` - ${language.translate({ key: `tarot.${index}.name` })}`;
+        }
+        return item;
+    }
 
     public static getPictureUrl(index: number, desk?: TarotDesk): string {
         if (_.isNil(desk)) {
