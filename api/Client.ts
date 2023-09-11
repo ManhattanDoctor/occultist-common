@@ -4,7 +4,7 @@ import * as _ from 'lodash';
 import { IClockDto, IClockDtoResponse } from './clock';
 import { IInitDto, IInitDtoResponse, ILoginDto, ILoginDtoResponse } from './login';
 import { User } from '../user';
-import { ITarotSpreadMeaningAddDto, ITarotSpreadMeaningEditDto, ITarotSpreadMeaningEditDtoResponse, ITarotSpreadAddDto, ITarotSpreadListDto, ITarotSpreadListDtoResponse, ITarotSpreadAddDtoResponse, ITarotSpreadDateDto, ITarotSpreadDtoResponse, ITarotSpreadAddCheckDto, ITarotSpreadEditDto, ITarotSpreadMeaningAddDtoResponse, ITarotSpreadMeaningRejectDto, ITarotSpreadMeaningRejectDtoResponse, ITarotSpreadMeaningRateDto, ITarotSpreadMeaningRateDtoResponse, ITarotSpreadMeaningApproveDto, ITarotSpreadMeaningApproveDtoResponse, ITarotSpreadMeaningDtoResponse, ITarotSpreadMeaningCancelDtoResponse } from './tarot/spread';
+import { ITarotSpreadMeaningAddDto, ITarotSpreadMeaningEditDto, ITarotSpreadMeaningEditDtoResponse, ITarotSpreadAddDto, ITarotSpreadListDto, ITarotSpreadListDtoResponse, ITarotSpreadAddDtoResponse, ITarotSpreadDateDto, ITarotSpreadDtoResponse, ITarotSpreadEditDto, ITarotSpreadMeaningAddDtoResponse, ITarotSpreadMeaningRejectDto, ITarotSpreadMeaningRejectDtoResponse, ITarotSpreadMeaningRateDto, ITarotSpreadMeaningRateDtoResponse, ITarotSpreadMeaningApproveDto, ITarotSpreadMeaningApproveDtoResponse, ITarotSpreadMeaningDtoResponse, ITarotSpreadMeaningCancelDtoResponse } from './tarot/spread';
 import { IGeo } from '../geo';
 import { ICommentAddDto, ICommentAddDtoResponse, ICommentEditDto, ICommentEditDtoResponse, ICommentGetDtoResponse, ICommentListDto, ICommentListDtoResponse, ICommentRemoveDtoResponse } from './comment';
 import { Comment } from '../comment';
@@ -16,7 +16,7 @@ import { IUserEditDto, IUserEditDtoResponse, IUserGetDtoResponse, IUserListDto, 
 import { IStatisticsGetDtoResponse } from './statistics';
 import { IOAuthPopUpDto } from '@ts-core/oauth';
 import { ICoinAccountsGetDto } from './coin';
-import { IPaymentListDto, IPaymentListDtoResponse, IPaymentTransactionListDto, IPaymentTransactionListDtoResponse } from './payment';
+import { IPaymentListDto, IPaymentListDtoResponse, IPaymentTransactionListDto, IPaymentTransactionListDtoResponse, IPaymentBalanceEditDto } from './payment';
 import { Payment, PaymentTransaction } from '../payment';
 
 export class Client extends TransportHttp<ITransportHttpSettings> {
@@ -245,6 +245,10 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
         let item = await this.call<IPaymentListDtoResponse, IPaymentListDto>(PAYMENT_URL, { data: TraceUtil.addIfNeed(data) });
         item.items = TransformUtil.toClassMany(Payment, item.items);
         return item;
+    }
+
+    public async paymentBalanceEdit(data: IPaymentBalanceEditDto): Promise<void> {
+        return this.call<void, IPaymentBalanceEditDto>(`${PAYMENT_URL}/balance`, { data: TraceUtil.addIfNeed(data) });
     }
 
     public async paymentTransactionList(data?: IPaymentTransactionListDto): Promise<IPaymentTransactionListDtoResponse> {

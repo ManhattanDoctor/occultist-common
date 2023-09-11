@@ -29,9 +29,8 @@ export enum PaymentTransactionItemType {
 }
 
 export enum PaymentTransactionType {
-    BURNING = 'BURNING',
     PURCHASE = 'PURCHASE',
-    EMISSION = 'EMISSION',
+    CORRECTION = 'CORRECTION',
     DAILY_BONUS = 'DAILY_BONUS',
     REGISTRATION_BONUS = 'REGISTRATION_BONUS',
     TAROT_SPREAD_MEANING_BONUS = 'TAROT_SPREAD_MEANING_BONUS',
