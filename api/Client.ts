@@ -248,7 +248,7 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
     }
 
     public async paymentBalanceEdit(data: IPaymentBalanceEditDto): Promise<void> {
-        return this.call<void, IPaymentBalanceEditDto>(`${PAYMENT_URL}/balance`, { data: TraceUtil.addIfNeed(data) });
+        return this.call<void, IPaymentBalanceEditDto>(`${PAYMENT_URL}/balance`, { data: TraceUtil.addIfNeed(data), method: 'post' });
     }
 
     public async paymentTransactionList(data?: IPaymentTransactionListDto): Promise<IPaymentTransactionListDtoResponse> {
