@@ -2,7 +2,7 @@ import { TransportHttp, ITransportHttpSettings, LoggerLevel, DateUtil, ExtendedE
 import { ILogger, TransformUtil, ITraceable, TraceUtil } from '@ts-core/common';
 import * as _ from 'lodash';
 import { IClockDto, IClockDtoResponse } from './clock';
-import { IInitDto, IInitDtoResponse, ILoginDto, ILoginDtoResponse } from './login';
+import { IInitDto, IInitDtoResponse, ILoginDto, ILoginDtoResponse, InitDetails } from './login';
 import { User } from '../user';
 import { ITarotSpreadMeaningAddDto, ITarotSpreadMeaningEditDto, ITarotSpreadMeaningEditDtoResponse, ITarotSpreadAddDto, ITarotSpreadListDto, ITarotSpreadListDtoResponse, ITarotSpreadAddDtoResponse, ITarotSpreadDateDto, ITarotSpreadDtoResponse, ITarotSpreadEditDto, ITarotSpreadMeaningAddDtoResponse, ITarotSpreadMeaningRejectDto, ITarotSpreadMeaningRejectDtoResponse, ITarotSpreadMeaningRateDto, ITarotSpreadMeaningRateDtoResponse, ITarotSpreadMeaningApproveDto, ITarotSpreadMeaningApproveDtoResponse, ITarotSpreadMeaningDtoResponse, ITarotSpreadMeaningCancelDtoResponse } from './tarot/spread';
 import { IGeo } from '../geo';
@@ -64,6 +64,7 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
     public async init(data?: IInitDto): Promise<IInitDtoResponse> {
         let item = await this.call<IInitDtoResponse, IInitDto>(INIT_URL, { data: TraceUtil.addIfNeed(data) });
         item.user = TransformUtil.toClass(User, item.user);
+        item.details = TransformUtil.toClass(InitDetails, item.details);
         return item;
     }
 
