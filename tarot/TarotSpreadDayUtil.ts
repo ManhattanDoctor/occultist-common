@@ -4,6 +4,7 @@ import { ILanguageTranslator } from '@ts-core/language';
 import { TarotUtil } from './TarotUtil';
 import { getTarotSpreadIndex } from './function';
 import { TarotDesk } from './TarotSpread';
+import { RandomUtil } from '@ts-core/common';
 
 export class TarotSpreadDayUtil {
 
@@ -26,12 +27,12 @@ export class TarotSpreadDayUtil {
 
     public static getText(index: number, language: ILanguageTranslator): string {
         let item = _.get(language.locale.rawTranslation, `tarot.${index}`);
-        let items = [language.translate({ key: 'voice.tarot.spread.day.day', params: { title: TarotUtil.getName(index, language, true) } }), this.getDescription(index, language)];
+        let items = [language.translate({ key: 'tarot.spread.DAY.day', params: { title: TarotUtil.getName(index, language, true) } }), this.getDescription(index, language)];
         if (!_.isEmpty(item.dark)) {
-            items.push(language.translate({ key: 'voice.tarot.dark', params: { dark: _.lowerFirst(item.voiceDark) } }));
+            items.push(language.translate({ key: 'tarot.spread.DAY.dark', params: { dark: _.lowerFirst(item.darkShort) } }));
         }
         if (!_.isEmpty(item.light)) {
-            items.push(language.translate({ key: 'voice.tarot.light', params: { light: _.lowerFirst(item.voiceLight) } }));
+            items.push(language.translate({ key: 'tarot.spread.DAY.light', params: { light: _.lowerFirst(item.lightShort) } }));
         }
         return items.map(TarotSpreadDayUtil.parseSentence).join(' ');
     }
@@ -48,7 +49,7 @@ export class TarotSpreadDayUtil {
         else if (TarotUtil.isTypeAce(index)) {
             key = 'ace';
         }
-        return language.translate({ key: `voice.tarot.${key}`, params: { description: _.lowerFirst(item.voiceDescription) } });
+        return language.translate({ key: `tarot.spread.DAY.${key}`, params: { description: _.lowerFirst(item.descriptionShort) } });
     }
 
     public static getIndex(seed: string | number): number {
@@ -64,4 +65,11 @@ export class TarotSpreadDayUtil {
         return TarotUtil.getPictureUrl(index, desk);
     }
 
+    public static getGreeting(language: ILanguageTranslator): string {
+        return RandomUtil.randomArrayItem(_.get(language.locale.rawTranslation, `tarot.spread.DAY.greeting`));
+    }
+
+    public static getFarewell(language: ILanguageTranslator): string {
+        return RandomUtil.randomArrayItem(_.get(language.locale.rawTranslation, `tarot.spread.DAY.farewell`));
+    }
 }

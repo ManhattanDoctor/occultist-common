@@ -38,8 +38,7 @@ export const TAROT_LOCALE_PREFIXES = [
     'Gematria.json',
 
     'Main.json',
-    'About.json',
-    'Voice.json',
+    'About.json'
 ];
 
 export const DEMONOLOGY_LOCALE_PREFIXES = [
