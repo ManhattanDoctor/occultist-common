@@ -81,14 +81,17 @@ export class TarotUtil {
     //
     //--------------------------------------------------------------------------
 
+    public static getUrl(index: number): string {
+        return `${ShareUtil.SITE_URL}/tarot/${index}`;
+    }
+
     public static getSpreadUrl(options: ITarotSpreadUrlOptions): IShareUrl {
         let fragment = TarotUtil.getSpreadFragmentUrl(options.uid);
         return {
             vk: `${ShareUtil.VK_URL}#${fragment}`,
             web: !_.isEmpty(options.origin) ? `${options.origin}#${fragment}` : `${ShareUtil.SITE_URL}#${fragment}`,
+            picture: `${ShareUtil.SITE_URL}/assets/icon/512.png`,
             application: `${ShareUtil.SITE_URL}#${fragment}`,
-            // application: `https://localhost/${TAROT_SPREAD_URL}/${options.uid}`,
-            picture: `https://occultist.one/assets/icon/512.png`,
             fragment
         }
     }

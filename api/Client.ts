@@ -2,7 +2,7 @@ import { TransportHttp, ITransportHttpSettings, LoggerLevel, DateUtil, ExtendedE
 import { ILogger, TransformUtil, ITraceable, TraceUtil } from '@ts-core/common';
 import * as _ from 'lodash';
 import { IClockDto, IClockDtoResponse } from './clock';
-import { IInitDto, IInitDtoResponse, ILoginDto, ILoginDtoResponse, InitDetails } from './login';
+import { IInitDto, IInitDtoResponse, ILoginDto, ILoginDtoResponse } from './login';
 import { User } from '../user';
 import { ITarotSpreadMeaningAddDto, ITarotSpreadMeaningEditDto, ITarotSpreadMeaningEditDtoResponse, ITarotSpreadAddDto, ITarotSpreadListDto, ITarotSpreadListDtoResponse, ITarotSpreadAddDtoResponse, ITarotSpreadDateDto, ITarotSpreadDtoResponse, ITarotSpreadEditDto, ITarotSpreadMeaningAddDtoResponse, ITarotSpreadMeaningRejectDto, ITarotSpreadMeaningRejectDtoResponse, ITarotSpreadMeaningRateDto, ITarotSpreadMeaningRateDtoResponse, ITarotSpreadMeaningApproveDto, ITarotSpreadMeaningApproveDtoResponse, ITarotSpreadMeaningDtoResponse, ITarotSpreadMeaningCancelDtoResponse } from './tarot/spread';
 import { IGeo } from '../geo';
@@ -15,8 +15,8 @@ import { LocaleProject } from './locale';
 import { IUserEditDto, IUserEditDtoResponse, IUserGetDtoResponse, IUserListDto, IUserListDtoResponse, UserUID } from './user';
 import { IStatisticsGetDtoResponse } from './statistics';
 import { IOAuthPopUpDto } from '@ts-core/oauth';
-import { ICoinAccountsGetDto } from './coin';
-import { IPaymentListDto, IPaymentListDtoResponse, IPaymentTransactionListDto, IPaymentTransactionListDtoResponse, IPaymentBalanceEditDto } from './payment';
+import { CoinBonusDto, ICoinAccountsGetDto, ICoinBalanceEditDto } from './coin';
+import { IPaymentListDto, IPaymentListDtoResponse, IPaymentTransactionListDto, IPaymentTransactionListDtoResponse } from './payment';
 import { Payment, PaymentTransaction } from '../payment';
 
 export class Client extends TransportHttp<ITransportHttpSettings> {
@@ -64,7 +64,7 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
     public async init(data?: IInitDto): Promise<IInitDtoResponse> {
         let item = await this.call<IInitDtoResponse, IInitDto>(INIT_URL, { data: TraceUtil.addIfNeed(data) });
         item.user = TransformUtil.toClass(User, item.user);
-        item.details = TransformUtil.toClass(InitDetails, item.details);
+        item.bonus = TransformUtil.toClass(CoinBonusDto, item.bonus);
         return item;
     }
 
@@ -191,10 +191,6 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
         return TransformUtil.toClass(User, item);
     }
 
-    public async userCoinAccountsGet(uid: UserUID): Promise<ICoinAccountsGetDto> {
-        return this.call<ICoinAccountsGetDto>(`${USER_URL}/${uid}/coin`);
-    }
-
     public async userTarotSpreadList(data: ITarotSpreadListDto): Promise<ITarotSpreadListDtoResponse> {
         if (_.isNil(data.conditions) || !_.isNumber(data.conditions.userId)) {
             throw new ExtendedError(`Conditions "userId" must be number`);
@@ -238,6 +234,20 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
 
     //--------------------------------------------------------------------------
     //
+    // 	Coin Methods
+    //
+    //--------------------------------------------------------------------------
+
+    public async coinBalanceEdit(data: ICoinBalanceEditDto): Promise<void> {
+        return this.call<void, ICoinBalanceEditDto>(`${COIN_URL}/balance`, { data: TraceUtil.addIfNeed(data), method: 'post' });
+    }
+
+    public async coinAccountsGet(uid: UserUID): Promise<ICoinAccountsGetDto> {
+        return this.call<ICoinAccountsGetDto>(`${COIN_URL}/${uid}/accounts`);
+    }
+
+    //--------------------------------------------------------------------------
+    //
     // 	Payment Methods
     //
     //--------------------------------------------------------------------------
@@ -246,10 +256,6 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
         let item = await this.call<IPaymentListDtoResponse, IPaymentListDto>(PAYMENT_URL, { data: TraceUtil.addIfNeed(data) });
         item.items = TransformUtil.toClassMany(Payment, item.items);
         return item;
-    }
-
-    public async paymentBalanceEdit(data: IPaymentBalanceEditDto): Promise<void> {
-        return this.call<void, IPaymentBalanceEditDto>(`${PAYMENT_URL}/balance`, { data: TraceUtil.addIfNeed(data), method: 'post' });
     }
 
     public async paymentTransactionList(data?: IPaymentTransactionListDto): Promise<IPaymentTransactionListDtoResponse> {
@@ -356,6 +362,7 @@ export const LOCALE_URL = PREFIX_URL + 'locale';
 export const PEOPLE_URL = PREFIX_URL + 'people';
 export const STATISTICS_URL = PREFIX_URL + 'statistics';
 
+export const COIN_URL = PREFIX_URL + 'coin';
 export const VOICE_URL = PREFIX_URL + 'voice';
 export const COMMENT_URL = PREFIX_URL + 'comment';
 export const PAYMENT_URL = PREFIX_URL + 'payment';
