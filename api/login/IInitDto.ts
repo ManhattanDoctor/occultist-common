@@ -1,12 +1,9 @@
 import { ITraceable } from '@ts-core/common';
 import { User } from '../../user';
-import { CoinAccounts } from '../../coin';
-import { CoinBonusDto } from '../coin';
+import { CoinStatusGetDtoResponse } from '../coin';
 
 export interface IInitDto extends ITraceable { }
 
-export interface IInitDtoResponse {
+export interface IInitDtoResponse extends CoinStatusGetDtoResponse{
     user: User;
-    bonus: CoinBonusDto;
-    balances: CoinAccounts;
 }
