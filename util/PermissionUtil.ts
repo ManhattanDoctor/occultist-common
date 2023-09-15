@@ -43,6 +43,13 @@ export class PermissionUtil {
         return item.id === user.id;
     }
 
+    public static userIsMaster(item: User): boolean {
+        if (PermissionUtil.userIsAdministrator(item)) {
+            return true;
+        }
+        return !_.isNil(item) ? item.account.type === UserAccountType.MASTER : false;
+    }
+
     public static userIsAdministrator(item: User): boolean {
         return !_.isNil(item) ? item.account.type === UserAccountType.ADMINISTRATOR : false;
     }
