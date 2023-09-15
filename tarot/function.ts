@@ -68,5 +68,5 @@ export function getTarotSpreadAmount(item: TarotSpreadType): number {
 }
 
 export function getTarotSpreadPrice(item: TarotSpreadType): string {
-    return (2 * getTarotSpreadAmount(item)).toString();
+    return getTarotSpreadAmount(item).toString();
 }
