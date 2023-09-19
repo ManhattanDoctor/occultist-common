@@ -27,7 +27,7 @@ export class PermissionUtil {
         if (PermissionUtil.userIsAdministrator(user)) {
             return true;
         }
-        if (!_.isNil(params) && (!_.isNil(params.account) || !_.isNil(params.status))) {
+        if (!_.isNil(params) && (!_.isNil(params.account) || !_.isNil(params.status) || !_.isNil(params.master))) {
             return false;
         }
         return item.id === user.id;

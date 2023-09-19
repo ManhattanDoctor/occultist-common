@@ -2,6 +2,7 @@ import { Type } from 'class-transformer';
 import { UserAccount } from './UserAccount';
 import { UserPreferences } from './UserPreferences';
 import { UserStatistics } from './UserStatistics';
+import { UserMaster } from '@project/common/user/UserMaster';
 
 export class User {
     public id: number;
@@ -17,6 +18,9 @@ export class User {
 
     @Type(() => UserPreferences)
     public preferences: UserPreferences;
+
+    @Type(() => UserMaster)
+    public master?: UserMaster;
 
     @Type(() => UserStatistics)
     public statistics?: UserStatistics;
