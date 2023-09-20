@@ -14,7 +14,9 @@ export class UserMaster {
 
     picture: string;
     pictureSmall: string;
+    
     pictureAnimated: string;
+    pictureAnimatedSmall: string;
 }
 export enum UserMasterSkill {
     WICCA = 'WICCA',
