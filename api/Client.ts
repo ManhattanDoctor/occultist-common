@@ -4,7 +4,7 @@ import * as _ from 'lodash';
 import { IClockDto, IClockDtoResponse } from './clock';
 import { IInitDto, IInitDtoResponse, ILoginDto, ILoginDtoResponse } from './login';
 import { User } from '../user';
-import { ITarotSpreadMeaningAddDto, ITarotSpreadMeaningEditDto, ITarotSpreadMeaningEditDtoResponse, ITarotSpreadAddDto, ITarotSpreadListDto, ITarotSpreadListDtoResponse, ITarotSpreadAddDtoResponse, ITarotSpreadDateDto, ITarotSpreadDtoResponse, ITarotSpreadEditDto, ITarotSpreadMeaningAddDtoResponse, ITarotSpreadMeaningRejectDto, ITarotSpreadMeaningRejectDtoResponse, ITarotSpreadMeaningRateDto, ITarotSpreadMeaningRateDtoResponse, ITarotSpreadMeaningApproveDto, ITarotSpreadMeaningApproveDtoResponse, ITarotSpreadMeaningDtoResponse, ITarotSpreadMeaningCancelDtoResponse, ITarotSpreadMeaningMasterListDto, ITarotSpreadMeaningMasterListDtoResponse } from './tarot/spread';
+import { ITarotSpreadMeaningAddDto, ITarotSpreadMeaningEditDto, ITarotSpreadMeaningEditDtoResponse, ITarotSpreadAddDto, ITarotSpreadListDto, ITarotSpreadListDtoResponse, ITarotSpreadAddDtoResponse, ITarotSpreadDateDto, ITarotSpreadDtoResponse, ITarotSpreadEditDto, ITarotSpreadMeaningAddDtoResponse, ITarotSpreadMeaningRejectDto, ITarotSpreadMeaningRejectDtoResponse, ITarotSpreadMeaningRateDto, ITarotSpreadMeaningRateDtoResponse, ITarotSpreadMeaningApproveDto, ITarotSpreadMeaningApproveDtoResponse, ITarotSpreadMeaningDtoResponse, ITarotSpreadMeaningCancelDtoResponse } from './tarot/spread';
 import { IGeo } from '../geo';
 import { ICommentAddDto, ICommentAddDtoResponse, ICommentEditDto, ICommentEditDtoResponse, ICommentGetDtoResponse, ICommentListDto, ICommentListDtoResponse, ICommentRemoveDtoResponse } from './comment';
 import { Comment } from '../comment';
@@ -12,7 +12,7 @@ import { TarotSpread, TarotSpreadMeaning, TarotSpreadUID } from '../tarot';
 import { IPeopleListDto, IPeopleListDtoResponse } from './people';
 import { IManagementTarotSpreadListDto, IManagementTarotSpreadListDtoResponse, IManagementTarotSpreadMeaningListDto, IManagementTarotSpreadMeaningListDtoResponse } from './management';
 import { LocaleProject } from './locale';
-import { IUserEditDto, IUserEditDtoResponse, IUserGetDtoResponse, IUserListDto, IUserListDtoResponse, UserUID } from './user';
+import { IUserEditDto, IUserEditDtoResponse, IUserGetDtoResponse, IUserListDto, IUserListDtoResponse, IUserMasterListDto, IUserMasterListDtoResponse, UserUID } from './user';
 import { IStatisticsGetDtoResponse } from './statistics';
 import { IOAuthPopUpDto } from '@ts-core/oauth';
 import { CoinBonusDto, CoinStatusGetDtoResponse, ICoinAccountsGetDto, ICoinBalanceEditDto } from './coin';
@@ -175,11 +175,6 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
         return TransformUtil.toClass(TarotSpreadMeaning, item);
     }
 
-    public async tarotSpreadMeaningMasterList(data?: ITarotSpreadMeaningMasterListDto): Promise<ITarotSpreadMeaningMasterListDtoResponse> {
-        let items = await this.call<ITarotSpreadMeaningMasterListDtoResponse, ITarotSpreadMeaningMasterListDto>(`${TAROT_SPREAD_MEANING_URL}/master`, { data: TraceUtil.addIfNeed(data) });
-        return TransformUtil.toClassMany(User, items);
-    }
-
     // --------------------------------------------------------------------------
     //
     //  User Methods
@@ -203,6 +198,11 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
         let item = await this.call<ITarotSpreadListDtoResponse, ITarotSpreadListDto>(`${USER_URL}/${data.conditions.userId}/tarot/spread`, { data: TraceUtil.addIfNeed(data) });
         item.items = TransformUtil.toClassMany(TarotSpread, item.items);
         return item;
+    }
+
+    public async userMasterList(data?: IUserMasterListDto): Promise<IUserMasterListDtoResponse> {
+        let items = await this.call<IUserMasterListDtoResponse, IUserMasterListDto>(`${USER_URL}`, { data: TraceUtil.addIfNeed(data) });
+        return TransformUtil.toClassMany(User, items);
     }
 
     // --------------------------------------------------------------------------
