@@ -1,8 +1,9 @@
 
-import { UnreachableStatementError } from '@ts-core/common';
+import { MathUtil, UnreachableStatementError } from '@ts-core/common';
 import { RandomGenerator } from '../util';
 import { TarotSpreadType } from './TarotSpread';
 import * as _ from 'lodash';
+import { User, UserMasterLevel } from '../user';
 
 export function getTarotSpreadIndexes(seed: string): Array<number> {
     let length = 78;
@@ -67,6 +68,21 @@ export function getTarotSpreadAmount(item: TarotSpreadType): number {
     }
 }
 
-export function getTarotSpreadPrice(item: TarotSpreadType): string {
-    return getTarotSpreadAmount(item).toString();
+export function getTarotSpreadPrice(item: TarotSpreadType, master: User): string {
+    let amount = getTarotSpreadAmount(item);
+    let multiplier = 1;
+    switch (master.master.level) {
+        case UserMasterLevel.MASTER:
+            multiplier = 30;
+            break;
+        case UserMasterLevel.ADVANCED:
+            multiplier = 5;
+            break;
+        case UserMasterLevel.BEGINNER:
+            multiplier = 1;
+            break;
+        default:
+            throw new UnreachableStatementError(master.master.level);
+    }
+    return (amount * multiplier).toString();
 }
