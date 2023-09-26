@@ -69,9 +69,11 @@ export function getTarotSpreadAmount(item: TarotSpreadType): number {
 }
 
 export function getTarotSpreadPrice(item: TarotSpreadType, master: User): string {
+    let level = master?.master?.level || UserMasterLevel.BEGINNER;
     let amount = getTarotSpreadAmount(item);
     let multiplier = 1;
-    switch (master.master.level) {
+
+    switch (level) {
         case UserMasterLevel.MASTER:
             multiplier = 30;
             break;
@@ -82,7 +84,8 @@ export function getTarotSpreadPrice(item: TarotSpreadType, master: User): string
             multiplier = 1;
             break;
         default:
-            throw new UnreachableStatementError(master.master.level);
+            throw new UnreachableStatementError(level);
     }
+
     return (amount * multiplier).toString();
 }
