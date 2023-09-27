@@ -23,6 +23,7 @@ export class UserPreferences {
 
     isHideFromPeople?: boolean;
     isNotSuggestShowHelp?: boolean;
+    isNotSuggestAddToProfile?: boolean;
     isNotSuggestAddToFavorites?: boolean;
     isNotSuggestAllowSendNotifications?: boolean;
 
