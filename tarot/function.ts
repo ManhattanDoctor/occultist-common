@@ -1,6 +1,6 @@
 
 import { MathUtil, UnreachableStatementError } from '@ts-core/common';
-import { RandomGenerator } from '../util';
+import { PermissionUtil, RandomGenerator } from '../util';
 import { TarotSpreadType } from './TarotSpread';
 import * as _ from 'lodash';
 import { User, UserMasterLevel } from '../user';
@@ -71,18 +71,33 @@ export function getTarotSpreadAmount(item: TarotSpreadType): number {
 export function getTarotSpreadPrice(item: TarotSpreadType, master: User): string {
     let amount = getTarotSpreadAmount(item);
     let multiplier = 1;
-    switch (master.master.level) {
-        case UserMasterLevel.MASTER:
-            multiplier = 30;
-            break;
-        case UserMasterLevel.ADVANCED:
-            multiplier = 5;
-            break;
-        case UserMasterLevel.BEGINNER:
-            multiplier = 1;
-            break;
-        default:
-            throw new UnreachableStatementError(master.master.level);
+
+    if (!_.isNil(master) && !_.isNil(master.master)) {
+        switch (master.master.level) {
+            case UserMasterLevel.MASTER:
+                multiplier = 30;
+                break;
+            case UserMasterLevel.ADVANCED:
+                multiplier = 5;
+                break;
+            case UserMasterLevel.BEGINNER:
+                multiplier = 1;
+                break;
+            default:
+                throw new UnreachableStatementError(master.master.level);
+        }
     }
     return (amount * multiplier).toString();
+}
+
+export function getTarotSpreadIsPaid(master: User): boolean {
+    if (_.isNil(master) || _.isNil(master.master) || !PermissionUtil.userIsMaster(master)) {
+        return false;
+    }
+    switch (master.master.level) {
+        case UserMasterLevel.BEGINNER:
+            return false;
+        default:
+            return true;
+    }
 }
