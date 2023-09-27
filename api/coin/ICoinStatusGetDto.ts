@@ -1,9 +1,10 @@
 import { ITraceable } from "@ts-core/common";
 import { CoinAccounts } from "../../coin";
+import { IUserDetails } from "../user";
 import { CoinBonusDto } from "./CoinBonusDto";
 
 export interface ICoinStatusGetDto extends ITraceable {
-    vkInternalParams?: string;
+    details?: IUserDetails
 }
 
 export class CoinStatusGetDtoResponse {

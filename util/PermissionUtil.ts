@@ -12,7 +12,7 @@ export class PermissionUtil {
     //
     //--------------------------------------------------------------------------
 
-    public static TAROT_SPREAD_MEANING_MAX = 7;
+    public static TAROT_SPREAD_MEANING_MAX = 10;
 
     //--------------------------------------------------------------------------
     //
