@@ -1,8 +1,8 @@
 import { Type } from 'class-transformer';
+import { UserMaster } from './UserMaster';
 import { UserAccount } from './UserAccount';
-import { UserPreferences } from './UserPreferences';
 import { UserStatistics } from './UserStatistics';
-import { UserMaster } from '@project/common/user/UserMaster';
+import { UserPreferences } from './UserPreferences';
 
 export class User {
     public id: number;
