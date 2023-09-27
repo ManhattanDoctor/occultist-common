@@ -15,7 +15,7 @@ import { LocaleProject } from './locale';
 import { IUserEditDto, IUserEditDtoResponse, IUserGetDtoResponse, IUserListDto, IUserListDtoResponse, IUserMasterListDto, IUserMasterListDtoResponse, UserUID } from './user';
 import { IStatisticsGetDtoResponse } from './statistics';
 import { IOAuthPopUpDto } from '@ts-core/oauth';
-import { CoinBonusDto, CoinStatusGetDtoResponse, ICoinAccountsGetDto, ICoinBalanceEditDto } from './coin';
+import { CoinBonusDto, CoinStatusGetDtoResponse, ICoinAccountsGetDto, ICoinBalanceEditDto, ICoinStatusGetDto } from './coin';
 import { IPaymentListDto, IPaymentListDtoResponse, IPaymentTransactionListDto, IPaymentTransactionListDtoResponse } from './payment';
 import { Payment, PaymentTransaction } from '../payment';
 
@@ -243,8 +243,8 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
     //
     //--------------------------------------------------------------------------
 
-    public async coinStatusGet(): Promise<CoinStatusGetDtoResponse> {
-        let item = await this.call<CoinStatusGetDtoResponse>(`${COIN_URL}/status`);
+    public async coinStatusGet(data: ICoinStatusGetDto): Promise<CoinStatusGetDtoResponse> {
+        let item = await this.call<CoinStatusGetDtoResponse>(`${COIN_URL}/status`, { data: TraceUtil.addIfNeed(data) });
         return TransformUtil.toClass(CoinStatusGetDtoResponse, item);
     }
 

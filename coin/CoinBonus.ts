@@ -7,4 +7,6 @@ export interface ICoinBonus extends ICoinAmount {
 export enum CoinBonusType {
     DAILY = 'DAILY',
     REGISTRATION = 'REGISTRATION',
+    VK_PROFILE_BUTTON = 'VK_PROFILE_BUTTON',
+    VK_GROUP_PARTICIPATION = 'VK_GROUP_PARTICIPATION',
 }
