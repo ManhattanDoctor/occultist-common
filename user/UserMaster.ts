@@ -19,6 +19,7 @@ export class UserMaster {
     pictureAnimatedSmall: string;
 }
 export enum UserMasterSkill {
+    ART = 'ART',
     WICCA = 'WICCA',
     MAGIC = 'MAGIC',
     CRYSTALS = 'CRYSTALS',
@@ -32,7 +33,9 @@ export enum UserMasterSkill {
     WHITE_MAGIC = 'WHITE_MAGIC',
     BLACK_MAGIC = 'BLACK_MAGIC',
     NATURAL_MAGIC = 'NATURAL_MAGIC',
+    HISTORY = 'HISTORY',
     PSYCHOLOGY = 'PSYCHOLOGY',
+    PHILOSOPHY = 'PHILOSOPHY',
 
     GESTALT_THERAPY = 'GESTALT_THERAPY',
     JUNGIAN_ANALYSIS = 'JUNGIAN_ANALYSIS',
