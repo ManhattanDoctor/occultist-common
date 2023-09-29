@@ -1,5 +1,6 @@
 import { Type } from 'class-transformer';
 import { CoinId, ICoinAmount } from './CoinId';
+import { User } from '../user';
 
 export class CoinAccount implements ICoinAmount {
     id: number;
@@ -12,6 +13,9 @@ export class CoinAccount implements ICoinAmount {
 
     @Type(() => Date)
     updatedDate: Date;
+
+    @Type(() => User)
+    user?: User;
 }
 
 export type CoinAccounts = {

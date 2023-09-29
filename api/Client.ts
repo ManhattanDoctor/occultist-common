@@ -10,7 +10,7 @@ import { ICommentAddDto, ICommentAddDtoResponse, ICommentEditDto, ICommentEditDt
 import { Comment } from '../comment';
 import { TarotSpread, TarotSpreadMeaning, TarotSpreadUID } from '../tarot';
 import { IPeopleListDto, IPeopleListDtoResponse } from './people';
-import { IManagementTarotSpreadListDto, IManagementTarotSpreadListDtoResponse, IManagementTarotSpreadMeaningListDto, IManagementTarotSpreadMeaningListDtoResponse } from './management';
+import { IManagementCoinAccountListDto, IManagementCoinAccountListDtoResponse, IManagementTarotSpreadListDto, IManagementTarotSpreadListDtoResponse, IManagementTarotSpreadMeaningListDto, IManagementTarotSpreadMeaningListDtoResponse } from './management';
 import { LocaleProject } from './locale';
 import { IUserEditDto, IUserEditDtoResponse, IUserGetDtoResponse, IUserListDto, IUserListDtoResponse, IUserMasterListDto, IUserMasterListDtoResponse, UserUID } from './user';
 import { IStatisticsGetDtoResponse } from './statistics';
@@ -18,6 +18,7 @@ import { IOAuthPopUpDto } from '@ts-core/oauth';
 import { CoinBonusDto, CoinStatusGetDtoResponse, ICoinAccountsGetDto, ICoinBalanceEditDto, ICoinStatusGetDto } from './coin';
 import { IPaymentListDto, IPaymentListDtoResponse, IPaymentTransactionListDto, IPaymentTransactionListDtoResponse } from './payment';
 import { Payment, PaymentTransaction } from '../payment';
+import { CoinAccount } from '../coin';
 
 export class Client extends TransportHttp<ITransportHttpSettings> {
     // --------------------------------------------------------------------------
@@ -286,6 +287,12 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
         return item;
     }
 
+    public async managementCoinAccountList(data?: IManagementCoinAccountListDto): Promise<IManagementCoinAccountListDtoResponse> {
+        let item = await this.call<IManagementCoinAccountListDtoResponse, IManagementCoinAccountListDto>(MANAGEMENT_COIN_ACCOUNT_URL, { data: TraceUtil.addIfNeed(data) });
+        item.items = TransformUtil.toClassMany(CoinAccount, item.items);
+        return item;
+    }
+
     public async managementCommentList(data?: ICommentListDto): Promise<ICommentListDtoResponse> {
         let item = await this.call<ICommentListDtoResponse, ICommentListDto>(MANAGEMENT_COMMENT_URL, { data: TraceUtil.addIfNeed(data) });
         item.items = TransformUtil.toClassMany(Comment, item.items);
@@ -385,6 +392,7 @@ export const TAROT_SPREAD_MEANING_URL = PREFIX_URL + 'tarot/spread-meaning';
 
 export const MANAGEMENT_USER_URL = PREFIX_URL + 'management/user';
 export const MANAGEMENT_COMMENT_URL = PREFIX_URL + 'management/comment';
+export const MANAGEMENT_COIN_ACCOUNT_URL = PREFIX_URL + 'management/coinAccount';
 export const MANAGEMENT_TAROT_SPREAD_URL = PREFIX_URL + 'management/tarot/spread';
 export const MANAGEMENT_TAROT_SPREAD_MEANING_URL = PREFIX_URL + 'management/tarot/spread-meaning';
 
