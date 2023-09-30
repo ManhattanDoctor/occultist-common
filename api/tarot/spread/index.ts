@@ -9,6 +9,7 @@ export * from './ITarotSpreadMeaningRateDto';
 export * from './ITarotSpreadMeaningCancelDto';
 export * from './ITarotSpreadMeaningRejectDto';
 export * from './ITarotSpreadMeaningApproveDto';
+export * from './ITarotSpreadMeaningIsCanAddDto';
 
 export * from './ITarotSpreadDto';
 export * from './ITarotSpreadListDto';
