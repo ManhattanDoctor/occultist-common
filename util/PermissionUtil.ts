@@ -101,7 +101,8 @@ export class PermissionUtil {
         if (!_.isNil(item.meaning) && item.meaning.status !== TarotSpreadMeaningStatus.CANCELED) {
             return false;
         }
-        return getTarotSpreadAmount(item.type) <= PermissionUtil.TAROT_SPREAD_MEANING_MAX;
+        return true;
+        // return getTarotSpreadAmount(item.type) <= PermissionUtil.TAROT_SPREAD_MEANING_MAX;
     }
 
     public static spreadMeaningIsCanMean(item: TarotSpreadMeaning, user: User): boolean {
