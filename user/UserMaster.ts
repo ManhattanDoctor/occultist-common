@@ -20,6 +20,7 @@ export class UserMaster {
 }
 export enum UserMasterSkill {
     ART = 'ART',
+    YOGA = 'YOGA',
     WICCA = 'WICCA',
     MAGIC = 'MAGIC',
     CRYSTALS = 'CRYSTALS',
@@ -29,7 +30,7 @@ export enum UserMasterSkill {
     MYSTICISM = 'MYSTICISM',
     SYMBOLISM = 'SYMBOLISM',
     HERBALISM = 'HERBALISM',
-    ORTHODOXY = 'ORTHODOXY',
+    CHRISTIAN = 'CHRISTIAN',
     DARK_MAGIC = 'DARK_MAGIC',
     WHITE_MAGIC = 'WHITE_MAGIC',
     BLACK_MAGIC = 'BLACK_MAGIC',
