@@ -3,16 +3,8 @@ import { TarotSpread, TarotSpreadMeaning, TarotSpreadMeaningStatus, TarotSpreadP
 import { Comment } from '../comment';
 import { User, UserAccountType } from '../user';
 import { IUserEditDto } from '../api/user';
-import { getTarotSpreadAmount } from '../tarot';
 
 export class PermissionUtil {
-    //--------------------------------------------------------------------------
-    //
-    // 	Static Properties
-    //
-    //--------------------------------------------------------------------------
-
-    public static TAROT_SPREAD_MEANING_MAX = 10;
 
     //--------------------------------------------------------------------------
     //
