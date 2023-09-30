@@ -94,7 +94,6 @@ export class PermissionUtil {
             return false;
         }
         return true;
-        // return getTarotSpreadAmount(item.type) <= PermissionUtil.TAROT_SPREAD_MEANING_MAX;
     }
 
     public static spreadMeaningIsCanMean(item: TarotSpreadMeaning, user: User): boolean {

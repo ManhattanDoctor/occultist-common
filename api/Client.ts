@@ -4,7 +4,7 @@ import * as _ from 'lodash';
 import { IClockDto, IClockDtoResponse } from './clock';
 import { IInitDto, IInitDtoResponse, ILoginDto, ILoginDtoResponse } from './login';
 import { User } from '../user';
-import { ITarotSpreadMeaningAddDto, ITarotSpreadMeaningEditDto, ITarotSpreadMeaningEditDtoResponse, ITarotSpreadAddDto, ITarotSpreadListDto, ITarotSpreadListDtoResponse, ITarotSpreadAddDtoResponse, ITarotSpreadDateDto, ITarotSpreadDtoResponse, ITarotSpreadEditDto, ITarotSpreadMeaningAddDtoResponse, ITarotSpreadMeaningRejectDto, ITarotSpreadMeaningRejectDtoResponse, ITarotSpreadMeaningRateDto, ITarotSpreadMeaningRateDtoResponse, ITarotSpreadMeaningApproveDto, ITarotSpreadMeaningApproveDtoResponse, ITarotSpreadMeaningDtoResponse, ITarotSpreadMeaningCancelDtoResponse } from './tarot/spread';
+import { ITarotSpreadMeaningAddDto, ITarotSpreadMeaningEditDto, ITarotSpreadMeaningEditDtoResponse, ITarotSpreadAddDto, ITarotSpreadListDto, ITarotSpreadListDtoResponse, ITarotSpreadAddDtoResponse, ITarotSpreadDateDto, ITarotSpreadDtoResponse, ITarotSpreadEditDto, ITarotSpreadMeaningAddDtoResponse, ITarotSpreadMeaningRejectDto, ITarotSpreadMeaningRejectDtoResponse, ITarotSpreadMeaningRateDto, ITarotSpreadMeaningRateDtoResponse, ITarotSpreadMeaningApproveDto, ITarotSpreadMeaningApproveDtoResponse, ITarotSpreadMeaningDtoResponse, ITarotSpreadMeaningCancelDtoResponse, ITarotSpreadMeaningIsCanAddDto } from './tarot/spread';
 import { IGeo } from '../geo';
 import { ICommentAddDto, ICommentAddDtoResponse, ICommentEditDto, ICommentEditDtoResponse, ICommentGetDtoResponse, ICommentListDto, ICommentListDtoResponse, ICommentRemoveDtoResponse } from './comment';
 import { Comment } from '../comment';
@@ -133,8 +133,8 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
         return TransformUtil.toClass(TarotSpreadMeaning, item);
     }
 
-    public async tarotSpreadMeaningIsCanAdd(data?: ITarotSpreadMeaningAddDto): Promise<void> {
-        return this.call<void, ITarotSpreadMeaningAddDto>(`${TAROT_SPREAD_MEANING_URL}/isCanAdd`, { data: TraceUtil.addIfNeed(data) });
+    public async tarotSpreadMeaningIsCanAdd(data?: ITarotSpreadMeaningIsCanAddDto): Promise<void> {
+        return this.call<void, ITarotSpreadMeaningIsCanAddDto>(`${TAROT_SPREAD_MEANING_URL}/isCanAdd`, { data: TraceUtil.addIfNeed(data) });
     }
 
     public async tarotSpreadMeaningEdit(data: ITarotSpreadMeaningEditDto): Promise<ITarotSpreadMeaningEditDtoResponse> {
