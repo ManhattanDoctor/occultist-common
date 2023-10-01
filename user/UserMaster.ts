@@ -21,6 +21,7 @@ export class UserMaster {
 export enum UserMasterSkill {
     ART = 'ART',
     YOGA = 'YOGA',
+    MEDITATION = 'MEDITATION',
     WICCA = 'WICCA',
     MAGIC = 'MAGIC',
     CRYSTALS = 'CRYSTALS',
