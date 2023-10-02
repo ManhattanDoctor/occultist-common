@@ -125,14 +125,14 @@ export class PermissionUtil {
     }
 
     public static spreadMeaningIsCanRate(item: TarotSpreadMeaning, user: User): boolean {
-        if (_.isNil(item) || _.isNil(item.spread)) {
+        if (_.isNil(item) || _.isNil(item.spread) || _.isNil(user)) {
             return false;
         }
         return item.status === TarotSpreadMeaningStatus.APPROVED && item.spread.userId === user.id;
     }
 
     public static spreadMeaningIsCanCancel(item: TarotSpreadMeaning, user: User): boolean {
-        if (_.isNil(item) || _.isNil(item.spread)) {
+        if (_.isNil(item) || _.isNil(item.spread) || _.isNil(user)) {
             return false;
         }
         return item.status === TarotSpreadMeaningStatus.PENDING && item.spread.userId === user.id;
