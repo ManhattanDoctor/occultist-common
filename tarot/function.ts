@@ -40,6 +40,10 @@ export function getTarotSpreadAmount(item: TarotSpreadType): number {
         case TarotSpreadType.RECIPROCITY_IN_RELATIONSHIPS:
             return 4;
         case TarotSpreadType.MONTH:
+        case TarotSpreadType.BLUNDER:
+        case TarotSpreadType.UNREALITY:
+        case TarotSpreadType.TURN_LEFT:
+        case TarotSpreadType.DARK_FOG:
         case TarotSpreadType.OPEN_DOOR:
         case TarotSpreadType.MONEY_TREE:
         case TarotSpreadType.HUMAN_ANALYSIS:
