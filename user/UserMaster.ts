@@ -8,8 +8,8 @@ export class UserMaster {
     skills: Array<UserMasterSkill>;
     biography: string;
 
+    role: string;
     manner: string;
-    character: string;
 
     video: string;
     videoSmall: string;
