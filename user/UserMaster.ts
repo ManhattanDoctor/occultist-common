@@ -1,13 +1,15 @@
 import * as _ from 'lodash';
 
 export class UserMaster {
-    voice: string;
     level: UserMasterLevel;
+    voice: string;
     status: string;
     photos: Array<string>;
     skills: Array<UserMasterSkill>;
-    character: string;
     biography: string;
+
+    manner: string;
+    character: string;
 
     video: string;
     videoSmall: string;
