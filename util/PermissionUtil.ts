@@ -87,9 +87,11 @@ export class PermissionUtil {
         if (!PermissionUtil.spreadIsCanEdit(item, user)) {
             return false;
         }
+        /*
         if (item.privacy === TarotSpreadPrivacy.PRIVATE) {
             return false;
         }
+        */
         if (!_.isNil(item.meaning) && item.meaning.status !== TarotSpreadMeaningStatus.CANCELED) {
             return false;
         }

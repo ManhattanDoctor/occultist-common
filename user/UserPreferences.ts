@@ -20,6 +20,7 @@ export class UserPreferences {
     instagram?: string;
 
     tarotDesk?: string;
+    favoriteMaster?: number;
 
     isHideFromPeople?: boolean;
     isNotSuggestShowHelp?: boolean;
