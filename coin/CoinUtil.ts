@@ -20,6 +20,14 @@ export class CoinUtil {
         }
     }
 
+    public static fromToken(amount: string): string {
+        return MathUtil.ceil(MathUtil.multiply(amount, '5'));
+    }
+
+    public static toToken(amount: string): string {
+        return MathUtil.ceil(MathUtil.divide(amount, '5'));
+    }
+
     // --------------------------------------------------------------------------
     //
     // 	Transform Methods

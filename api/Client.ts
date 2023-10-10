@@ -16,7 +16,7 @@ import { IUserEditDto, IUserEditDtoResponse, IUserGetDtoResponse, IUserListDto, 
 import { IStatisticsGetDtoResponse } from './statistics';
 import { IOAuthPopUpDto } from '@ts-core/oauth';
 import { CoinBonusDto, CoinStatusGetDtoResponse, ICoinAccountsGetDto, ICoinBalanceEditDto, ICoinStatusGetDto } from './coin';
-import { IPaymentListDto, IPaymentListDtoResponse, IPaymentTransactionListDto, IPaymentTransactionListDtoResponse } from './payment';
+import { IPaymentListDto, IPaymentListDtoResponse, IPaymentOrderInitDto, IPaymentOrderInitDtoResponse, IPaymentTransactionListDto, IPaymentTransactionListDtoResponse } from './payment';
 import { Payment, PaymentTransaction } from '../payment';
 import { CoinAccount } from '../coin';
 
@@ -275,6 +275,10 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
         return item;
     }
 
+    public async paymentOrderInit(data: IPaymentOrderInitDto): Promise<IPaymentOrderInitDtoResponse> {
+        return this.call<IPaymentOrderInitDtoResponse, IPaymentOrderInitDto>(PAYMENT_ORDER_INIT_URL, { data: TraceUtil.addIfNeed(data), method: 'post' });
+    }
+
     //--------------------------------------------------------------------------
     //
     // 	Management Methods
@@ -396,4 +400,5 @@ export const MANAGEMENT_COIN_ACCOUNT_URL = PREFIX_URL + 'management/coinAccount'
 export const MANAGEMENT_TAROT_SPREAD_URL = PREFIX_URL + 'management/tarot/spread';
 export const MANAGEMENT_TAROT_SPREAD_MEANING_URL = PREFIX_URL + 'management/tarot/spread-meaning';
 
-export const USER_PICTURE_UPLOAD_URL = PREFIX_URL + 'user/picture/upload';
+export const PAYMENT_ORDER_INIT_URL = PREFIX_URL + 'payment/selfwork';
+export const PAYMENT_CALLBACK_URL = PREFIX_URL + 'payment/callback/selfwork';
