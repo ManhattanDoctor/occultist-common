@@ -21,11 +21,11 @@ export class CoinUtil {
     }
 
     public static fromToken(amount: string): string {
-        return MathUtil.ceil(MathUtil.multiply(amount, '5'));
+        return CoinUtil.toCent(MathUtil.ceil(MathUtil.multiply(amount, '5')), CoinId.RUB);
     }
 
     public static toToken(amount: string): string {
-        return MathUtil.ceil(MathUtil.divide(amount, '5'));
+        return CoinUtil.toCent(MathUtil.ceil(MathUtil.divide(amount, '5')), CoinId.TOKEN);
     }
 
     // --------------------------------------------------------------------------

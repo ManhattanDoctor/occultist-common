@@ -1,7 +1,7 @@
 import { ITraceable } from '@ts-core/common';
 
 export interface IPaymentOrderInitDto extends ITraceable {
-    amount: string;
+    quantity: string;
 }
 export interface IPaymentOrderInitDtoResponse {
     name: string;
