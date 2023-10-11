@@ -401,4 +401,4 @@ export const MANAGEMENT_TAROT_SPREAD_URL = PREFIX_URL + 'management/tarot/spread
 export const MANAGEMENT_TAROT_SPREAD_MEANING_URL = PREFIX_URL + 'management/tarot/spread-meaning';
 
 export const PAYMENT_ORDER_INIT_URL = PREFIX_URL + 'payment/selfwork';
-export const PAYMENT_CALLBACK_URL = PREFIX_URL + 'payment/callback/selfwork';
+export const PAYMENT_CALLBACK_URL = PREFIX_URL + 'payment/callback/moneta';
