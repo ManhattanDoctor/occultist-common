@@ -1,8 +1,16 @@
-import { MathUtil, MathUtilConfig, UnreachableStatementError } from '@ts-core/common';
+import { ExtendedError, MathUtil, MathUtilConfig, UnreachableStatementError } from '@ts-core/common';
 import { CoinId } from './CoinId';
 import * as _ from 'lodash';
 
 export class CoinUtil {
+    // --------------------------------------------------------------------------
+    //
+    // 	Constants
+    //
+    // --------------------------------------------------------------------------
+
+    public static TOKEN_RUB_RATE = '500';
+
     // --------------------------------------------------------------------------
     //
     // 	Public Methods
@@ -20,12 +28,28 @@ export class CoinUtil {
         }
     }
 
-    public static fromToken(amount: string): string {
-        return CoinUtil.toCent(MathUtil.ceil(MathUtil.multiply(amount, '5')), CoinId.RUB);
+    public static fromToken(amount: string, coinId: CoinId): string {
+        let rate = null;
+        switch (coinId) {
+            case CoinId.RUB:
+                rate = CoinUtil.TOKEN_RUB_RATE;
+        }
+        if (_.isNil(rate)) {
+            throw new ExtendedError(`Unable convert "${CoinId.TOKEN}" to "${coinId}": rate in undefined`);
+        }
+        return CoinUtil.toCent(MathUtil.ceil(MathUtil.multiply(amount, rate)), coinId);
     }
 
-    public static toToken(amount: string): string {
-        return CoinUtil.toCent(MathUtil.ceil(MathUtil.divide(amount, '5')), CoinId.TOKEN);
+    public static toToken(amount: string, coinId: CoinId): string {
+        let rate = null;
+        switch (coinId) {
+            case CoinId.RUB:
+                rate = CoinUtil.TOKEN_RUB_RATE;
+        }
+        if (_.isNil(rate)) {
+            throw new ExtendedError(`Unable convert "${coinId}" to "${CoinId.TOKEN}": rate in undefined`);
+        }
+        return CoinUtil.toCent(MathUtil.floor(MathUtil.divide(amount, rate)), CoinId.TOKEN);
     }
 
     // --------------------------------------------------------------------------

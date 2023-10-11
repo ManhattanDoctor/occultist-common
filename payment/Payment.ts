@@ -25,12 +25,11 @@ export class Payment {
 }
 
 export enum PaymentAggregatorType {
-    CLOUD_PAYMENTS = 'CLOUD_PAYMENTS'
+    MONETA = 'MONETA'
 }
 
 export enum PaymentStatus {
-    COMPLETED = 'COMPLETED',
-    AUTHORIZED = 'AUTHORIZED',
+    COMPLETED = 'COMPLETED'
 }
 
 export enum PaymentAccountId {
