@@ -37,7 +37,7 @@ export class CoinUtil {
         if (_.isNil(rate)) {
             throw new ExtendedError(`Unable convert "${CoinId.TOKEN}" to "${coinId}": rate in undefined`);
         }
-        return CoinUtil.toCent(MathUtil.ceil(MathUtil.multiply(amount, rate)), coinId);
+        return MathUtil.ceil(MathUtil.multiply(amount, rate));
     }
 
     public static toToken(amount: string, coinId: CoinId): string {
