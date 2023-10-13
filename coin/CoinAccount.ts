@@ -19,5 +19,5 @@ export class CoinAccount implements ICoinAmount {
 }
 
 export type CoinAccounts = {
-    [key in CoinId]: string;
+    [key in CoinId]?: string;
 }
