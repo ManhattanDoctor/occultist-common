@@ -1,9 +1,11 @@
 
-import { MathUtil, UnreachableStatementError } from '@ts-core/common';
+import { UnreachableStatementError } from '@ts-core/common';
 import { PermissionUtil, RandomGenerator } from '../util';
 import { TarotSpreadType } from './TarotSpread';
 import * as _ from 'lodash';
 import { User, UserMasterLevel } from '../user';
+
+export const TAROT_SPREAD_URL = 'tarotSpread';
 
 export function getTarotSpreadIndexes(seed: string): Array<number> {
     let length = 78;

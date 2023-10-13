@@ -1,8 +1,9 @@
 
 import * as _ from 'lodash';
-import { TAROT_SPREAD_URL, TarotDesk } from './TarotSpread';
-import { ShareUtil } from '../util';
+import { IShareUrl, ShareUtil } from '../util';
+import { TarotDesk } from './TarotSpread';
 import { ILanguageTranslator } from '@ts-core/language';
+import { TAROT_SPREAD_URL } from './function';
 
 export class TarotUtil {
 
@@ -102,14 +103,6 @@ export class TarotUtil {
 }
 
 export type TarotIndex = string | number;
-
-export interface IShareUrl {
-    vk?: string,
-    web?: string,
-    picture?: string,
-    fragment?: string;
-    application?: string,
-}
 
 export interface ITarotSpreadUrlOptions {
     uid: string;

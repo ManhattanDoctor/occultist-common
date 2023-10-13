@@ -118,8 +118,6 @@ export enum TarotSpreadType {
     RECIPROCITY_IN_RELATIONSHIPS = 'RECIPROCITY_IN_RELATIONSHIPS',
 }
 
-export const TAROT_SPREAD_URL = 'tarotSpread';
-
 export enum TarotSpreadKind {
     UNIVERSAL = 'UNIVERSAL',
     PROPHETIC = 'PROPHETIC',
