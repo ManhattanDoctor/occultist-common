@@ -6,6 +6,7 @@ export interface ITarotSpreadMeaningApproveDto extends ITraceable {
     value?: string;
     delta?: number;
     comment?: string;
+    isShowcase?: boolean;
 }
 
 export type ITarotSpreadMeaningApproveDtoResponse = TarotSpreadMeaning;

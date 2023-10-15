@@ -13,3 +13,4 @@ export * from './ITarotSpreadMeaningIsCanAddDto';
 
 export * from './ITarotSpreadDto';
 export * from './ITarotSpreadListDto';
+export * from './ITarotSpreadShowcaseDto';

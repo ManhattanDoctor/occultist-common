@@ -62,6 +62,19 @@ export class PermissionUtil {
         return PermissionUtil.spreadIsCanEdit(item, user);
     }
 
+    public static spreadShowcaseIsCanGet(item: TarotSpread): boolean {
+        if (item.status === TarotSpreadStatus.REMOVED) {
+            return false;
+        }
+        if (item.privacy !== TarotSpreadPrivacy.PUBLIC) {
+            return false;
+        }
+        if(_.isNil(item.meaning)) {
+            return false;
+        }
+        return item.meaning.status === TarotSpreadMeaningStatus.APPROVED || item.meaning.status === TarotSpreadMeaningStatus.RATED;
+    }
+
     public static spreadIsCanEdit(item: TarotSpread, user: User): boolean {
         if (_.isNil(item) || _.isNil(user)) {
             return false;

@@ -22,7 +22,7 @@ export class TarotSpread {
     public status?: TarotSpreadStatus;
     public querent?: string;
     public question?: string;
-    public isShowcase?: boolean;
+    public showcase?: string;
 
     @Type(() => TarotSpreadMeaning)
     public meaning?: TarotSpreadMeaning;
