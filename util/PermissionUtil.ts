@@ -62,6 +62,10 @@ export class PermissionUtil {
         return PermissionUtil.spreadIsCanEdit(item, user);
     }
 
+    public static spreadShowcaseIsCanSet(item: TarotSpread, user: User): boolean {
+        return PermissionUtil.spreadShowcaseIsCanGet(item) && PermissionUtil.userIsAdministrator(user);
+    }
+
     public static spreadShowcaseIsCanGet(item: TarotSpread): boolean {
         if (item.status === TarotSpreadStatus.REMOVED) {
             return false;
@@ -69,7 +73,7 @@ export class PermissionUtil {
         if (item.privacy !== TarotSpreadPrivacy.PUBLIC) {
             return false;
         }
-        if(_.isNil(item.meaning)) {
+        if (_.isNil(item.meaning)) {
             return false;
         }
         return item.meaning.status === TarotSpreadMeaningStatus.APPROVED || item.meaning.status === TarotSpreadMeaningStatus.RATED;
