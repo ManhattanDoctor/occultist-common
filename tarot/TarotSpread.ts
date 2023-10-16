@@ -31,14 +31,6 @@ export class TarotSpread {
     public user?: User;
     public userId?: number;
 
-    // @Type(() => TarotSpread)
-    public parent?: TarotSpread;
-    public parentId?: number;
-
-    // @Type(() => TarotSpread)
-    public child?: TarotSpread;
-    public childId?: number;
-
     @Type(() => Date)
     public date?: Date;
 
