@@ -6,8 +6,8 @@
     "author": "Anter Athanor",
     "license": "ISC",
     "dependencies": {
-        "@ts-core/language": "~3.0.14",
-        "@ts-core/common": "~3.0.14",
+        "@ts-core/language": "~3.0.21",
+        "@ts-core/common": "~3.0.46",
         "@ts-core/oauth": "~3.1.6",
         "random-seed": "^0.3.0"
     },

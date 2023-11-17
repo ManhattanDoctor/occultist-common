@@ -24,7 +24,7 @@ export class TarotUtil {
     //--------------------------------------------------------------------------
 
     public static getName(index: number, language: ILanguageTranslator, isNeedName?: boolean): string {
-        let item = language.translate({ key: `tarot.${index}.title` });
+        let item = language.translate(`tarot.${index}.title`);
         if (!TarotUtil.isTypeNumber(index) && !TarotUtil.isTypeMajor(index)) {
             return item;
         }
@@ -35,9 +35,9 @@ export class TarotUtil {
         if (TarotUtil.isTypeMajor(index)) {
             return _.capitalize(array[1]);
         }
-        item = _.capitalize(`${language.translate({ key: 'format.tarotCardNumberSelect', params: { tarotCardNumber: array[0] } })} ${array[1]}`);
+        item = _.capitalize(`${language.translate('format.tarotCardNumberSelect', { tarotCardNumber: array[0] })} ${array[1]}`);
         if (isNeedName) {
-            item += ` - ${language.translate({ key: `tarot.${index}.name` })}`;
+            item += ` - ${language.translate(`tarot.${index}.name`)}`;
         }
         return item;
     }

@@ -27,12 +27,12 @@ export class TarotSpreadDayUtil {
 
     public static getText(index: number, language: ILanguageTranslator): string {
         let item = _.get(language.locale.rawTranslation, `tarot.${index}`);
-        let items = [language.translate({ key: 'tarot.spread.DAY.day', params: { title: TarotUtil.getName(index, language, true) } }), this.getDescription(index, language)];
+        let items = [language.translate('tarot.spread.DAY.day', { title: TarotUtil.getName(index, language, true) }), this.getDescription(index, language)];
         if (!_.isEmpty(item.dark)) {
-            items.push(language.translate({ key: 'tarot.spread.DAY.dark', params: { dark: _.lowerFirst(item.darkShort) } }));
+            items.push(language.translate('tarot.spread.DAY.dark', { dark: _.lowerFirst(item.darkShort) }));
         }
         if (!_.isEmpty(item.light)) {
-            items.push(language.translate({ key: 'tarot.spread.DAY.light', params: { light: _.lowerFirst(item.lightShort) } }));
+            items.push(language.translate('tarot.spread.DAY.light', { light: _.lowerFirst(item.lightShort) }));
         }
         return items.map(TarotSpreadDayUtil.parseSentence).join(' ');
     }
@@ -49,7 +49,7 @@ export class TarotSpreadDayUtil {
         else if (TarotUtil.isTypeAce(index)) {
             key = 'ace';
         }
-        return language.translate({ key: `tarot.spread.DAY.${key}`, params: { description: _.lowerFirst(item.descriptionShort) } });
+        return language.translate(`tarot.spread.DAY.${key}`, { description: _.lowerFirst(item.descriptionShort) });
     }
 
     public static getIndex(seed: string | number): number {
