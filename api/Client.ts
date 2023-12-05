@@ -16,7 +16,7 @@ import { IUserEditDto, IUserEditDtoResponse, IUserGetDtoResponse, IUserListDto, 
 import { IStatisticsGetDtoResponse } from './statistics';
 import { IOAuthPopUpDto } from '@ts-core/oauth';
 import { CoinBonusDto, CoinStatusGetDtoResponse, ICoinAccountsGetDto, ICoinBalanceEditDto, ICoinStatusGetDto } from './coin';
-import { IPaymentListDto, IPaymentListDtoResponse, IPaymentOrderInitDto, IPaymentOrderInitDtoResponse, IPaymentTransactionListDto, IPaymentTransactionListDtoResponse } from './payment';
+import { IPaymentListDto, IPaymentListDtoResponse, IPaymentTransactionListDto, IPaymentTransactionListDtoResponse } from './payment';
 import { Payment, PaymentTransaction } from '../payment';
 import { CoinAccount } from '../coin';
 
@@ -289,10 +289,6 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
         let item = await this.call<IPaymentTransactionListDtoResponse, IPaymentTransactionListDto>(PAYMENT_TRANSACTION_URL, { data: TraceUtil.addIfNeed(data) });
         item.items = TransformUtil.toClassMany(PaymentTransaction, item.items);
         return item;
-    }
-
-    public async paymentOrderInit(data: IPaymentOrderInitDto): Promise<IPaymentOrderInitDtoResponse> {
-        return this.call<IPaymentOrderInitDtoResponse, IPaymentOrderInitDto>(PAYMENT_ORDER_INIT_URL, { data: TraceUtil.addIfNeed(data), method: 'post' });
     }
 
     //--------------------------------------------------------------------------
