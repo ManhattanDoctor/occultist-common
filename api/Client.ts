@@ -315,6 +315,12 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
         return item;
     }
 
+    public async managementPaymentList(data?: IPaymentListDto): Promise<IPaymentListDtoResponse> {
+        let item = await this.call<IPaymentListDtoResponse, IPaymentListDto>(MANAGEMENT_PAYMENT_URL, { data: TraceUtil.addIfNeed(data) });
+        item.items = TransformUtil.toClassMany(Payment, item.items);
+        return item;
+    }
+
     public async managementTarotSpreadList(data: IManagementTarotSpreadListDto): Promise<ITarotSpreadListDtoResponse> {
         let item = await this.call<IManagementTarotSpreadListDtoResponse, IManagementTarotSpreadListDto>(`${MANAGEMENT_TAROT_SPREAD_URL}`, { data: TraceUtil.addIfNeed(data) });
         item.items = TransformUtil.toClassMany(TarotSpread, item.items);
@@ -409,6 +415,7 @@ export const TAROT_SPREAD_SHOWCASE_URL = PREFIX_URL + 'tarot/spread-showcase';
 
 export const MANAGEMENT_USER_URL = PREFIX_URL + 'management/user';
 export const MANAGEMENT_COMMENT_URL = PREFIX_URL + 'management/comment';
+export const MANAGEMENT_PAYMENT_URL = PREFIX_URL + 'management/payment';
 export const MANAGEMENT_COIN_ACCOUNT_URL = PREFIX_URL + 'management/coinAccount';
 export const MANAGEMENT_TAROT_SPREAD_URL = PREFIX_URL + 'management/tarot/spread';
 export const MANAGEMENT_TAROT_SPREAD_MEANING_URL = PREFIX_URL + 'management/tarot/spread-meaning';
