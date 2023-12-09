@@ -94,6 +94,10 @@ export class PermissionUtil {
         return PermissionUtil.spreadIsCanEdit(item, user);
     }
 
+    public static spreadIsCanMeaningPrice(item: TarotSpread, user: User): boolean {
+        return PermissionUtil.spreadIsCanEdit(item, user);
+    }
+    
     //--------------------------------------------------------------------------
     //
     // 	Tarot Spread Meaning
@@ -104,11 +108,6 @@ export class PermissionUtil {
         if (!PermissionUtil.spreadIsCanEdit(item, user)) {
             return false;
         }
-        /*
-        if (item.privacy === TarotSpreadPrivacy.PRIVATE) {
-            return false;
-        }
-        */
         if (!_.isNil(item.meaning) && item.meaning.status !== TarotSpreadMeaningStatus.CANCELED) {
             return false;
         }
