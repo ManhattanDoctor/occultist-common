@@ -4,7 +4,7 @@ import * as _ from 'lodash';
 import { IClockDto, IClockDtoResponse } from './clock';
 import { IInitDto, IInitDtoResponse, ILoginDto, ILoginDtoResponse } from './login';
 import { User } from '../user';
-import { ITarotSpreadMeaningAddDto, ITarotSpreadMeaningEditDto, ITarotSpreadMeaningEditDtoResponse, ITarotSpreadAddDto, ITarotSpreadListDto, ITarotSpreadListDtoResponse, ITarotSpreadAddDtoResponse, ITarotSpreadDateDto, ITarotSpreadDtoResponse, ITarotSpreadEditDto, ITarotSpreadMeaningAddDtoResponse, ITarotSpreadMeaningRejectDto, ITarotSpreadMeaningRejectDtoResponse, ITarotSpreadMeaningRateDto, ITarotSpreadMeaningRateDtoResponse, ITarotSpreadMeaningApproveDto, ITarotSpreadMeaningApproveDtoResponse, ITarotSpreadMeaningDtoResponse, ITarotSpreadMeaningCancelDtoResponse, ITarotSpreadMeaningIsCanAddDto, ITarotSpreadShowcaseDto, ITarotSpreadShowcaseDtoResponse, TAROT_SPREAD_MEANING_TIMEOUT } from './tarot/spread';
+import { ITarotSpreadMeaningAddDto, ITarotSpreadMeaningEditDto, ITarotSpreadMeaningEditDtoResponse, ITarotSpreadAddDto, ITarotSpreadListDto, ITarotSpreadListDtoResponse, ITarotSpreadAddDtoResponse, ITarotSpreadDateDto, ITarotSpreadDtoResponse, ITarotSpreadEditDto, ITarotSpreadMeaningAddDtoResponse, ITarotSpreadMeaningRejectDto, ITarotSpreadMeaningRejectDtoResponse, ITarotSpreadMeaningRateDto, ITarotSpreadMeaningRateDtoResponse, ITarotSpreadMeaningApproveDto, ITarotSpreadMeaningApproveDtoResponse, ITarotSpreadMeaningDtoResponse, ITarotSpreadMeaningPriceDto, ITarotSpreadMeaningPriceDtoResponse, ITarotSpreadMeaningCancelDtoResponse, ITarotSpreadMeaningIsCanAddDto, ITarotSpreadShowcaseDto, ITarotSpreadShowcaseDtoResponse, TAROT_SPREAD_MEANING_TIMEOUT } from './tarot/spread';
 import { IGeo } from '../geo';
 import { ICommentAddDto, ICommentAddDtoResponse, ICommentEditDto, ICommentEditDtoResponse, ICommentGetDtoResponse, ICommentListDto, ICommentListDtoResponse, ICommentRemoveDtoResponse } from './comment';
 import { Comment } from '../comment';
@@ -156,6 +156,10 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
     public async tarotSpreadMeaningEdit(data: ITarotSpreadMeaningEditDto): Promise<ITarotSpreadMeaningEditDtoResponse> {
         let item = await this.call<ITarotSpreadMeaningEditDtoResponse, ITarotSpreadMeaningEditDto>(`${TAROT_SPREAD_MEANING_URL}/${data.id}`, { method: 'put', data: TraceUtil.addIfNeed(data) });
         return TransformUtil.toClass(TarotSpreadMeaning, item);
+    }
+
+    public async tarotSpreadMeaningPrice(data: ITarotSpreadMeaningPriceDto): Promise<ITarotSpreadMeaningPriceDtoResponse> {
+        return this.call(`${TAROT_SPREAD_MEANING_URL}/price`, { data: TraceUtil.addIfNeed(data) });
     }
 
     public async tarotSpreadMeaningAwait(id: number): Promise<TarotSpreadMeaning> {
