@@ -73,37 +73,3 @@ export function getTarotSpreadAmount(item: TarotSpreadType): number {
             throw new UnreachableStatementError(item);
     }
 }
-
-export function getTarotSpreadPrice(item: TarotSpreadType, master: User): string {
-    let level = master?.master?.level || UserMasterLevel.BEGINNER;
-    let amount = getTarotSpreadAmount(item);
-    let multiplier = 1;
-
-    switch (level) {
-        case UserMasterLevel.MASTER:
-            multiplier = 30;
-            break;
-        case UserMasterLevel.ADVANCED:
-            multiplier = 5;
-            break;
-        case UserMasterLevel.BEGINNER:
-            multiplier = 1;
-            break;
-        default:
-            throw new UnreachableStatementError(level);
-    }
-
-    return (amount * multiplier).toString();
-}
-
-export function getTarotSpreadIsPaid(master: User): boolean {
-    if (_.isNil(master) || _.isNil(master.master) || !PermissionUtil.userIsMaster(master)) {
-        return false;
-    }
-    switch (master.master.level) {
-        case UserMasterLevel.BEGINNER:
-            return false;
-        default:
-            return true;
-    }
-}
