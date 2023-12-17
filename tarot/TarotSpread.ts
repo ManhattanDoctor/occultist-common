@@ -60,6 +60,7 @@ export enum TarotDesk {
     WAITE = 'WAITE',
     PAPUS = 'PAPUS',
     SFORZ = 'SFORZ',
+    GENIUS = 'GENIUS',
     CHARLE = 'CHARLE',
     MANARA = 'MANARA',
     VAMPIRE = 'VAMPIRE',
