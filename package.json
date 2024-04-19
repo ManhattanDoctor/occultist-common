@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "description": "",
     "main": "",
-    "author": "Anter Athanor",
+    "author": "Renat Gubaev",
     "license": "ISC",
     "dependencies": {
         "@ts-core/language": "~3.0.21",
