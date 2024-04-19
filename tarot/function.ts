@@ -1,28 +1,9 @@
 
 import { UnreachableStatementError } from '@ts-core/common';
-import { PermissionUtil, RandomGenerator } from '../util';
 import { TarotSpreadType } from './TarotSpread';
 import * as _ from 'lodash';
-import { User, UserMasterLevel } from '../user';
 
 export const TAROT_SPREAD_URL = 'tarotSpread';
-
-export function getTarotSpreadIndexes(seed: string): Array<number> {
-    let length = 78;
-    let indexes: Array<number> = new Array();
-    let generator = new RandomGenerator(seed);
-    while (indexes.length < length) {
-        let index = generator.integerFromZeroTo(length);
-        if (!indexes.includes(index)) {
-            indexes.push(index);
-        }
-    }
-    return indexes;
-}
-
-export function getTarotSpreadIndex(seed: string): number {
-    return new RandomGenerator(seed).integerFromZeroTo(78);
-}
 
 export function getTarotSpreadAmount(item: TarotSpreadType): number {
     switch (item) {
