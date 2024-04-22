@@ -183,8 +183,8 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
         return TransformUtil.toClass(TarotSpreadMeaning, item);
     }
 
-    public async tarotSpreadMeaningRemove(id: number): Promise<void> {
-        return this.call<void, void>(`${TAROT_SPREAD_MEANING_URL}/${id}`, { method: 'delete' });
+    public async tarotSpreadMeaningRemove(id: number): Promise<ITarotSpreadMeaningDtoResponse> {
+        return this.call<ITarotSpreadMeaningDtoResponse, void>(`${TAROT_SPREAD_MEANING_URL}/${id}`, { method: 'delete' });
     }
 
     public async tarotSpreadMeaningRate(data: ITarotSpreadMeaningRateDto): Promise<ITarotSpreadMeaningRateDtoResponse> {
