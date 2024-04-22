@@ -156,6 +156,13 @@ export class PermissionUtil {
         return item.status === TarotSpreadMeaningStatus.PENDING && item.spread.userId === user.id;
     }
 
+    public static spreadMeaningIsCanRemove(item: TarotSpreadMeaning, user: User): boolean {
+        if (_.isNil(item) || !PermissionUtil.userIsAdministrator(user)) {
+            return false;
+        }
+        return item.status !== TarotSpreadMeaningStatus.IN_PROGRESS;
+    }
+
     //--------------------------------------------------------------------------
     //
     // 	Comment Methods
