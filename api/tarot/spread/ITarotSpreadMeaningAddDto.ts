@@ -9,4 +9,7 @@ export interface ITarotSpreadMeaningAddDto extends ITraceable {
     masterId?: number;
 }
 
-export type ITarotSpreadMeaningAddDtoResponse = TarotSpreadMeaning;
+export interface ITarotSpreadMeaningAddDtoResponse {
+    queue: number;
+    meaning: TarotSpreadMeaning;
+}

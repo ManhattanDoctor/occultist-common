@@ -146,7 +146,8 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
 
     public async tarotSpreadMeaningAdd(data: ITarotSpreadMeaningAddDto): Promise<ITarotSpreadMeaningAddDtoResponse> {
         let item = await this.call<ITarotSpreadMeaningAddDtoResponse, ITarotSpreadMeaningAddDto>(`${TAROT_SPREAD_MEANING_URL}`, { method: 'post', data: TraceUtil.addIfNeed(data) });
-        return TransformUtil.toClass(TarotSpreadMeaning, item);
+        item.meaning = TransformUtil.toClass(TarotSpreadMeaning, item);
+        return item;
     }
 
     public async tarotSpreadMeaningIsCanAdd(data?: ITarotSpreadMeaningIsCanAddDto): Promise<void> {
@@ -161,7 +162,7 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
     public async tarotSpreadMeaningPrice(data: ITarotSpreadMeaningPriceDto): Promise<ITarotSpreadMeaningPriceDtoResponse> {
         return this.call(`${TAROT_SPREAD_MEANING_URL}/${data.uid}/price`, { data: TraceUtil.addIfNeed(data) });
     }
-    
+
     public async tarotSpreadMeaningAwait(id: number): Promise<TarotSpreadMeaning> {
         let item = await this.call(`${TAROT_SPREAD_MEANING_URL}/${id}/awaitMean`, { method: 'put' });
         return TransformUtil.toClass(TarotSpreadMeaning, item);
