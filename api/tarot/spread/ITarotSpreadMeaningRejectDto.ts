@@ -6,6 +6,8 @@ export interface ITarotSpreadMeaningRejectDto extends ITraceable {
     reason: TarotSpreadMeaningRejectReason;
     comment?: string;
     isNeedRefund?: boolean;
+    isDisableBonuses?: boolean;
+    isDisableTarotSpreadMeaningAdd?: boolean;
 }
 
 export type ITarotSpreadMeaningRejectDtoResponse = TarotSpreadMeaning;

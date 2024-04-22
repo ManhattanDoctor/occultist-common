@@ -1,5 +1,7 @@
 export class UserAccount {
     type: UserAccountType;
+    isDisableBonuses?: boolean;
+    isDisableTarotSpreadMeaningAdd?: boolean;
 }
 
 export enum UserAccountType {
