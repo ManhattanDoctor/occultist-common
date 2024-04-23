@@ -13,13 +13,13 @@ export class PermissionUtil {
     //--------------------------------------------------------------------------
 
     public static userIsCanEdit(item: User, user: User, params?: IUserEditDto): boolean {
-        if (_.isNil(user)) {
+        if (_.isNil(user) || _.isNil(params)) {
             return false;
         }
         if (PermissionUtil.userIsAdministrator(user)) {
             return true;
         }
-        if (!_.isNil(params) && (!_.isNil(params.account) || !_.isNil(params.status) || !_.isNil(params.master))) {
+        if (!_.isNil(params.account) || !_.isNil(params.status) || !_.isNil(params.master)) {
             return false;
         }
         return item.id === user.id;
