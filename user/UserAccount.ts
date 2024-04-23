@@ -1,6 +1,7 @@
 export class UserAccount {
     type: UserAccountType;
     isDisableBonuses?: boolean;
+    isDisableCommentAdd?: boolean;
     isDisableTarotSpreadMeaningAdd?: boolean;
 }
 

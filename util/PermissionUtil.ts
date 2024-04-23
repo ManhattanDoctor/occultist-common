@@ -97,7 +97,7 @@ export class PermissionUtil {
     public static spreadIsCanMeaningPrice(item: TarotSpread, user: User): boolean {
         return PermissionUtil.spreadIsCanEdit(item, user);
     }
-    
+
     //--------------------------------------------------------------------------
     //
     // 	Tarot Spread Meaning
@@ -168,6 +168,16 @@ export class PermissionUtil {
     // 	Comment Methods
     //
     //--------------------------------------------------------------------------
+
+    public static commentIsCanAdd(user: User): boolean {
+        if (_.isNil(user)) {
+            return false;
+        }
+        if (PermissionUtil.userIsAdministrator(user)) {
+            return true;
+        }
+        return !user.account.isDisableCommentAdd;
+    }
 
     public static commentIsCanEdit(item: Comment, user: User): boolean {
         if (_.isNil(user)) {
