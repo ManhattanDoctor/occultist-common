@@ -9,8 +9,8 @@ export interface ICoinStatusGetDto extends ITraceable {
 }
 
 export class CoinStatusGetDtoResponse {
-    @Type(() => CoinBonusDto)
-    bonus: CoinBonusDto;
-
     balances: CoinAccounts;
+    
+    @Type(() => CoinBonusDto)
+    bonus?: CoinBonusDto;
 }
