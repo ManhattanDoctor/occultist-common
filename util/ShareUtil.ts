@@ -11,6 +11,7 @@ export class ShareUtil {
     public static VK_URL = 'https://vk.com/occultdivination';
     public static SITE_URL = 'https://occultist.one';
     public static ASSETS_URL = 'https://vk.occultist.one/tarot/assets';
+    public static VK_GROUP_ID = '213207074';
 }
 
 export interface IShareUrl {

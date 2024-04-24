@@ -6,5 +6,6 @@ export interface ICoinBonus extends ICoinAmount {
 
 export enum CoinBonusType {
     DAILY = 'DAILY',
+    DONATER = 'DONATER',
     REGISTRATION = 'REGISTRATION',
 }
