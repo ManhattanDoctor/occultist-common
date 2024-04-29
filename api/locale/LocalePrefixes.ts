@@ -53,20 +53,13 @@ export const DEMONOLOGY_LOCALE_PREFIXES = [
     '.json',
     'Custom.json',
 
-    'Sins.json',
     'Myth.json',
-    'Ahets.json',
-    'Demons.json',
-    'Geniuses.json',
     'Natures.json',
     'Planets.json',
     'Zodiacs.json',
-    'ZodiacAngleSpirits.json',
-    'ZodiacDecanSpirits.json',
     'Sefiras.json',
     'Columns.json',
     'Hebrews.json',
-    'Alchemy.json',
     'Qliphoths.json',
 
     'Bibliography.json',
@@ -75,6 +68,14 @@ export const DEMONOLOGY_LOCALE_PREFIXES = [
 
     'Main.json',
     'About.json',
+
+    'Sins.json',
+    'Ahets.json',
+    'Demons.json',
+    'Demonology.json',
+    'Geniuses.json',
+    'ZodiacAngleSpirits.json',
+    'ZodiacDecanSpirits.json',
 ]
 
 
