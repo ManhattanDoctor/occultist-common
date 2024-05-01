@@ -19,6 +19,7 @@ import { CoinBonusDto, CoinStatusGetDtoResponse, ICoinAccountsGetDto, ICoinBalan
 import { IPaymentListDto, IPaymentListDtoResponse, IPaymentTransactionListDto, IPaymentTransactionListDtoResponse } from './payment';
 import { Payment, PaymentTransaction } from '../payment';
 import { CoinAccount } from '../coin';
+import { IVkDonatersCheckDto, IVkDonatersCheckDtoResponse } from './vk';
 
 export class Client extends TransportHttp<ITransportHttpSettings> {
     // --------------------------------------------------------------------------
@@ -340,6 +341,16 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
 
     // --------------------------------------------------------------------------
     //
+    //  Vk Methods
+    //
+    // --------------------------------------------------------------------------
+
+    public async vkDonatersCheck(data: IVkDonatersCheckDto): Promise<IVkDonatersCheckDtoResponse> {
+        return this.call<IVkDonatersCheckDtoResponse, IVkDonatersCheckDto>(`${VK_URL}/donaters/check`, { method: 'post', data: TraceUtil.addIfNeed(data) });
+    }
+
+    // --------------------------------------------------------------------------
+    //
     //  Other Methods
     //
     // --------------------------------------------------------------------------
@@ -393,6 +404,7 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
 }
 
 export const PREFIX_URL = 'api/';
+export const VK_URL = PREFIX_URL + 'vk';
 export const GEO_URL = PREFIX_URL + 'geo';
 export const USER_URL = PREFIX_URL + 'user';
 export const INIT_URL = PREFIX_URL + 'init';
