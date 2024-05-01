@@ -345,8 +345,8 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
     //
     // --------------------------------------------------------------------------
 
-    public async vkDonatersCheck(data: IVkDonatersCheckDto): Promise<IVkDonatersCheckDtoResponse> {
-        return this.call<IVkDonatersCheckDtoResponse, IVkDonatersCheckDto>(`${VK_URL}/donaters/check`, { method: 'post', data: TraceUtil.addIfNeed(data) });
+    public async vkDonatersCheck(token: string): Promise<IVkDonatersCheckDtoResponse> {
+        return this.call<IVkDonatersCheckDtoResponse, IVkDonatersCheckDto>(`${VK_URL}/donaters/check`, { method: 'post', data: TraceUtil.addIfNeed({ token }) });
     }
 
     // --------------------------------------------------------------------------
