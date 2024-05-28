@@ -61,6 +61,7 @@ export enum TarotDesk {
     PAPUS = 'PAPUS',
     SFORZ = 'SFORZ',
     GENIUS = 'GENIUS',
+    DEMONS = 'DEMONS',
     DIABLO = 'DIABLO',
     CHARLE = 'CHARLE',
     MANARA = 'MANARA',
