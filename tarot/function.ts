@@ -40,6 +40,7 @@ export function getTarotSpreadAmount(item: TarotSpreadType): number {
         case TarotSpreadType.MY_DREAM:
         case TarotSpreadType.MARRIAGE_2:
         case TarotSpreadType.WILL_HE_COMEBACK:
+        case TarotSpreadType.WHEN_ITS_VERY_BAD:
         case TarotSpreadType.TRAVEL_OR_RELOCATION:
             return 6;
         case TarotSpreadType.STAR:
