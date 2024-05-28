@@ -1,7 +1,7 @@
 import * as _ from 'lodash';
 import { TarotSpread, TarotSpreadMeaning, TarotSpreadMeaningStatus, TarotSpreadPrivacy, TarotSpreadStatus } from '../tarot';
 import { Comment } from '../comment';
-import { User, UserAccountType } from '../user';
+import { User, UserAccountType, UserMasterLevel } from '../user';
 import { IUserEditDto } from '../api/user';
 
 export class PermissionUtil {
@@ -130,6 +130,13 @@ export class PermissionUtil {
             return false;
         }
         return item.status === TarotSpreadMeaningStatus.PENDING || item.status === TarotSpreadMeaningStatus.ERROR || item.status === TarotSpreadMeaningStatus.IN_PROGRESS;
+    }
+
+    public static spreadMeaningIsCanMasterSelect(user: User, master: User): boolean {
+        if (PermissionUtil.userIsDonater(user)) {
+            return true;
+        }
+        return master.master.level === UserMasterLevel.BEGINNER;
     }
 
     public static spreadMeaningIsCanApprove(item: TarotSpreadMeaning, user: User): boolean {
