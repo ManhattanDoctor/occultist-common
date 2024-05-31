@@ -13,7 +13,7 @@ import { IPeopleListDto, IPeopleListDtoResponse } from './people';
 import { IManagementCoinAccountListDto, IManagementCoinAccountListDtoResponse, IManagementTarotSpreadListDto, IManagementTarotSpreadListDtoResponse, IManagementTarotSpreadMeaningListDto, IManagementTarotSpreadMeaningListDtoResponse } from './management';
 import { LocaleProject } from './locale';
 import { IUserEditDto, IUserEditDtoResponse, IUserGetDtoResponse, IUserListDto, IUserListDtoResponse, IUserMasterListDto, IUserMasterListDtoResponse, UserUID } from './user';
-import { IStatisticsGetDtoResponse, IStatisticsPeopleGetDtoResponse } from './statistics';
+import { IStatisticsGetDtoResponse } from './statistics';
 import { IOAuthPopUpDto } from '@ts-core/oauth';
 import { CoinBonusDto, CoinStatusGetDtoResponse, ICoinAccountsGetDto, ICoinBalanceEditDto, ICoinStatusGetDto } from './coin';
 import { IPaymentListDto, IPaymentListDtoResponse, IPaymentTransactionListDto, IPaymentTransactionListDtoResponse } from './payment';
@@ -378,10 +378,6 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
 
     public async statistics(): Promise<IStatisticsGetDtoResponse> {
         return this.call<IStatisticsGetDtoResponse, void>(STATISTICS_URL);
-    }
-
-    public async statisticsPeople(): Promise<IStatisticsPeopleGetDtoResponse> {
-        return this.call<IStatisticsPeopleGetDtoResponse, void>(`${STATISTICS_URL}/people`);
     }
 
     public async peopleList(data: IPeopleListDto): Promise<IPeopleListDtoResponse> {
