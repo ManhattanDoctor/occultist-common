@@ -5,4 +5,5 @@ export enum LoginResource {
     MAIL = 'MAIL',
     YANDEX = 'YANDEX',
     GOOGLE = 'GOOGLE',
+    TELEGRAM = 'TELEGRAM',
 }

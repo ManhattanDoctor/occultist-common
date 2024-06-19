@@ -20,6 +20,7 @@ import { IPaymentListDto, IPaymentListDtoResponse, IPaymentTransactionListDto, I
 import { Payment, PaymentTransaction } from '../payment';
 import { CoinAccount } from '../coin';
 import { IVkDonatersCheckDto, IVkDonatersCheckDtoResponse } from './vk';
+import { ITelegramAccountAddDto } from './telegram';
 
 export class Client extends TransportHttp<ITransportHttpSettings> {
     // --------------------------------------------------------------------------
@@ -299,6 +300,20 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
 
     //--------------------------------------------------------------------------
     //
+    // 	Telegram Methods
+    //
+    //--------------------------------------------------------------------------
+
+    public async telegramAccountAdd(data: ITelegramAccountAddDto): Promise<void> {
+        return this.call<void, ITelegramAccountAddDto>(`${TELEGRAM_URL}`, { method: 'post', data: TraceUtil.addIfNeed(data) });
+    }
+
+    public async telegramAccountRemove(): Promise<void> {
+        return this.call<void, void>(`${TELEGRAM_URL}`, { method: 'delete' });
+    }
+
+    //--------------------------------------------------------------------------
+    //
     // 	Management Methods
     //
     //--------------------------------------------------------------------------
@@ -422,6 +437,7 @@ export const COIN_URL = PREFIX_URL + 'coin';
 export const VOICE_URL = PREFIX_URL + 'voice';
 export const COMMENT_URL = PREFIX_URL + 'comment';
 export const PAYMENT_URL = PREFIX_URL + 'payment';
+export const TELEGRAM_URL = PREFIX_URL + 'telegram';
 export const PAYMENT_TRANSACTION_URL = PREFIX_URL + 'paymentTransaction';
 
 export const TAROT_SPREAD_URL = PREFIX_URL + 'tarot/spread';
