@@ -20,7 +20,7 @@ import { IPaymentListDto, IPaymentListDtoResponse, IPaymentTransactionListDto, I
 import { Payment, PaymentTransaction } from '../payment';
 import { CoinAccount } from '../coin';
 import { IVkDonatersCheckDto, IVkDonatersCheckDtoResponse } from './vk';
-import { ITelegramAccountAddDto } from './telegram';
+import { ITelegramAccountAddDto, ITelegramAccountAddDtoResponse, ITelegramAccountRemoveDtoResponse } from './telegram';
 
 export class Client extends TransportHttp<ITransportHttpSettings> {
     // --------------------------------------------------------------------------
@@ -304,12 +304,12 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
     //
     //--------------------------------------------------------------------------
 
-    public async telegramAccountAdd(data: ITelegramAccountAddDto): Promise<void> {
-        return this.call<void, ITelegramAccountAddDto>(`${TELEGRAM_URL}`, { method: 'post', data: TraceUtil.addIfNeed(data) });
+    public async telegramAccountAdd(data: ITelegramAccountAddDto): Promise<ITelegramAccountAddDtoResponse> {
+        return this.call<ITelegramAccountAddDtoResponse, ITelegramAccountAddDto>(`${TELEGRAM_URL}`, { method: 'post', data: TraceUtil.addIfNeed(data) });
     }
 
-    public async telegramAccountRemove(): Promise<void> {
-        return this.call<void, void>(`${TELEGRAM_URL}`, { method: 'delete' });
+    public async telegramAccountRemove(): Promise<ITelegramAccountRemoveDtoResponse> {
+        return this.call<ITelegramAccountRemoveDtoResponse, void>(`${TELEGRAM_URL}`, { method: 'delete' });
     }
 
     //--------------------------------------------------------------------------
