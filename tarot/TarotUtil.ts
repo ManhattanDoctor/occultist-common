@@ -82,8 +82,11 @@ export class TarotUtil {
     //
     //--------------------------------------------------------------------------
 
-    public static getUrl(index: number): string {
-        return `${ShareUtil.SITE_URL}/tarot/${index}`;
+    public static getUrl(index: number, desk?: TarotDesk): string {
+        if (_.isNil(desk)) {
+            desk = TarotDesk.TOTH;
+        }
+        return `${ShareUtil.SITE_URL}/tarot/${index}#${desk}`;
     }
 
     public static getSpreadUrl(options: ITarotSpreadUrlOptions): IShareUrl {
