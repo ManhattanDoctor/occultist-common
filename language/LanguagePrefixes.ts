@@ -1,7 +1,7 @@
 
 export enum LocaleProject {
     TAROT = 'tarot',
-    DEMONOLOGY = 'demonology',
+    DEMONOLOGY = 'demonology'
 }
 
 export const TAROT_LOCALE_PREFIXES = [

@@ -1,9 +1,8 @@
-
-import * as _ from 'lodash';
 import { IShareUrl, ShareUtil } from '../util';
 import { TarotDesk } from './TarotSpread';
-import { ILanguageTranslator } from '@ts-core/language';
+import { LanguageProjectProxy } from '@ts-core/language';
 import { TAROT_SPREAD_URL } from './function';
+import * as _ from 'lodash';
 
 export class TarotUtil {
 
@@ -23,7 +22,7 @@ export class TarotUtil {
     //
     //--------------------------------------------------------------------------
 
-    public static getName(index: number, language: ILanguageTranslator, isNeedName?: boolean): string {
+    public static getName(index: number, language: LanguageProjectProxy, isNeedName?: boolean): string {
         let item = language.translate(`tarot.${index}.title`);
         if (!TarotUtil.isTypeNumber(index) && !TarotUtil.isTypeMajor(index)) {
             return item;

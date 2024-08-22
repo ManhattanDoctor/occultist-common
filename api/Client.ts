@@ -11,7 +11,6 @@ import { Comment } from '../comment';
 import { TarotSpread, TarotSpreadMeaning, TarotSpreadUID } from '../tarot';
 import { IPeopleListDto, IPeopleListDtoResponse } from './people';
 import { IManagementCoinAccountListDto, IManagementCoinAccountListDtoResponse, IManagementTarotSpreadListDto, IManagementTarotSpreadListDtoResponse, IManagementTarotSpreadMeaningListDto, IManagementTarotSpreadMeaningListDtoResponse } from './management';
-import { LocaleProject } from './locale';
 import { IUserEditDto, IUserEditDtoResponse, IUserGetDtoResponse, IUserListDto, IUserListDtoResponse, IUserMasterListDto, IUserMasterListDtoResponse, UserUID } from './user';
 import { IStatisticsGetDtoResponse } from './statistics';
 import { IOAuthPopUpDto } from '@ts-core/oauth';
@@ -21,6 +20,7 @@ import { Payment, PaymentTransaction } from '../payment';
 import { CoinAccount } from '../coin';
 import { IVkDonatersCheckDto, IVkDonatersCheckDtoResponse } from './vk';
 import { ITelegramAccountAddDto, ITelegramAccountAddDtoResponse, ITelegramAccountRemoveDtoResponse } from './telegram';
+import { LocaleProject } from '../language';
 
 export class Client extends TransportHttp<ITransportHttpSettings> {
     // --------------------------------------------------------------------------
@@ -387,8 +387,8 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
         return this.call<IOAuthPopUpDto>(`${OAUTH_URL}/${state}`, { data: TraceUtil.addIfNeed({}) });
     }
 
-    public async locale(project: LocaleProject, locale: string, version?: string): Promise<any> {
-        return this.call<any>(`${LOCALE_URL}/${project}/${locale}`, { data: { version } });
+    public async language(project: LocaleProject, locale: string, version?: string): Promise<any> {
+        return this.call<any>(`${LANGUAGE_URL}/${project}/${locale}`, { data: { version } });
     }
 
     public async statistics(): Promise<IStatisticsGetDtoResponse> {
@@ -429,8 +429,8 @@ export const LOGOUT_OTHERS_URL = PREFIX_URL + 'logoutOthers';
 
 export const OAUTH_URL = PREFIX_URL + 'oauth';
 export const CLOCK_URL = PREFIX_URL + 'clock';
-export const LOCALE_URL = PREFIX_URL + 'locale';
 export const PEOPLE_URL = PREFIX_URL + 'people';
+export const LANGUAGE_URL = PREFIX_URL + 'locale';
 export const STATISTICS_URL = PREFIX_URL + 'statistics';
 
 export const COIN_URL = PREFIX_URL + 'coin';
