@@ -51,10 +51,7 @@ export class ParseUtil {
             return null;
         }
         item = _.trim(item.replace(/[^a-z\u0400-\u04FF\s]/gi, ''));
-        if (_.isEmpty(item)) {
-            return null;
-        }
-        return item.split(' ')[0];
+        return !_.isEmpty(item) ? item : null;
     }
 }
 
