@@ -1,81 +1,83 @@
+import { ILanguageProjectSettings } from '@ts-core/language';
 
-export enum LocaleProject {
-    TAROT = 'tarot',
-    DEMONOLOGY = 'demonology'
-}
+export let LanguageProjects: Array<ILanguageProjectSettings> = [
+    {
+        name: 'tarot',
+        locales: ['ru'],
+        prefixes: [
+            '.json',
+            'Custom.json',
 
-export const TAROT_LOCALE_PREFIXES = [
-    '.json',
-    'Custom.json',
+            'User.json',
+            'Comment.json',
 
-    'User.json',
-    'Comment.json',
+            'Myth.json',
+            'Natures.json',
+            'Planets.json',
+            'Zodiacs.json',
+            'Sefiras.json',
+            'Columns.json',
+            'Hebrews.json',
+            'Alchemy.json',
+            'Qliphoths.json',
 
-    'Myth.json',
-    'Natures.json',
-    'Planets.json',
-    'Zodiacs.json',
-    'Sefiras.json',
-    'Columns.json',
-    'Hebrews.json',
-    'Alchemy.json',
-    'Qliphoths.json',
+            'Payment.json',
+            'Management.json',
+            'Bibliography.json',
 
-    'Payment.json',
-    'Management.json',
-    'Bibliography.json',
+            'Tarots.json',
+            'TarotsChart.json',
+            'TarotsSpread.json',
+            'TarotsSpreadMeaning.json',
+            'TarotsHistory.json',
+            'TarotsSefiras.json',
+            'TarotsQuestion.json',
 
-    'Tarots.json',
-    'TarotsChart.json',
-    'TarotsSpread.json',
-    'TarotsSpreadMeaning.json',
-    'TarotsHistory.json',
-    'TarotsSefiras.json',
-    'TarotsQuestion.json',
+            'Clock.json',
+            'Gematria.json',
 
-    'Clock.json',
-    'Gematria.json',
+            'Main.json',
+            'About.json',
 
-    'Main.json',
-    'About.json',
+            'Sins.json',
+            'Ahets.json',
+            'Demons.json',
+            'Demonology.json',
+            'Geniuses.json',
+            'ZodiacAngleSpirits.json',
+            'ZodiacDecanSpirits.json',
+        ]
+    },
+    {
+        name: 'demonology',
+        locales: ['ru'],
+        prefixes: [
+            '.json',
+            'Custom.json',
 
-    'Sins.json',
-    'Ahets.json',
-    'Demons.json',
-    'Demonology.json',
-    'Geniuses.json',
-    'ZodiacAngleSpirits.json',
-    'ZodiacDecanSpirits.json',
-];
+            'Myth.json',
+            'Natures.json',
+            'Planets.json',
+            'Zodiacs.json',
+            'Sefiras.json',
+            'Columns.json',
+            'Hebrews.json',
+            'Qliphoths.json',
 
-export const DEMONOLOGY_LOCALE_PREFIXES = [
-    '.json',
-    'Custom.json',
+            'Bibliography.json',
 
-    'Myth.json',
-    'Natures.json',
-    'Planets.json',
-    'Zodiacs.json',
-    'Sefiras.json',
-    'Columns.json',
-    'Hebrews.json',
-    'Qliphoths.json',
+            'Gematria.json',
 
-    'Bibliography.json',
+            'Main.json',
+            'About.json',
 
-    'Gematria.json',
-
-    'Main.json',
-    'About.json',
-
-    'Sins.json',
-    'Ahets.json',
-    'Demons.json',
-    'Demonology.json',
-    'Geniuses.json',
-    'ZodiacAngleSpirits.json',
-    'ZodiacDecanSpirits.json',
+            'Sins.json',
+            'Ahets.json',
+            'Demons.json',
+            'Demonology.json',
+            'Geniuses.json',
+            'ZodiacAngleSpirits.json',
+            'ZodiacDecanSpirits.json',
+        ]
+    }
 ]
-
-
-

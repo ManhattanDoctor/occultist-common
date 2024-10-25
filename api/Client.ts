@@ -20,7 +20,6 @@ import { Payment, PaymentTransaction } from '../payment';
 import { CoinAccount } from '../coin';
 import { IVkDonatersCheckDto, IVkDonatersCheckDtoResponse } from './vk';
 import { ITelegramAccountAddDto, ITelegramAccountAddDtoResponse, ITelegramAccountRemoveDtoResponse } from './telegram';
-import { LocaleProject } from '../language';
 
 export class Client extends TransportHttp<ITransportHttpSettings> {
     // --------------------------------------------------------------------------
@@ -420,7 +419,7 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
         return this.call<IOAuthPopUpDto>(`${OAUTH_URL}/${state}`, { data: TraceUtil.addIfNeed({}) });
     }
 
-    public async language(project: LocaleProject, locale: string, version?: string): Promise<any> {
+    public async language(project: string, locale: string, version?: string): Promise<any> {
         return this.call<any>(`${LANGUAGE_URL}/${project}/${locale}`, { data: { version } });
     }
 
