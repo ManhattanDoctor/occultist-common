@@ -1,5 +1,5 @@
 import * as _ from 'lodash';
-import { TarotSpread, TarotSpreadMeaning, TarotSpreadMeaningStatus, TarotSpreadPrivacy, TarotSpreadStatus } from '../tarot';
+import { TarotSpread, TarotSpreadMeaning, TarotSpreadMeaningAi, TarotSpreadMeaningAiStatus, TarotSpreadMeaningStatus, TarotSpreadPrivacy, TarotSpreadStatus } from '../tarot';
 import { Comment } from '../comment';
 import { User, UserAccountType, UserMasterLevel } from '../user';
 import { IUserEditDto } from '../api/user';
@@ -176,6 +176,24 @@ export class PermissionUtil {
             return false;
         }
         return item.status !== TarotSpreadMeaningStatus.IN_PROGRESS;
+    }
+
+
+    public static spreadMeaningAiIsCanAdd(item: TarotSpread, user: User): boolean {
+        if (!PermissionUtil.spreadIsCanEdit(item, user)) {
+            return false;
+        }
+        if (!_.isNil(item.meaningAi) && item.meaningAi.status === TarotSpreadMeaningAiStatus.REJECTED) {
+            return false;
+        }
+        return true;
+    }
+
+    public static spreadMeaningAiIsCanRemove(item: TarotSpreadMeaningAi, user: User): boolean {
+        if (_.isNil(item) || !PermissionUtil.userIsAdministrator(user)) {
+            return false;
+        }
+        return item.status !== TarotSpreadMeaningAiStatus.IN_PROGRESS;
     }
 
     //--------------------------------------------------------------------------

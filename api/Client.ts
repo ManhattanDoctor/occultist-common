@@ -10,7 +10,7 @@ import { ICommentAddDto, ICommentAddDtoResponse, ICommentEditDto, ICommentEditDt
 import { Comment } from '../comment';
 import { TarotSpread, TarotSpreadMeaning, TarotSpreadMeaningAi, TarotSpreadUID } from '../tarot';
 import { IPeopleListDto, IPeopleListDtoResponse } from './people';
-import { IManagementCoinAccountListDto, IManagementCoinAccountListDtoResponse, IManagementTarotSpreadListDto, IManagementTarotSpreadListDtoResponse, IManagementTarotSpreadMeaningListDto, IManagementTarotSpreadMeaningListDtoResponse } from './management';
+import { IManagementCoinAccountListDto, IManagementCoinAccountListDtoResponse, IManagementTarotSpreadListDto, IManagementTarotSpreadListDtoResponse, IManagementTarotSpreadMeaningAiListDto, IManagementTarotSpreadMeaningAiListDtoResponse, IManagementTarotSpreadMeaningListDto, IManagementTarotSpreadMeaningListDtoResponse } from './management';
 import { IUserEditDto, IUserEditDtoResponse, IUserGetDtoResponse, IUserListDto, IUserListDtoResponse, IUserMasterListDto, IUserMasterListDtoResponse, UserUID } from './user';
 import { IStatisticsGetDtoResponse } from './statistics';
 import { IOAuthPopUpDto } from '@ts-core/oauth';
@@ -383,6 +383,12 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
     public async managementTarotSpreadMeaningList(data: IManagementTarotSpreadMeaningListDto): Promise<IManagementTarotSpreadMeaningListDtoResponse> {
         let item = await this.call<IManagementTarotSpreadMeaningListDtoResponse, IManagementTarotSpreadMeaningListDto>(`${MANAGEMENT_TAROT_SPREAD_MEANING_URL}`, { data: TraceUtil.addIfNeed(data) });
         item.items = TransformUtil.toClassMany(TarotSpreadMeaning, item.items);
+        return item;
+    }
+
+    public async managementTarotSpreadMeaningAiList(data: IManagementTarotSpreadMeaningAiListDto): Promise<IManagementTarotSpreadMeaningAiListDtoResponse> {
+        let item = await this.call<IManagementTarotSpreadMeaningAiListDtoResponse, IManagementTarotSpreadMeaningAiListDto>(`${MANAGEMENT_TAROT_SPREAD_MEANING_AI_URL}`, { data: TraceUtil.addIfNeed(data) });
+        item.items = TransformUtil.toClassMany(TarotSpreadMeaningAi, item.items);
         return item;
     }
 
