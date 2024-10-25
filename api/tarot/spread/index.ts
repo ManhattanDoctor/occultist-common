@@ -11,7 +11,12 @@ export * from './ITarotSpreadMeaningCancelDto';
 export * from './ITarotSpreadMeaningRejectDto';
 export * from './ITarotSpreadMeaningApproveDto';
 export * from './ITarotSpreadMeaningIsCanAddDto';
-
+//
+export * from './ITarotSpreadMeaningAiDto';
+export * from './ITarotSpreadMeaningAiAddDto';
+export * from './ITarotSpreadMeaningAiPriceDto';
+export * from './ITarotSpreadMeaningAiIsCanAddDto';
+//
 export * from './ITarotSpreadDto';
 export * from './ITarotSpreadListDto';
 export * from './ITarotSpreadShowcaseDto';

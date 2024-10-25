@@ -4,6 +4,7 @@ import * as _ from 'lodash';
 import { Comment } from '../comment';
 import { User } from '../user';
 import { TarotSpreadMeaning } from './TarotSpreadMeaning';
+import { TarotSpreadMeaningAi } from './TarotSpreadMeaningAi';
 
 export class TarotSpread {
     public id: number;
@@ -26,6 +27,9 @@ export class TarotSpread {
 
     @Type(() => TarotSpreadMeaning)
     public meaning?: TarotSpreadMeaning;
+
+    @Type(() => TarotSpreadMeaningAi)
+    public meaningAi?: TarotSpreadMeaningAi;
 
     @Type(() => User)
     public user?: User;

@@ -95,7 +95,11 @@ export class PermissionUtil {
     }
 
     public static spreadIsCanRemove(item: TarotSpread, user: User): boolean {
-        return PermissionUtil.spreadIsCanEdit(item, user);
+        return item.status !== TarotSpreadStatus.REMOVED && PermissionUtil.spreadIsCanEdit(item, user);
+    }
+
+    public static spreadIsCanRecover(item: TarotSpread, user: User): boolean {
+        return item.status === TarotSpreadStatus.REMOVED && PermissionUtil.spreadIsCanEdit(item, user);
     }
 
     public static spreadIsCanMeaningPrice(item: TarotSpread, user: User): boolean {

@@ -4,11 +4,11 @@ import * as _ from 'lodash';
 import { IClockDto, IClockDtoResponse } from './clock';
 import { IInitDto, IInitDtoResponse, ILoginDto, ILoginDtoResponse } from './login';
 import { User } from '../user';
-import { ITarotSpreadMeaningAddDto, ITarotSpreadMeaningEditDto, ITarotSpreadMeaningEditDtoResponse, ITarotSpreadAddDto, ITarotSpreadListDto, ITarotSpreadListDtoResponse, ITarotSpreadAddDtoResponse, ITarotSpreadDateDto, ITarotSpreadDtoResponse, ITarotSpreadEditDto, ITarotSpreadMeaningAddDtoResponse, ITarotSpreadMeaningRejectDto, ITarotSpreadMeaningRejectDtoResponse, ITarotSpreadMeaningRateDto, ITarotSpreadMeaningRateDtoResponse, ITarotSpreadMeaningApproveDto, ITarotSpreadMeaningApproveDtoResponse, ITarotSpreadMeaningDtoResponse, ITarotSpreadMeaningPriceDto, ITarotSpreadMeaningPriceDtoResponse, ITarotSpreadMeaningCancelDtoResponse, ITarotSpreadMeaningIsCanAddDto, ITarotSpreadShowcaseDto, ITarotSpreadShowcaseDtoResponse, TAROT_SPREAD_MEANING_TIMEOUT } from './tarot/spread';
+import { ITarotSpreadMeaningAddDto, ITarotSpreadMeaningEditDto, ITarotSpreadMeaningEditDtoResponse, ITarotSpreadAddDto, ITarotSpreadListDto, ITarotSpreadListDtoResponse, ITarotSpreadAddDtoResponse, ITarotSpreadDateDto, ITarotSpreadDtoResponse, ITarotSpreadEditDto, ITarotSpreadMeaningAddDtoResponse, ITarotSpreadMeaningRejectDto, ITarotSpreadMeaningRejectDtoResponse, ITarotSpreadMeaningRateDto, ITarotSpreadMeaningRateDtoResponse, ITarotSpreadMeaningApproveDto, ITarotSpreadMeaningApproveDtoResponse, ITarotSpreadMeaningDtoResponse, ITarotSpreadMeaningPriceDto, ITarotSpreadMeaningPriceDtoResponse, ITarotSpreadMeaningCancelDtoResponse, ITarotSpreadMeaningIsCanAddDto, ITarotSpreadShowcaseDto, ITarotSpreadShowcaseDtoResponse, TAROT_SPREAD_MEANING_TIMEOUT, ITarotSpreadMeaningAiDtoResponse, ITarotSpreadMeaningAiAddDto, ITarotSpreadMeaningAddAiDtoResponse, ITarotSpreadMeaningAiIsCanAddDto } from './tarot/spread';
 import { IGeo } from '../geo';
 import { ICommentAddDto, ICommentAddDtoResponse, ICommentEditDto, ICommentEditDtoResponse, ICommentGetDtoResponse, ICommentListDto, ICommentListDtoResponse, ICommentRemoveDtoResponse } from './comment';
 import { Comment } from '../comment';
-import { TarotSpread, TarotSpreadMeaning, TarotSpreadUID } from '../tarot';
+import { TarotSpread, TarotSpreadMeaning, TarotSpreadMeaningAi, TarotSpreadUID } from '../tarot';
 import { IPeopleListDto, IPeopleListDtoResponse } from './people';
 import { IManagementCoinAccountListDto, IManagementCoinAccountListDtoResponse, IManagementTarotSpreadListDto, IManagementTarotSpreadListDtoResponse, IManagementTarotSpreadMeaningListDto, IManagementTarotSpreadMeaningListDtoResponse } from './management';
 import { LocaleProject } from './locale';
@@ -97,6 +97,10 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
 
     public async tarotSpreadRemove(uid: TarotSpreadUID): Promise<void> {
         return this.call<void, void>(`${TAROT_SPREAD_URL}/${uid}`, { method: 'delete' });
+    }
+
+    public async tarotSpreadRecover(uid: TarotSpreadUID): Promise<void> {
+        return this.call<void, void>(`${TAROT_SPREAD_URL}/${uid}`, { method: 'patch' });
     }
 
     public async tarotSpreadAdd(data: ITarotSpreadAddDto): Promise<ITarotSpreadAddDtoResponse> {
@@ -197,6 +201,35 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
     public async tarotSpreadMeaningCancel(id: number): Promise<ITarotSpreadMeaningCancelDtoResponse> {
         let item = await this.call<ITarotSpreadMeaningCancelDtoResponse, void>(`${TAROT_SPREAD_MEANING_URL}/${id}/cancel`, { method: 'put' });
         return TransformUtil.toClass(TarotSpreadMeaning, item);
+    }
+
+    // --------------------------------------------------------------------------
+    //
+    //  Tarot Spread Meaning Ai Methods
+    //
+    // --------------------------------------------------------------------------
+
+    public async tarotSpreadMeaningAiGet(id: number): Promise<ITarotSpreadMeaningAiDtoResponse> {
+        let item = await this.call<ITarotSpreadMeaningAiDtoResponse, void>(`${TAROT_SPREAD_MEANING_AI_URL}/${id}`);
+        return TransformUtil.toClass(TarotSpreadMeaningAi, item);
+    }
+
+    public async tarotSpreadMeaningAiAdd(data: ITarotSpreadMeaningAiAddDto): Promise<ITarotSpreadMeaningAddAiDtoResponse> {
+        let item = await this.call<ITarotSpreadMeaningAddAiDtoResponse, ITarotSpreadMeaningAiAddDto>(`${TAROT_SPREAD_MEANING_AI_URL}`, { method: 'post', data: TraceUtil.addIfNeed(data) });
+        item.meaningAi = TransformUtil.toClass(TarotSpreadMeaningAi, item);
+        return item;
+    }
+
+    public async tarotSpreadMeaningAiIsCanAdd(data?: ITarotSpreadMeaningAiIsCanAddDto): Promise<void> {
+        return this.call<void, ITarotSpreadMeaningAiIsCanAddDto>(`${TAROT_SPREAD_MEANING_AI_URL}/isCanAdd`, { data: TraceUtil.addIfNeed(data) });
+    }
+
+    public async tarotSpreadMeaningAiPrice(data: ITarotSpreadMeaningPriceDto): Promise<ITarotSpreadMeaningPriceDtoResponse> {
+        return this.call(`${TAROT_SPREAD_MEANING_URL}/${data.uid}/price`, { data: TraceUtil.addIfNeed(data) });
+    }
+
+    public async tarotSpreadMeaningAiRemove(id: number): Promise<ITarotSpreadMeaningAiDtoResponse> {
+        return this.call<ITarotSpreadMeaningAiDtoResponse, void>(`${TAROT_SPREAD_MEANING_AI_URL}/${id}`, { method: 'delete' });
     }
 
     // --------------------------------------------------------------------------
@@ -445,6 +478,7 @@ export const TAROT_SPREAD_URL_ID = PREFIX_URL + 'tarot/spread-id';
 export const TAROT_SPREAD_DAY_URL = PREFIX_URL + 'tarot/spread-day';
 export const TAROT_SPREAD_MEANING_URL = PREFIX_URL + 'tarot/spread-meaning';
 export const TAROT_SPREAD_SHOWCASE_URL = PREFIX_URL + 'tarot/spread-showcase';
+export const TAROT_SPREAD_MEANING_AI_URL = PREFIX_URL + 'tarot/spread-meaning-ai';
 
 export const MANAGEMENT_USER_URL = PREFIX_URL + 'management/user';
 export const MANAGEMENT_COMMENT_URL = PREFIX_URL + 'management/comment';
@@ -452,6 +486,7 @@ export const MANAGEMENT_PAYMENT_URL = PREFIX_URL + 'management/payment';
 export const MANAGEMENT_COIN_ACCOUNT_URL = PREFIX_URL + 'management/coinAccount';
 export const MANAGEMENT_TAROT_SPREAD_URL = PREFIX_URL + 'management/tarot/spread';
 export const MANAGEMENT_TAROT_SPREAD_MEANING_URL = PREFIX_URL + 'management/tarot/spread-meaning';
+export const MANAGEMENT_TAROT_SPREAD_MEANING_AI_URL = PREFIX_URL + 'management/tarot/spread-meaning-ai';
 
 export const PAYMENT_ORDER_INIT_URL = PREFIX_URL + 'payment/selfwork';
 export const PAYMENT_CALLBACK_URL = PREFIX_URL + 'payment/callback/moneta';
