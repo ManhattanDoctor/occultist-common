@@ -1,6 +1,5 @@
 
 import { Type } from 'class-transformer';
-import { User } from '../user';
 import { TarotSpread } from './TarotSpread';
 import { TarotSpreadMeaningRejectReason } from './TarotSpreadMeaning';
 import * as _ from 'lodash';
@@ -23,10 +22,10 @@ export class TarotSpreadMeaningAi {
 }
 
 export enum TarotSpreadMeaningAiStatus {
-    PENDING = 'PENDING',
     ERROR = 'ERROR',
+    PENDING = 'PENDING',
     REJECTED = 'REJECTED',
-    COMPLETED = 'COMPLETED',
+    APPROVED = 'APPROVED',
     IN_PROGRESS = 'IN_PROGRESS',
 }
 
