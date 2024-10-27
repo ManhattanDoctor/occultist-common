@@ -196,6 +196,10 @@ export class PermissionUtil {
         return item.status !== TarotSpreadMeaningAiStatus.IN_PROGRESS;
     }
 
+    public static spreadIsCanMeaningAiPrice(item: TarotSpread, user: User): boolean {
+        return PermissionUtil.spreadIsCanEdit(item, user);
+    }
+
     //--------------------------------------------------------------------------
     //
     // 	Comment Methods
