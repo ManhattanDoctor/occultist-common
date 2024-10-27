@@ -6,6 +6,4 @@ export interface ITarotSpreadMeaningAiAddDto extends ITraceable {
     uid: string;
 }
 
-export interface ITarotSpreadMeaningAiAddDtoResponse {
-    meaningAi: TarotSpreadMeaningAi;
-}
+export type ITarotSpreadMeaningAiAddDtoResponse = TarotSpreadMeaningAi;
