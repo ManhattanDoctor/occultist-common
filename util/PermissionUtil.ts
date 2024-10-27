@@ -172,10 +172,16 @@ export class PermissionUtil {
     }
 
     public static spreadMeaningIsCanRemove(item: TarotSpreadMeaning, user: User): boolean {
-        if (_.isNil(item) || !PermissionUtil.userIsAdministrator(user)) {
+        if (_.isNil(item) || _.isNil(item.spread)) {
             return false;
         }
-        return item.status !== TarotSpreadMeaningStatus.IN_PROGRESS;
+        if (item.status === TarotSpreadMeaningStatus.IN_PROGRESS) {
+            return false;
+        }
+        if (PermissionUtil.userIsAdministrator(user)) {
+            return true;
+        }
+        return (item.status === TarotSpreadMeaningStatus.RATED || item.status === TarotSpreadMeaningStatus.APPROVED) && item.spread.userId === user.id;
     }
 
 
