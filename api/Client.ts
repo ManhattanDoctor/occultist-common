@@ -223,7 +223,7 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
     }
 
     public async tarotSpreadMeaningAiPrice(data: ITarotSpreadMeaningPriceDto): Promise<ITarotSpreadMeaningPriceDtoResponse> {
-        return this.call(`${TAROT_SPREAD_MEANING_URL}/${data.uid}/price`, { data: TraceUtil.addIfNeed(data) });
+        return this.call(`${TAROT_SPREAD_MEANING_AI_URL}/${data.uid}/price`, { data: TraceUtil.addIfNeed(data) });
     }
 
     public async tarotSpreadMeaningAiRemove(id: number): Promise<ITarotSpreadMeaningAiDtoResponse> {
