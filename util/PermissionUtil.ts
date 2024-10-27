@@ -183,10 +183,17 @@ export class PermissionUtil {
         if (!PermissionUtil.spreadIsCanEdit(item, user)) {
             return false;
         }
-        if (!_.isNil(item.meaningAi) && item.meaningAi.status === TarotSpreadMeaningAiStatus.REJECTED) {
-            return false;
+        if (_.isNil(item.meaningAi)) {
+            return true;
         }
-        return true;
+        switch (item.meaningAi.status) {
+            case TarotSpreadMeaningAiStatus.REJECTED:
+            case TarotSpreadMeaningAiStatus.APPROVED:
+            case TarotSpreadMeaningAiStatus.IN_PROGRESS:
+                return false;
+            default:
+                return true;
+        }
     }
 
     public static spreadMeaningAiIsCanRemove(item: TarotSpreadMeaningAi, user: User): boolean {

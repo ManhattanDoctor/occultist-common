@@ -52,6 +52,7 @@ export enum UserMasterSkill {
     FREUDIAN_PSYCHOANALYSIS = 'FREUDIAN_PSYCHOANALYSIS',
 }
 export enum UserMasterLevel {
+    AI = 'AI',
     MASTER = 'MASTER',
     BEGINNER = 'BEGINNER',
     ADVANCED = 'ADVANCED',
