@@ -137,10 +137,13 @@ export class PermissionUtil {
     }
 
     public static spreadMeaningIsCanMasterSelect(user: User, master: User): boolean {
+        /*
         if (PermissionUtil.userIsDonater(user)) {
             return true;
         }
         return master.master.level === UserMasterLevel.BEGINNER;
+        */
+        return true;
     }
 
     public static spreadMeaningIsCanApprove(item: TarotSpreadMeaning, user: User): boolean {
