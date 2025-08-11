@@ -48,6 +48,14 @@ export class Entity<T = string> implements IEntity<T>, IDestroyable {
         }
     }
 
+    public addToItems<U extends Entity>(item: U, items: Array<U>): U {
+        if (!items.includes(item)) {
+            items.push(item);
+        }
+        item.links.push(this);
+        return item;
+    }
+
     public destroy(): void {
         this._links = null;
     }
