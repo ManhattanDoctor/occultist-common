@@ -21,48 +21,66 @@ export type EntityType = Nature | Planet | Zodiac | ZodiacAngleSpirit | ZodiacDe
 export type EntityTypeName = NatureName | PlanetName | ZodiacName | ZodiacAngleSpiritName | ZodiacDecanSpiritName | HebrewName | SefiraName | TarotName | AlchemyName | DemonName | GeniusName | AhetName | SinName | string;
 
 // Can't use constructor.name coz after compilation it minimized
-export function getEntityName(item: EntityType): string {
+
+export enum EntityName {
+    SIN = 'Sin',
+    AHET = 'Ahet',
+    TAROT = 'Tarot',
+    NATURE = 'Nature',
+    PLANET = 'Planet',
+    ZODIAC = 'Zodiac',
+    HEBREW = 'Hebrew',
+    SEFIRA = 'Sefira',
+    DEMON = 'Demon',
+    GENIUS = 'Genius',
+    ALCHEMY = 'Alchemy',
+    QLIPHOTH = 'Qliphoth',
+    ZODIAC_ANGLE_SPIRIT = 'ZodiacAngleSpirit',
+    ZODIAC_DECAN_SPIRIT = 'ZodiacDecanSpirit',
+}
+
+export function getEntityName(item: EntityType): EntityName {
     if (item instanceof Nature) {
-        return 'Nature';
+        return EntityName.NATURE;
     }
     if (item instanceof Planet) {
-        return 'Planet';
+        return EntityName.PLANET;
     }
     if (item instanceof Zodiac) {
-        return 'Zodiac';
+        return EntityName.ZODIAC;
     }
     if (item instanceof ZodiacAngleSpirit) {
-        return 'ZodiacAngleSpirit';
+        return EntityName.ZODIAC_ANGLE_SPIRIT;
     }
     if (item instanceof ZodiacDecanSpirit) {
-        return 'ZodiacDecanSpirit';
+        return EntityName.ZODIAC_DECAN_SPIRIT;
     }
     if (item instanceof Hebrew) {
-        return 'Hebrew';
+        return EntityName.HEBREW;
     }
     if (item instanceof Sefira) {
-        return 'Sefira';
+        return EntityName.SEFIRA;
     }
     if (item instanceof Qliphoth) {
-        return 'Qliphoth';
+        return EntityName.QLIPHOTH;
     }
     if (item instanceof Tarot) {
-        return 'Tarot';
+        return EntityName.TAROT;
     }
     if (item instanceof Alchemy) {
-        return 'Alchemy';
+        return EntityName.ALCHEMY;
     }
     if (item instanceof Demon) {
-        return 'Demon';
+        return EntityName.DEMON;
     }
     if (item instanceof Genius) {
-        return 'Genius';
+        return EntityName.GENIUS;
     }
     if (item instanceof Ahet) {
-        return 'Ahet';
+        return EntityName.AHET;
     }
     if (item instanceof Sin) {
-        return 'Sin';
+        return EntityName.SIN;
     }
     return null;
 }
