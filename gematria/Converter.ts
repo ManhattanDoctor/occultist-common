@@ -3,7 +3,7 @@ import { ILetter } from './ILetter';
 import { IConverter } from './IConverter';
 import * as _ from 'lodash';
 
-export abstract class Converter<U extends ILetter, V = void> extends Loadable<void, V> implements IConverter {
+export abstract class Converter<U extends ILetter, L = string, V = void> extends Loadable<void, V> implements IConverter {
     //--------------------------------------------------------------------------
     //
     // 	Static Methods
@@ -25,7 +25,7 @@ export abstract class Converter<U extends ILetter, V = void> extends Loadable<vo
 
     protected _text: string;
     protected _number: string;
-    protected _locale: string;
+    protected _locale: L;
     protected _parser: RegExp;
     protected _validator: RegExp;
 
@@ -37,7 +37,7 @@ export abstract class Converter<U extends ILetter, V = void> extends Loadable<vo
     //
     //--------------------------------------------------------------------------
 
-    constructor(locale: string) {
+    constructor(locale: L) {
         super();
 
         this._locale = locale;
@@ -76,7 +76,7 @@ export abstract class Converter<U extends ILetter, V = void> extends Loadable<vo
     //
     //--------------------------------------------------------------------------
 
-    public get locale(): string {
+    public get locale(): L {
         return this._locale;
     }
 

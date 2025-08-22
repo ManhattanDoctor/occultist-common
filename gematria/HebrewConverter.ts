@@ -4,7 +4,7 @@ import { Converter } from './Converter';
 import { IGematriaLetter } from './GematriaLetter';
 import { HebrewAlphabet, HebrewAlphabetLetter, HebrewAlphabetValue } from '../entity';
 
-export abstract class HebrewConverter<T extends IGematriaLetter = IGematriaLetter> extends Converter<T, void> {
+export abstract class HebrewConverter<T extends IGematriaLetter = IGematriaLetter> extends Converter<T, HebrewConverterLocale, void> {
     //--------------------------------------------------------------------------
     //
     // 	Properties
