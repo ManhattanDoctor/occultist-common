@@ -46,7 +46,7 @@ export interface IGematria {
     locale: HebrewConverterLocale;
     number: {
         value: number;
-        calculation: string;
         reduction: number;
+        calculation: string;
     }
 }
