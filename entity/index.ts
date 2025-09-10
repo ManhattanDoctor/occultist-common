@@ -16,5 +16,6 @@ export * from './Demons';
 export * from './Geniuses';
 export * from './Hebrews';
 export * from './Alchemies';
+export * from './TarotSpreadTypes';
 export * from './ZodiacAngleSpirits';
 export * from './ZodiacDecanSpirits';

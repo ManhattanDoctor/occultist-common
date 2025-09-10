@@ -37,6 +37,8 @@ export enum EntityName {
     QLIPHOTH = 'Qliphoth',
     ZODIAC_ANGLE_SPIRIT = 'ZodiacAngleSpirit',
     ZODIAC_DECAN_SPIRIT = 'ZodiacDecanSpirit',
+    //
+    TAROT_SPREAD_TYPE = 'TarotSpreadType',
 }
 
 export function getEntityName(item: EntityType): EntityName {

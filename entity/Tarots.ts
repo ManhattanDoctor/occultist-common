@@ -265,7 +265,6 @@ export class TarotNumber extends Tarot {
         public demons: Array<Demon>,
     ) {
         super(name, TarotType.NUMBER, [planet, zodiac, sefira, nature, sefira.nature]);
-        // demons.forEach(item => this.addLink(item));
     }
 }
 
