@@ -10,6 +10,7 @@ export class TarotSpreadMeaningAi {
     public value?: string;
     public reason?: TarotSpreadMeaningRejectReason;
     public question?: string;
+    public conversationId?: number;
 
     // @Type(() => TarotSpread)
     public spread?: TarotSpread;

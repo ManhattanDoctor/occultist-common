@@ -181,6 +181,27 @@ export class PermissionUtil {
         return item.status !== TarotSpreadMeaningStatus.IN_PROGRESS;
     }
 
+    public static spreadMeaningConversationMessageIsCanAdd(item: TarotSpreadMeaning, user: User): boolean {
+        if (_.isNil(item) || _.isNil(item.spread) || _.isNil(user)) {
+            return false;
+        }
+        switch (item.status) {
+            case TarotSpreadMeaningStatus.RATED:
+            case TarotSpreadMeaningStatus.APPROVED:
+                return item.spread.userId === user.id;
+            default:
+                return false;
+        }
+    }
+
+    public static spreadMeaningConversationMessageIsCanList(item: TarotSpreadMeaning, user: User): boolean {
+        return PermissionUtil.spreadMeaningConversationMessageIsCanAdd(item, user);
+    }
+
+    public static spreadMeaningConversationMessageIsCanPrice(item: TarotSpreadMeaning, user: User): boolean {
+        return PermissionUtil.spreadMeaningConversationMessageIsCanAdd(item, user);
+    }
+
     public static spreadMeaningAiIsCanAdd(item: TarotSpread, user: User): boolean {
         if (!PermissionUtil.spreadIsCanEdit(item, user)) {
             return false;

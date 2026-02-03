@@ -17,6 +17,9 @@ export * from './ITarotSpreadMeaningAiAddDto';
 export * from './ITarotSpreadMeaningAiPriceDto';
 export * from './ITarotSpreadMeaningAiIsCanAddDto';
 //
+export * from './ITarotSpreadMeaningConversationMessageAddDto';
+export * from './ITarotSpreadMeaningConversationMessageListDto';
+//
 export * from './ITarotSpreadDto';
 export * from './ITarotSpreadListDto';
 export * from './ITarotSpreadShowcaseDto';

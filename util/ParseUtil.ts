@@ -53,6 +53,13 @@ export class ParseUtil {
         item = _.trim(item.replace(/[^a-z\u0400-\u04FF\s]/gi, ''));
         return !_.isEmpty(item) ? item : null;
     }
+
+    public static userIsMale(user: User): boolean {
+        if (_.isNil(user) || _.isNil(user.preferences)) {
+            return null;
+        }
+        return user.preferences.isMale;
+    }
 }
 
 export interface ParseInputStringOptions {

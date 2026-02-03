@@ -3,7 +3,6 @@ import { Type } from 'class-transformer';
 import { User } from '../user';
 import * as _ from 'lodash';
 import { TarotSpread } from './TarotSpread';
-import { DateUtil } from '@ts-core/common';
 
 export class TarotSpreadMeaning {
     public id: number;
@@ -14,6 +13,7 @@ export class TarotSpreadMeaning {
     public rating?: number;
     public reason?: TarotSpreadMeaningRejectReason;
     public question?: string;
+    public conversationId?: number;
 
     @Type(() => User)
     public user?: User;
@@ -61,6 +61,9 @@ export const TAROT_SPREAD_MEANING_ADD_MAX_COUNT = 3;
 
 export const TAROT_SPREAD_MEANING_RATING_MIN = 1;
 export const TAROT_SPREAD_MEANING_RATING_MAX = 5;
+
+export const TAROT_SPREAD_MEANING_CONVERSATION_MESSAGE_TEXT_MIN_LENGTH = 1;
+export const TAROT_SPREAD_MEANING_CONVERSATION_MESSAGE_TEXT_MAX_LENGTH = 256;
 
 export const TAROT_SPREAD_MEANING_QUESTION_MAX_LENGTH = 4096;
 
