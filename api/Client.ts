@@ -247,6 +247,10 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
         return TransformUtil.toClassMany(AiConversationMessage, item);
     }
 
+    public async tarotSpreadMeaningConversationMessageIsCanAdd(id: number): Promise<void> {
+        return this.call<void, void>(`${TAROT_SPREAD_MEANING_URL}/${id}/conversation/message/isCanAdd`);
+    }
+
     // --------------------------------------------------------------------------
     //
     //  User Methods
