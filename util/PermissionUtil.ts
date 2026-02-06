@@ -230,6 +230,26 @@ export class PermissionUtil {
         return PermissionUtil.spreadIsCanEdit(item, user);
     }
 
+    public static spreadMeaningAiConversationMessageIsCanAdd(item: TarotSpreadMeaningAi, user: User): boolean {
+        if (_.isNil(item) || _.isNil(item.spread) || _.isNil(user)) {
+            return false;
+        }
+        switch (item.status) {
+            case TarotSpreadMeaningAiStatus.APPROVED:
+                return item.spread.userId === user.id;
+            default:
+                return false;
+        }
+    }
+
+    public static spreadMeaningAiConversationMessageIsCanList(item: TarotSpreadMeaningAi, user: User): boolean {
+        return PermissionUtil.spreadMeaningAiConversationMessageIsCanAdd(item, user);
+    }
+
+    public static spreadMeaningAiConversationMessageIsCanPrice(item: TarotSpreadMeaningAi, user: User): boolean {
+        return PermissionUtil.spreadMeaningAiConversationMessageIsCanAdd(item, user);
+    }
+
     //--------------------------------------------------------------------------
     //
     // 	Comment Methods

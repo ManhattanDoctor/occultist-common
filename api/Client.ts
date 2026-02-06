@@ -253,6 +253,30 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
 
     // --------------------------------------------------------------------------
     //
+    //  Tarot Spread Meaning Ai Conversation Methods
+    //
+    // --------------------------------------------------------------------------
+
+    public async tarotSpreadMeaningAiConversationMessageAdd(id: number, text: string): Promise<ITarotSpreadMeaningConversationMessageAddDtoResponse> {
+        let item = await this.call<ITarotSpreadMeaningConversationMessageAddDtoResponse, ITarotSpreadMeaningConversationMessageAddDto>(`${TAROT_SPREAD_MEANING_AI_URL}/${id}/conversation/message`, { method: 'post', data: TraceUtil.addIfNeed({ id, text }) });
+        return TransformUtil.toClass(AiConversationMessage, item);
+    }
+
+    public async tarotSpreadMeaningAiConversationMessageList(id: number): Promise<ITarotSpreadMeaningConversationMessageListDtoResponse> {
+        let item = await this.call<ITarotSpreadMeaningConversationMessageListDtoResponse>(`${TAROT_SPREAD_MEANING_AI_URL}/${id}/conversation/message`);
+        return TransformUtil.toClassMany(AiConversationMessage, item);
+    }
+
+    public async tarotSpreadMeaningAiConversationMessageIsCanAdd(id: number): Promise<void> {
+        return this.call<void, void>(`${TAROT_SPREAD_MEANING_AI_URL}/${id}/conversation/message/isCanAdd`);
+    }
+
+    public async tarotSpreadMeaningAiConversationMessagePrice(id: number): Promise<ITarotSpreadMeaningPriceDtoResponse> {
+        return this.call<ITarotSpreadMeaningPriceDtoResponse>(`${TAROT_SPREAD_MEANING_AI_URL}/${id}/conversation/message/price`);
+    }
+
+    // --------------------------------------------------------------------------
+    //
     //  User Methods
     //
     // --------------------------------------------------------------------------
