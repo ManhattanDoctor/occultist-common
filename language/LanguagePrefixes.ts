@@ -25,6 +25,7 @@ export let LanguageProjects: Array<ILanguageProjectSettings> = [
             'Management.json',
             'Bibliography.json',
 
+            'Ai.json',
             'Tarots.json',
             'TarotsChart.json',
             'TarotsSpread.json',
