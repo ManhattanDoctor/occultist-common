@@ -246,10 +246,6 @@ export class PermissionUtil {
         return PermissionUtil.spreadMeaningAiConversationMessageIsCanAdd(item, user);
     }
 
-    public static spreadMeaningAiConversationMessageIsCanPrice(item: TarotSpreadMeaningAi, user: User): boolean {
-        return PermissionUtil.spreadMeaningAiConversationMessageIsCanAdd(item, user);
-    }
-
     //--------------------------------------------------------------------------
     //
     // 	Comment Methods
