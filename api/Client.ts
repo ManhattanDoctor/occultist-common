@@ -4,7 +4,7 @@ import * as _ from 'lodash';
 import { IClockDto, IClockDtoResponse } from './clock';
 import { IInitDto, IInitDtoResponse, ILoginDto, ILoginDtoResponse } from './login';
 import { User } from '../user';
-import { ITarotSpreadMeaningAddDto, ITarotSpreadMeaningEditDto, ITarotSpreadMeaningEditDtoResponse, ITarotSpreadAddDto, ITarotSpreadListDto, ITarotSpreadListDtoResponse, ITarotSpreadAddDtoResponse, ITarotSpreadDateDto, ITarotSpreadDtoResponse, ITarotSpreadEditDto, ITarotSpreadMeaningAddDtoResponse, ITarotSpreadMeaningRejectDto, ITarotSpreadMeaningRejectDtoResponse, ITarotSpreadMeaningRateDto, ITarotSpreadMeaningRateDtoResponse, ITarotSpreadMeaningApproveDto, ITarotSpreadMeaningApproveDtoResponse, ITarotSpreadMeaningDtoResponse, ITarotSpreadMeaningPriceDto, ITarotSpreadMeaningPriceDtoResponse, ITarotSpreadMeaningCancelDtoResponse, ITarotSpreadMeaningIsCanAddDto, ITarotSpreadShowcaseDto, ITarotSpreadShowcaseDtoResponse, TAROT_SPREAD_MEANING_TIMEOUT, ITarotSpreadMeaningAiDtoResponse, ITarotSpreadMeaningAiAddDto, ITarotSpreadMeaningAiAddDtoResponse, ITarotSpreadMeaningConversationMessageAddDto, ITarotSpreadMeaningConversationMessageAddDtoResponse, ITarotSpreadMeaningConversationMessageListDtoResponse, ITarotSpreadMeaningAiConversationDtoResponse, ITarotSpreadMeaningAiIsCanAddDto } from './tarot/spread';
+import { ITarotSpreadMeaningAddDto, ITarotSpreadMeaningEditDto, ITarotSpreadMeaningEditDtoResponse, ITarotSpreadAddDto, ITarotSpreadListDto, ITarotSpreadListDtoResponse, ITarotSpreadAddDtoResponse, ITarotSpreadDateDto, ITarotSpreadDtoResponse, ITarotSpreadEditDto, ITarotSpreadMeaningAddDtoResponse, ITarotSpreadMeaningRejectDto, ITarotSpreadMeaningRejectDtoResponse, ITarotSpreadMeaningRateDto, ITarotSpreadMeaningRateDtoResponse, ITarotSpreadMeaningApproveDto, ITarotSpreadMeaningApproveDtoResponse, ITarotSpreadMeaningDtoResponse, ITarotSpreadMeaningPriceDto, ITarotSpreadMeaningPriceDtoResponse, ITarotSpreadMeaningCancelDtoResponse, ITarotSpreadMeaningIsCanAddDto, ITarotSpreadShowcaseDto, ITarotSpreadShowcaseDtoResponse, TAROT_SPREAD_MEANING_TIMEOUT, ITarotSpreadMeaningAiDtoResponse, ITarotSpreadMeaningAiAddDto, ITarotSpreadMeaningAiAddDtoResponse, ITarotSpreadMeaningConversationMessageAddDto, ITarotSpreadMeaningConversationMessageAddDtoResponse, ITarotSpreadMeaningConversationMessageListDtoResponse, ITarotSpreadMeaningAiConversationDtoResponse, ITarotSpreadMeaningConversationDtoResponse, ITarotSpreadMeaningAiIsCanAddDto } from './tarot/spread';
 import { AiConversationMessage } from '../ai';
 import { IGeo } from '../geo';
 import { ICommentAddDto, ICommentAddDtoResponse, ICommentEditDto, ICommentEditDtoResponse, ICommentGetDtoResponse, ICommentListDto, ICommentListDtoResponse, ICommentRemoveDtoResponse } from './comment';
@@ -237,6 +237,10 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
     //
     // --------------------------------------------------------------------------
 
+    public async tarotSpreadMeaningConversationGet(id: number): Promise<ITarotSpreadMeaningConversationDtoResponse> {
+        return this.call<ITarotSpreadMeaningConversationDtoResponse, void>(`${TAROT_SPREAD_MEANING_URL}/${id}/conversation`);
+    }
+
     public async tarotSpreadMeaningConversationMessageAdd(id: number, text: string): Promise<ITarotSpreadMeaningConversationMessageAddDtoResponse> {
         let item = await this.call<ITarotSpreadMeaningConversationMessageAddDtoResponse, ITarotSpreadMeaningConversationMessageAddDto>(`${TAROT_SPREAD_MEANING_URL}/${id}/conversation/message`, { method: 'post', data: TraceUtil.addIfNeed({ id, text }) });
         return TransformUtil.toClass(AiConversationMessage, item);
@@ -245,10 +249,6 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
     public async tarotSpreadMeaningConversationMessageList(id: number): Promise<ITarotSpreadMeaningConversationMessageListDtoResponse> {
         let item = await this.call<ITarotSpreadMeaningConversationMessageListDtoResponse>(`${TAROT_SPREAD_MEANING_URL}/${id}/conversation/message`);
         return TransformUtil.toClassMany(AiConversationMessage, item);
-    }
-
-    public async tarotSpreadMeaningConversationGet(id: number): Promise<ITarotSpreadMeaningAiConversationDtoResponse> {
-        return this.call<ITarotSpreadMeaningAiConversationDtoResponse, void>(`${TAROT_SPREAD_MEANING_URL}/${id}/conversation`);
     }
 
     // --------------------------------------------------------------------------
