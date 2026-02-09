@@ -215,7 +215,7 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
     }
 
     public async tarotSpreadMeaningAiAdd(data: ITarotSpreadMeaningAiAddDto): Promise<ITarotSpreadMeaningAiAddDtoResponse> {
-        let item = await this.call<ITarotSpreadMeaningAiAddDtoResponse, ITarotSpreadMeaningAiAddDto>(`${TAROT_SPREAD_MEANING_AI_URL}`, { method: 'post', data: TraceUtil.addIfNeed(data) });
+        let item = await this.call<ITarotSpreadMeaningAiAddDtoResponse, ITarotSpreadMeaningAiAddDto>(`${TAROT_SPREAD_MEANING_AI_URL}`, { method: 'post', data: TraceUtil.addIfNeed(data) }, { timeout: TAROT_SPREAD_MEANING_TIMEOUT });
         return TransformUtil.toClass(TarotSpreadMeaningAi, item);
     }
 
@@ -238,11 +238,13 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
     // --------------------------------------------------------------------------
 
     public async tarotSpreadMeaningConversationGet(id: number): Promise<ITarotSpreadMeaningConversationDtoResponse> {
-        return this.call<ITarotSpreadMeaningConversationDtoResponse, void>(`${TAROT_SPREAD_MEANING_URL}/${id}/conversation`);
+        let item = await this.call<ITarotSpreadMeaningConversationDtoResponse, void>(`${TAROT_SPREAD_MEANING_URL}/${id}/conversation`);
+        item.meaning = TransformUtil.toClass(TarotSpreadMeaning, item.meaning);
+        return item;
     }
 
     public async tarotSpreadMeaningConversationMessageAdd(id: number, text: string): Promise<ITarotSpreadMeaningConversationMessageAddDtoResponse> {
-        let item = await this.call<ITarotSpreadMeaningConversationMessageAddDtoResponse, ITarotSpreadMeaningConversationMessageAddDto>(`${TAROT_SPREAD_MEANING_URL}/${id}/conversation/message`, { method: 'post', data: TraceUtil.addIfNeed({ id, text }) });
+        let item = await this.call<ITarotSpreadMeaningConversationMessageAddDtoResponse, ITarotSpreadMeaningConversationMessageAddDto>(`${TAROT_SPREAD_MEANING_URL}/${id}/conversation/message`, { method: 'post', data: TraceUtil.addIfNeed({ id, text }) }, { timeout: TAROT_SPREAD_MEANING_TIMEOUT });
         return TransformUtil.toClass(AiConversationMessage, item);
     }
 
@@ -258,11 +260,13 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
     // --------------------------------------------------------------------------
 
     public async tarotSpreadMeaningAiConversationGet(id: number): Promise<ITarotSpreadMeaningAiConversationDtoResponse> {
-        return this.call<ITarotSpreadMeaningAiConversationDtoResponse>(`${TAROT_SPREAD_MEANING_AI_URL}/${id}/conversation`);
+        let item = await this.call<ITarotSpreadMeaningAiConversationDtoResponse>(`${TAROT_SPREAD_MEANING_AI_URL}/${id}/conversation`);
+        item.meaning = TransformUtil.toClass(TarotSpreadMeaningAi, item.meaning);
+        return item;
     }
 
     public async tarotSpreadMeaningAiConversationMessageAdd(id: number, text: string): Promise<ITarotSpreadMeaningConversationMessageAddDtoResponse> {
-        let item = await this.call<ITarotSpreadMeaningConversationMessageAddDtoResponse, ITarotSpreadMeaningConversationMessageAddDto>(`${TAROT_SPREAD_MEANING_AI_URL}/${id}/conversation/message`, { method: 'post', data: TraceUtil.addIfNeed({ id, text }) });
+        let item = await this.call<ITarotSpreadMeaningConversationMessageAddDtoResponse, ITarotSpreadMeaningConversationMessageAddDto>(`${TAROT_SPREAD_MEANING_AI_URL}/${id}/conversation/message`, { method: 'post', data: TraceUtil.addIfNeed({ id, text }) }, { timeout: TAROT_SPREAD_MEANING_TIMEOUT });
         return TransformUtil.toClass(AiConversationMessage, item);
     }
 
