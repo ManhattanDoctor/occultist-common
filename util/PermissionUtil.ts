@@ -188,17 +188,13 @@ export class PermissionUtil {
         switch (item.status) {
             case TarotSpreadMeaningStatus.RATED:
             case TarotSpreadMeaningStatus.APPROVED:
-                return item.spread.userId === user.id;
+                return item.spread.userId === user.id || PermissionUtil.userIsAdministrator(user);
             default:
                 return false;
         }
     }
 
     public static spreadMeaningConversationMessageIsCanList(item: TarotSpreadMeaning, user: User): boolean {
-        return PermissionUtil.spreadMeaningConversationMessageIsCanAdd(item, user);
-    }
-
-    public static spreadMeaningConversationMessageIsCanPrice(item: TarotSpreadMeaning, user: User): boolean {
         return PermissionUtil.spreadMeaningConversationMessageIsCanAdd(item, user);
     }
 
@@ -236,7 +232,7 @@ export class PermissionUtil {
         }
         switch (item.status) {
             case TarotSpreadMeaningAiStatus.APPROVED:
-                return item.spread.userId === user.id;
+                return item.spread.userId === user.id || PermissionUtil.userIsAdministrator(user);
             default:
                 return false;
         }
