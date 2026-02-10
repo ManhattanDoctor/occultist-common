@@ -436,8 +436,8 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
         return item;
     }
 
-    public async managementTarotSpreadEdit(userId: number, data: IManagementTarotSpreadEditDto): Promise<void> {
-        await this.call<void, IManagementTarotSpreadEditDto>(`${MANAGEMENT_TAROT_SPREAD_URL}/user/${userId}`, { data: TraceUtil.addIfNeed(data), method: 'post' });
+    public async managementTarotSpreadEdit(id: number, data: IManagementTarotSpreadEditDto): Promise<void> {
+        await this.call<void, IManagementTarotSpreadEditDto>(`${MANAGEMENT_TAROT_SPREAD_URL}/user/${id}`, { data: TraceUtil.addIfNeed(data), method: 'post' });
     }
 
     // --------------------------------------------------------------------------
