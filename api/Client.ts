@@ -11,7 +11,7 @@ import { ICommentAddDto, ICommentAddDtoResponse, ICommentEditDto, ICommentEditDt
 import { Comment } from '../comment';
 import { TarotSpread, TarotSpreadMeaning, TarotSpreadMeaningAi, TarotSpreadUID } from '../tarot';
 import { IPeopleListDto, IPeopleListDtoResponse } from './people';
-import { IManagementCoinAccountListDto, IManagementCoinAccountListDtoResponse, IManagementTarotSpreadListDto, IManagementTarotSpreadListDtoResponse, IManagementTarotSpreadMeaningAiListDto, IManagementTarotSpreadMeaningAiListDtoResponse, IManagementTarotSpreadMeaningListDto, IManagementTarotSpreadMeaningListDtoResponse } from './management';
+import { IManagementCoinAccountListDto, IManagementCoinAccountListDtoResponse, IManagementTarotSpreadEditDto, IManagementTarotSpreadListDto, IManagementTarotSpreadListDtoResponse, IManagementTarotSpreadMeaningAiListDto, IManagementTarotSpreadMeaningAiListDtoResponse, IManagementTarotSpreadMeaningListDto, IManagementTarotSpreadMeaningListDtoResponse } from './management';
 import { IUserEditDto, IUserEditDtoResponse, IUserGetDtoResponse, IUserListDto, IUserListDtoResponse, IUserMasterListDto, IUserMasterListDtoResponse, UserUID } from './user';
 import { IStatisticsGetDtoResponse } from './statistics';
 import { IOAuthPopUpDto } from '@ts-core/oauth';
@@ -434,6 +434,10 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
         let item = await this.call<IManagementTarotSpreadMeaningAiListDtoResponse, IManagementTarotSpreadMeaningAiListDto>(`${MANAGEMENT_TAROT_SPREAD_MEANING_AI_URL}`, { data: TraceUtil.addIfNeed(data) });
         item.items = TransformUtil.toClassMany(TarotSpreadMeaningAi, item.items);
         return item;
+    }
+
+    public async managementTarotSpreadEdit(userId: number, data: IManagementTarotSpreadEditDto): Promise<void> {
+        await this.call<void, IManagementTarotSpreadEditDto>(`${MANAGEMENT_TAROT_SPREAD_URL}/user/${userId}`, { data: TraceUtil.addIfNeed(data), method: 'post' });
     }
 
     // --------------------------------------------------------------------------
