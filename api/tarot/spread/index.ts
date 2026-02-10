@@ -1,7 +1,9 @@
 export * from './ITarotSpreadAddDto';
 export * from './ITarotSpreadDateDto';
 export * from './ITarotSpreadEditDto';
+export * from './ITarotSpreadGuessDto';
 export * from './ITarotSpreadAddCheckDto';
+//
 export * from './ITarotSpreadMeaningDto';
 export * from './ITarotSpreadMeaningAddDto';
 export * from './ITarotSpreadMeaningEditDto';
