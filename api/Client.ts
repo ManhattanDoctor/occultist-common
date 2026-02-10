@@ -133,7 +133,7 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
         return TransformUtil.toClass(TarotSpread, item);
     }
 
-    public async tarotSpreadTypeGuess(data: ITarotSpreadGuessDto): Promise<ITarotSpreadGuessDtoResponse> {
+    public async tarotSpreadGuess(data: ITarotSpreadGuessDto): Promise<ITarotSpreadGuessDtoResponse> {
         return this.call<ITarotSpreadGuessDtoResponse, ITarotSpreadGuessDto>(`${TAROT_SPREAD_URL}/guess`, { method: 'post', data: TraceUtil.addIfNeed(data) });
     }
 
