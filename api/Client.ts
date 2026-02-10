@@ -240,6 +240,7 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
     public async tarotSpreadMeaningConversationGet(id: number): Promise<ITarotSpreadMeaningConversationDtoResponse> {
         let item = await this.call<ITarotSpreadMeaningConversationDtoResponse, void>(`${TAROT_SPREAD_MEANING_URL}/${id}/conversation`);
         item.meaning = TransformUtil.toClass(TarotSpreadMeaning, item.meaning);
+        item.meaning.spread = TransformUtil.toClass(TarotSpread, item.meaning.spread);
         return item;
     }
 
@@ -262,6 +263,7 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
     public async tarotSpreadMeaningAiConversationGet(id: number): Promise<ITarotSpreadMeaningAiConversationDtoResponse> {
         let item = await this.call<ITarotSpreadMeaningAiConversationDtoResponse>(`${TAROT_SPREAD_MEANING_AI_URL}/${id}/conversation`);
         item.meaning = TransformUtil.toClass(TarotSpreadMeaningAi, item.meaning);
+        item.meaning.spread = TransformUtil.toClass(TarotSpread, item.meaning.spread);
         return item;
     }
 
