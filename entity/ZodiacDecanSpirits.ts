@@ -45,8 +45,8 @@ export class ZodiacDecanSpirits extends FilterableMapCollection<ZodiacDecanSpiri
             new DayTimeRange({ date: 31, month: 2 }, { date: 9, month: 3 }),
             new DayTimeRange({ date: 10, month: 3 }, { date: 20, month: 3 }),
             new DayTimeRange({ date: 21, month: 3 }, { date: 30, month: 3 }),
-            new DayTimeRange({ date: 31, month: 3 }, { date: 9, month: 4 }),
-            new DayTimeRange({ date: 10, month: 4 }, { date: 21, month: 4 }),
+            new DayTimeRange({ date: 1, month: 4 }, { date: 10, month: 4 }),
+            new DayTimeRange({ date: 11, month: 4 }, { date: 21, month: 4 }),
             new DayTimeRange({ date: 22, month: 4 }, { date: 31, month: 4 }),
             new DayTimeRange({ date: 1, month: 5 }, { date: 10, month: 5 }),
             new DayTimeRange({ date: 11, month: 5 }, { date: 21, month: 5 }),
@@ -74,9 +74,9 @@ export class ZodiacDecanSpirits extends FilterableMapCollection<ZodiacDecanSpiri
             new DayTimeRange({ date: 21, month: 0 }, { date: 30, month: 0 }),
             new DayTimeRange({ date: 31, month: 0 }, { date: 9, month: 1 }),
             new DayTimeRange({ date: 10, month: 1 }, { date: 19, month: 1 }),
-            new DayTimeRange({ date: 20, month: 1 }, { date: 29, month: 1 }),
-            new DayTimeRange({ date: 30, month: 1 }, { date: 9, month: 2 }),
-            new DayTimeRange({ date: 10, month: 2 }, { date: 20, month: 2 })
+            new DayTimeRange({ date: 20, month: 1 }, { date: 1, month: 2 }),
+            new DayTimeRange({ date: 2, month: 2 }, { date: 11, month: 2 }),
+            new DayTimeRange({ date: 12, month: 2 }, { date: 20, month: 2 })
         ];
 
         for (let i = 0; i < 36; i++) {
