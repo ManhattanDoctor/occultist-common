@@ -250,11 +250,11 @@ export class Demons extends FilterableMapCollection<Demon> {
         this.get(DemonName.FORAS).addSimilar(this.get(DemonName.PURSON), this.get(DemonName.AMDUCIAS), this.get(DemonName.ASTAROT));
         this.get(DemonName.ASMODAI).addSimilar(this.get(DemonName.SEERE), this.get(DemonName.SITRI), this.get(DemonName.GREMORY), this.get(DemonName.BELIAL), this.get(DemonName.ZEPAR));
         this.get(DemonName.GAAP).addSimilar(this.get(DemonName.LERAIE), this.get(DemonName.AIM), this.get(DemonName.FOCALOR), this.get(DemonName.SABNOK), this.get(DemonName.HAURES), this.get(DemonName.ANDROMALIUS), this.get(DemonName.BAEL));
-        this.get(DemonName.FURFUR).addSimilar(this.get(DemonName.GAMIGIN), this.get(DemonName.SALLOS), this.get(DemonName.MARCHOSIAS), this.get(DemonName.RAUM), this.get(DemonName.ALLOCES));
+        this.get(DemonName.FURFUR).addSimilar(this.get(DemonName.GAMIGIN), this.get(DemonName.SALLOS), this.get(DemonName.MARCHOSIAS), this.get(DemonName.RAUM), this.get(DemonName.ALLOCES), this.get(DemonName.BALAM));
         this.get(DemonName.MARCHOSIAS).addSimilar(this.get(DemonName.ZEPAR), this.get(DemonName.FURFUR), this.get(DemonName.RAUM), this.get(DemonName.VUAL), this.get(DemonName.ALLOCES), this.get(DemonName.BELIAL));
         this.get(DemonName.STOLAS).addSimilar(this.get(DemonName.ASTAROT), this.get(DemonName.BATHIN), this.get(DemonName.PURSON), this.get(DemonName.AMY));
-        this.get(DemonName.PHENEX).addSimilar(this.get(DemonName.VASSAGO), this.get(DemonName.AGARES), this.get(DemonName.AMON), this.get(DemonName.ELIGOS));
-        this.get(DemonName.HALPHAS).addSimilar(this.get(DemonName.MALPHAS), this.get(DemonName.BOTIS), this.get(DemonName.AGARES), this.get(DemonName.OROBAS));
+        this.get(DemonName.PHENEX).addSimilar(this.get(DemonName.VASSAGO), this.get(DemonName.AGARES), this.get(DemonName.AMON), this.get(DemonName.ELIGOS), this.get(DemonName.HALPHAS));
+        this.get(DemonName.HALPHAS).addSimilar(this.get(DemonName.MALPHAS), this.get(DemonName.BOTIS), this.get(DemonName.AGARES), this.get(DemonName.OROBAS), this.get(DemonName.PHENEX));
         this.get(DemonName.MALPHAS).addSimilar(this.get(DemonName.HALPHAS), this.get(DemonName.AGARES), this.get(DemonName.ZEPAR), this.get(DemonName.AMON), this.get(DemonName.HAAGENTI), this.get(DemonName.MURMUR), this.get(DemonName.OROBAS), this.get(DemonName.VALAC), this.get(DemonName.DECARABIA), this.get(DemonName.KIMARIS));
         this.get(DemonName.RAUM).addSimilar(this.get(DemonName.GAMIGIN), this.get(DemonName.FURFUR), this.get(DemonName.MARCHOSIAS));
         this.get(DemonName.FOCALOR).addSimilar(this.get(DemonName.LERAIE), this.get(DemonName.GAAP), this.get(DemonName.GLASSYA_LABOLAS), this.get(DemonName.VAPULA), this.get(DemonName.HAURES), this.get(DemonName.ANDROMALIUS), this.get(DemonName.VINE));
@@ -267,7 +267,7 @@ export class Demons extends FilterableMapCollection<Demon> {
         this.get(DemonName.HAAGENTI).addSimilar(this.get(DemonName.VASSAGO), this.get(DemonName.MALPHAS), this.get(DemonName.OROBAS), this.get(DemonName.DECARABIA), this.get(DemonName.VEPAR), this.get(DemonName.BATHIN));
         this.get(DemonName.CROCEL).addSimilar(this.get(DemonName.BELETH), this.get(DemonName.SALLOS), this.get(DemonName.ELIGOS), this.get(DemonName.FURCAS));
         this.get(DemonName.FURCAS).addSimilar(this.get(DemonName.SALLOS), this.get(DemonName.ELIGOS), this.get(DemonName.CROCEL));
-        this.get(DemonName.BALAM).addSimilar(this.get(DemonName.SITRI), this.get(DemonName.NABERIUS), this.get(DemonName.CAMIO), this.get(DemonName.KIMARIS));
+        this.get(DemonName.BALAM).addSimilar(this.get(DemonName.SITRI), this.get(DemonName.NABERIUS), this.get(DemonName.CAMIO), this.get(DemonName.KIMARIS), this.get(DemonName.FURFUR));
         this.get(DemonName.ALLOCES).addSimilar(this.get(DemonName.MARCHOSIAS), this.get(DemonName.FURFUR), this.get(DemonName.VALAC), this.get(DemonName.SALLOS));
         this.get(DemonName.CAMIO).addSimilar(this.get(DemonName.NABERIUS), this.get(DemonName.AIM), this.get(DemonName.BALAM), this.get(DemonName.ASTAROT), this.get(DemonName.PURSON), this.get(DemonName.SHAX), this.get(DemonName.ZAGAN));
         this.get(DemonName.MURMUR).addSimilar(this.get(DemonName.MALPHAS), this.get(DemonName.AIM), this.get(DemonName.MARAX), this.get(DemonName.BATHIN), this.get(DemonName.DANTALION), this.get(DemonName.GAMIGIN));
@@ -282,12 +282,12 @@ export class Demons extends FilterableMapCollection<Demon> {
         this.get(DemonName.ANDRAS).addSimilar(this.get(DemonName.ASTAROT), this.get(DemonName.BUNE), this.get(DemonName.OSE), this.get(DemonName.YPOS));
         this.get(DemonName.HAURES).addSimilar(this.get(DemonName.GLASSYA_LABOLAS), this.get(DemonName.FOCALOR), this.get(DemonName.GAAP));
         this.get(DemonName.ANDREALPHUS).addSimilar(this.get(DemonName.VAPULA), this.get(DemonName.LERAIE), this.get(DemonName.PAIMON), this.get(DemonName.AIM), this.get(DemonName.YPOS), this.get(DemonName.KIMARIS));
-        this.get(DemonName.KIMARIS).addSimilar(this.get(DemonName.ANDREALPHUS), this.get(DemonName.MALPHAS), this.get(DemonName.BALAM));
+        this.get(DemonName.KIMARIS).addSimilar(this.get(DemonName.ANDREALPHUS), this.get(DemonName.MALPHAS), this.get(DemonName.BALAM), this.get(DemonName.DANTALION));
         this.get(DemonName.AMDUCIAS).addSimilar(this.get(DemonName.ASTAROT), this.get(DemonName.BARBATOS), this.get(DemonName.BAEL), this.get(DemonName.MARBAS), this.get(DemonName.FORAS), this.get(DemonName.VAPULA));
         this.get(DemonName.BELIAL).addSimilar(this.get(DemonName.ZEPAR), this.get(DemonName.MARCHOSIAS), this.get(DemonName.VUAL), this.get(DemonName.ASMODAI));
         this.get(DemonName.DECARABIA).addSimilar(this.get(DemonName.HAAGENTI), this.get(DemonName.VASSAGO), this.get(DemonName.MALPHAS));
         this.get(DemonName.SEERE).addSimilar(this.get(DemonName.BUER), this.get(DemonName.OROBAS), this.get(DemonName.MARBAS), this.get(DemonName.ASMODAI));
-        this.get(DemonName.DANTALION).addSimilar(this.get(DemonName.MURMUR), this.get(DemonName.HALPHAS), this.get(DemonName.AGARES), this.get(DemonName.OROBAS), this.get(DemonName.AMON));
+        this.get(DemonName.DANTALION).addSimilar(this.get(DemonName.MURMUR), this.get(DemonName.HALPHAS), this.get(DemonName.AGARES), this.get(DemonName.OROBAS), this.get(DemonName.AMON), this.get(DemonName.KIMARIS));
         this.get(DemonName.ANDROMALIUS).addSimilar(this.get(DemonName.AIM), this.get(DemonName.LERAIE), this.get(DemonName.FOCALOR), this.get(DemonName.GAAP));
     }
 
